@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - projects/projects.json
+    - posts/posts.json
+    - assets/js/render-cards.js
+    - styles.css
+
+website:
+  title: "LCPallares - Análisis de Datos y Más"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: about.qmd
+        text: Acerca de
+      - href: projects/
+        text: Proyectos
+      - href: posts/
+        text: Blog
+    right:
+      - icon: github
+        href: https://github.com/lcpallares
+      - icon: linkedin
+        href: https://linkedin.com/in/lcpallares
+
+  sidebar:
+    - title: "Categorías"
+      contents:
+        - href: posts/tag-estadistica.qmd
+          text: Estadística
+        - href: posts/tag-data-apps.qmd
+          text: Data Apps
+        - href: posts/tag-visualizacion.qmd
+          text: Visualización
+
+  page-footer:
+    center: "© 2023 LCPallares"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    include-in-header:
+      - text: |
+          <link rel="icon" type="image/x-icon" href="images/favicon.ico">

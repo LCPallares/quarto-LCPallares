@@ -1,0 +1,25 @@
+---
+title: "LCPallares - Análisis de Datos y Más"
+---
+
+## ¡Hola! Soy **LCPallares**, estudiante de análisis de datos.
+
+Bienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.
+
+---
+
+### Proyectos
+
+Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
+
+<div id="projects-container" class="card-container"></div>
+
+---
+
+### Blogs
+
+Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
+
+<div id="blogs-container" class="card-container"></div>
+
+<script src="assets/js/render-cards.js"></script>

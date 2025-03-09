@@ -1,0 +1,33 @@
+LCPallares/
+├── _quarto.yml
+├── index.qmd          # Página de inicio
+├── about.qmd          # Página "Acerca de"
+├── projects/          # Carpeta para proyectos
+│   ├── proyecto-1.qmd
+│   ├── proyecto-2.qmd
+│   └── _metadata.yml  # Metadatos para proyectos
+├── posts/             # Carpeta para blogs
+│   ├── blog-1.qmd
+│   ├── blog-2.qmd
+│   └── _metadata.yml  # Metadatos para blogs
+├── styles.css         # Estilos personalizados
+└── images/            # Carpeta para imágenes
+
+
+LCPallares/
+├── _quarto.yml
+├── index.qmd
+├── projects/
+│   ├── projects.json
+│   ├── index.qmd
+│   ├── university-dropout.qmd
+│   ├── amazon-best-seller.qmd
+├── posts/
+│   ├── posts.json
+│   ├── index.qmd
+│   ├── estadistica-descriptiva.qmd
+│   ├── estadistica-inferencial.qmd
+├── assets/
+│   ├── js/
+│   │   └── render-cards.js
+├── styles.css

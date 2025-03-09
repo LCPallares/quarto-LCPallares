@@ -1,0 +1,10 @@
+---
+title: "Data Analysis Projects"
+subtitle: "A showcase of my technical skills and problem-solving approach"
+---
+
+Below you'll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.
+
+### Proyectos
+
+Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.

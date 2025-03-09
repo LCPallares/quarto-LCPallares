@@ -1,0 +1,14 @@
+listing:
+  id: listing-projects
+  sort-ui: [stars, title, author, date]
+  sort:
+    - stars desc
+  field-types:
+    stars: number
+  filter-ui:
+    - title
+    - author
+    - description
+  categories: true
+  page-size: 10
+  max-description-length: 500

@@ -1,0 +1,118 @@
+---
+title: "Estadística Descriptiva: La Base del Análisis de Datos"
+author: "LC Pallares"
+date: "2025-02-15"
+categories: [estadística, análisis, tutoriales]
+image: "https://placehold.co/800x400"
+---
+
+# Estadística Descriptiva: La Base del Análisis de Datos
+
+La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.
+
+## ¿Qué es la Estadística Descriptiva?
+
+La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.
+
+## Medidas de Tendencia Central
+
+Las medidas de tendencia central nos ayudan a identificar los valores "típicos" de un conjunto de datos:
+
+- **Media**: El promedio aritmético de todos los valores.
+- **Mediana**: El valor central cuando los datos están ordenados.
+- **Moda**: El valor que aparece con mayor frecuencia.
+
+```python
+import numpy as np
+import pandas as pd
+
+# Ejemplo con un conjunto de datos
+datos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]
+
+media = np.mean(datos)
+mediana = np.median(datos)
+# Calculando la moda manualmente
+moda = max(set(datos), key = datos.count)
+
+print(f"Media: {media}")
+print(f"Mediana: {mediana}")
+print(f"Moda: {moda}")
+```
+
+## Medidas de Dispersión
+
+Las medidas de dispersión describen cuán extendidos o concentrados están los datos:
+
+- **Rango**: La diferencia entre el valor máximo y mínimo.
+- **Desviación estándar**: Medida de cuánto se alejan típicamente los valores de la media.
+- **Varianza**: El cuadrado de la desviación estándar.
+- **Rango intercuartílico (IQR)**: La diferencia entre el tercer y primer cuartil.
+
+## Visualización en la Estadística Descriptiva
+
+La representación visual es crucial para entender patrones en los datos:
+
+### Histogramas
+
+Los histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:
+
+```python
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.hist(datos, bins=5, color='skyblue', edgecolor='black')
+plt.title('Histograma de Datos')
+plt.xlabel('Valor')
+plt.ylabel('Frecuencia')
+plt.grid(axis='y', alpha=0.75)
+plt.show()
+```
+
+### Diagramas de Caja (Boxplots)
+
+Los boxplots son excelentes para visualizar la distribución y detectar valores atípicos:
+
+```python
+plt.figure(figsize=(8, 6))
+plt.boxplot(datos, vert=False, patch_artist=True)
+plt.title('Diagrama de Caja')
+plt.grid(axis='x', linestyle='--')
+plt.show()
+```
+
+## Aplicación Práctica: Análisis de Ventas
+
+Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:
+
+```python
+# Datos de ventas mensuales (en miles de $)
+ventas = {
+    'Enero': 120, 'Febrero': 135, 'Marzo': 142, 
+    'Abril': 130, 'Mayo': 125, 'Junio': 145
+}
+
+df_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])
+
+# Estadísticas descriptivas
+estadisticas = df_ventas['Ventas'].describe()
+print(estadisticas)
+
+# Visualización
+plt.figure(figsize=(12, 6))
+plt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')
+plt.title('Ventas Mensuales')
+plt.xlabel('Mes')
+plt.ylabel('Ventas (miles $)')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+```
+
+## Conclusión
+
+La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.
+
+En próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.
+
+¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!

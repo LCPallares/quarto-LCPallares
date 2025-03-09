@@ -1,0 +1,14 @@
+---
+title: "Data Analysis Blog"
+subtitle: "Articles, tutorials and thoughts on data analysis"
+---
+
+Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.
+
+### Blogs
+
+Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
+
+<div id="blogs-container" class="card-container"></div>
+
+<script src="assets/js/render-cards.js"></script>
