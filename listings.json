@@ -1,0 +1,44 @@
+[
+  {
+    "listing": "/projects/amazon-best-seller.html",
+    "items": [
+      "/projects/university-dropout.html",
+      "/projects/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/university-dropout.html",
+    "items": [
+      "/projects/index.html",
+      "/projects/amazon-best-seller.html"
+    ]
+  },
+  {
+    "listing": "/posts/estadistica-inferencial.html",
+    "items": [
+      "/posts/index.html",
+      "/posts/estadistica-descriptiva.html"
+    ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/estadistica-inferencial.html",
+      "/posts/estadistica-descriptiva.html"
+    ]
+  },
+  {
+    "listing": "/posts/estadistica-descriptiva.html",
+    "items": [
+      "/posts/index.html",
+      "/posts/estadistica-inferencial.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/university-dropout.html",
+      "/projects/amazon-best-seller.html"
+    ]
+  }
+]

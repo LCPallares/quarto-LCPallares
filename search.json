@@ -1,0 +1,254 @@
+[
+  {
+    "objectID": "projects/amazon-best-seller.html",
+    "href": "projects/amazon-best-seller.html",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns.\n\n\n\nI built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency\n\n\n\nThe raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories\n\n\n\n\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books\n\n\n\n\n\n\n\n\nPricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales\n\n\n\n\nThis analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance.\n\n\n\nFuture extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#project-overview",
+    "href": "projects/amazon-best-seller.html#project-overview",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#web-scraping-process",
+    "href": "projects/amazon-best-seller.html#web-scraping-process",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "I built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "href": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "The raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#exploratory-analysis",
+    "href": "projects/amazon-best-seller.html#exploratory-analysis",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#key-insights",
+    "href": "projects/amazon-best-seller.html#key-insights",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Pricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#conclusions",
+    "href": "projects/amazon-best-seller.html#conclusions",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#next-steps",
+    "href": "projects/amazon-best-seller.html#next-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+  },
+  {
+    "objectID": "projects/university-dropout.html",
+    "href": "projects/university-dropout.html",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n\n\nThe dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history\n\n\n\nI used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors\n\n\n\n\nFirst-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%\n\n\n\n\n\n\n\n\n\nDropout rates by semester and program\n\n\n\n\n\n\n\nBased on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods\n\n\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+  },
+  {
+    "objectID": "projects/university-dropout.html#introduction",
+    "href": "projects/university-dropout.html#introduction",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates."
+  },
+  {
+    "objectID": "projects/university-dropout.html#data-collection",
+    "href": "projects/university-dropout.html#data-collection",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "The dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history"
+  },
+  {
+    "objectID": "projects/university-dropout.html#methodology",
+    "href": "projects/university-dropout.html#methodology",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "I used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors"
+  },
+  {
+    "objectID": "projects/university-dropout.html#key-findings",
+    "href": "projects/university-dropout.html#key-findings",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "First-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%"
+  },
+  {
+    "objectID": "projects/university-dropout.html#visualizations",
+    "href": "projects/university-dropout.html#visualizations",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "Dropout rates by semester and program"
+  },
+  {
+    "objectID": "projects/university-dropout.html#recommendations",
+    "href": "projects/university-dropout.html#recommendations",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "Based on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods"
+  },
+  {
+    "objectID": "projects/university-dropout.html#conclusion",
+    "href": "projects/university-dropout.html#conclusion",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html",
+    "href": "posts/estadistica-inferencial.html",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.\n\n\nLa estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra.\n\n\n\n\nLos intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")\n\n\n\nLas pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")\n\n\n\n\nANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\n\n\n\nLa regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")\n\n\n\nEs importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten\n\n\n\n\nLa estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "href": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Los intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "href": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Las pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "href": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "ANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#regresión-lineal",
+    "href": "posts/estadistica-inferencial.html#regresión-lineal",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Es importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#conclusión",
+    "href": "posts/estadistica-inferencial.html#conclusión",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de",
+    "section": "",
+    "text": "Hola, mundo."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "",
+    "text": "Bienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\n\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
+  },
+  {
+    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "",
+    "text": "Bienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\n\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Data Analysis Blog",
+    "section": "",
+    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html",
+    "href": "posts/estadistica-descriptiva.html",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.\n\n\nLa estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.\n\n\n\nLas medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")\n\n\n\nLas medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil.\n\n\n\n\nLa representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()\n\n\n\n\nVeamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()\n\n\n\nLa estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos."
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Las medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Las medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil."
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "href": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#conclusión",
+    "href": "posts/estadistica-descriptiva.html#conclusión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Data Analysis Projects",
+    "section": "",
+    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\n\n\n\neducation\n\n\nstatistics\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\n\n\n\nweb scraping\n\n\ndata cleaning\n\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots. \n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items"
+  }
+]
