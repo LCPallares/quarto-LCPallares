@@ -2,11 +2,12 @@
 async function renderCards(jsonFile, containerId) {
   try {
     // 1. Determinar la ruta correcta al archivo JSON
-    const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
-    const relativePath = isHomePage ? jsonFile : `../${jsonFile}`;
+    // Usar ruta absoluta desde la raíz del sitio en GitHub Pages
+    const baseUrl = 'https://lcpallares.github.io/quarto-LCPallares/';
+    const filePath = `${baseUrl}${jsonFile}`;
 
     // 2. Cargar el archivo JSON
-    const response = await fetch(relativePath);
+    const response = await fetch(filePath);
     if (!response.ok) {
       throw new Error(`Error al cargar ${jsonFile}: ${response.statusText}`);
     }
