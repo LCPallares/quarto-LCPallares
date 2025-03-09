@@ -2,17 +2,36 @@ name: Render Quarto Site
 
 on:
   push:
-    branches: [main]  # Cambia "main" si tu rama principal es diferente (ej. "master")
-  workflow_dispatch:  # Permite ejecutar manualmente desde GitHub
+    branches: [main]  # Cambia a "master" si tu rama principal es diferente
+  workflow_dispatch:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Permiso para escribir en el repositorio
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # Ajusta según tus necesidades
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter nbformat
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.0'  # Usa la versión de R que necesites
+
+      - name: Install R dependencies
+        run: |
+          R -e "install.packages(c('knitr', 'rmarkdown'), repos='https://cloud.r-project.org/')"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -24,4 +43,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site  # Debe coincidir con output-dir en _quarto.yml
+          publish_dir: ./_site
