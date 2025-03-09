@@ -3,12 +3,12 @@
     "title": "University Dropout Analysis",
     "description": "Examined data trends to identify patterns and factors influencing student attrition in Business Administration.",
     "image": "https://placehold.co/300x200",
-    "link": "projects/university-dropout"
+    "link": "projects/university-dropout.html"
   },
   {
     "title": "Amazon Best Seller",
     "description": "Extracted data via web scraping, performed data cleaning, and created visualizations to reveal insights into Amazon’s top-selling books.",
     "image": "https://placehold.co/300x200",
-    "link": "projects/amazon-best-seller"
+    "link": "projects/amazon-best-seller.html"
   }
 ]
