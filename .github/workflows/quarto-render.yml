@@ -1,0 +1,27 @@
+name: Render Quarto Site
+
+on:
+  push:
+    branches: [main]  # Cambia "main" si tu rama principal es diferente (ej. "master")
+  workflow_dispatch:  # Permite ejecutar manualmente desde GitHub
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permiso para escribir en el repositorio
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render Quarto Site
+        run: quarto render
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site  # Debe coincidir con output-dir en _quarto.yml
