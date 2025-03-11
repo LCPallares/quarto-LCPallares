@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs
   resources:
     - projects/projects.json
     - posts/posts.json
@@ -8,17 +8,21 @@ project:
     - styles.css
 
 website:
-  title: "LCPallares - Análisis de Datos y Más"
+  title: "LCPallares"
+  favicon: /assets/images/logo.svg
+  page-navigation: true
+  back-to-top-navigation: true
   navbar:
+    logo: assets/images/logo.svg
     left:
       - href: index.qmd
         text: Inicio
-      - href: about.qmd
-        text: Acerca de
       - href: projects/
         text: Proyectos
       - href: posts/
         text: Blog
+      - href: about.qmd
+        text: Acerca de
     right:
       - icon: github
         href: https://github.com/lcpallares
@@ -36,13 +40,17 @@ website:
           text: Visualización
 
   page-footer:
-    center: "© 2023 LCPallares"
+    border: true
+    left: |
+      Powered by [{{< iconify simple-icons:quarto >}} Quarto](https://quarto.org).
+    center: |
+      &copy; 2025 LCPallares.
+    right: |
+      License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-    include-in-header:
-      - text: |
-          <link rel="icon" type="image/x-icon" href="images/favicon.ico">

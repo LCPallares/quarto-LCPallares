@@ -1,6 +1,47 @@
 ---
 title: "LCPallares - Análisis de Datos y Más"
+subtitle: |
+  Administrador de empresas aprendiendo análisis de datos.
+image: /assets/images/profile1.png
+about:
+  id: edu-exp
+  template: solana
+  image-width: 9em
+  image-shape: round
+  links:
+    - text: "{{< iconify fa6-solid:envelope >}}"
+      href: "mailto:pro@mickael.canouil.dev"
+      aria-label: "envelope logo for email"
+    - text: "{{< iconify fa6-brands:orcid >}}"
+      href: "https://orcid.org/0000-0002-3396-4549"
+      aria-label: "ORCID logo linking to ORCID account"
+    - text: "{{< iconify fa6-brands:mastodon >}}"
+      href: "https://fosstodon.org/@MickaelCanouil"
+      aria-label: "Mastodon logo linking to MickaelCanouil Fosstodon account"
+      rel: me
+    - text: "{{< iconify fa6-brands:bluesky >}}"
+      href: "https://bsky.app/profile/mickael.canouil.fr"
+      aria-label: "BlueSky logo linking to mickael.canouil.fr account"
+    - text: "{{< iconify fa6-brands:x-twitter >}}"
+      href: "https://x.com/MickaelCanouil"
+      aria-label: "X (Twitter) logo linking to MickaelCanouil account"
+    - text: "{{< iconify fa6-brands:linkedin >}}"
+      href: "https://www.linkedin.com/in/mickaelcanouil"
+      aria-label: "LinkedIn logo linking to mickaelcanouil account"
+    - text: "{{< iconify octicon:mark-github-16 >}}"
+      href: "https://github.com/mcanouil"
+      aria-label: "GitHub logo linking to mcanouil account"
+    - text: "{{< iconify octicon:heart-fill-16 >}} Sponsor"
+      href: "https://github.com/sponsors/mcanouil?o=esb"
+      aria-label: "GitHub Sponsor mcanouil"
 ---
+::: {#edu-exp}
+:::
+
+¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área.
+
+
+
 
 ## ¡Hola! Soy **LCPallares**, estudiante de análisis de datos.
 

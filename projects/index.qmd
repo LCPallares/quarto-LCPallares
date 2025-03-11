@@ -1,6 +1,20 @@
 ---
 title: "Data Analysis Projects"
 subtitle: "A showcase of my technical skills and problem-solving approach"
+listing:
+  id: listing-projects
+  sort-ui: [stars, title, author, date]
+  sort:
+    - stars desc
+  field-types:
+    stars: number
+  filter-ui:
+    - title
+    - author
+    - description
+  categories: true
+  page-size: 10
+  max-description-length: 500
 ---
 
 Below you'll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.

@@ -1,6 +1,20 @@
 ---
 title: "Data Analysis Blog"
 subtitle: "Articles, tutorials and thoughts on data analysis"
+listing:
+  id: listing-projects
+  sort-ui: [stars, title, author, date]
+  sort:
+    - stars desc
+  field-types:
+    stars: number
+  filter-ui:
+    - title
+    - author
+    - description
+  categories: true
+  page-size: 10
+  max-description-length: 500
 ---
 
 Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.
@@ -8,7 +22,3 @@ Welcome to my blog! Here, I share insights, tutorials, and reflections on data a
 ### Blogs
 
 Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
-
-<div id="blogs-container" class="card-container"></div>
-
-<script src="assets/js/render-cards.js"></script>

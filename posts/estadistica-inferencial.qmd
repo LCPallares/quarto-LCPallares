@@ -3,7 +3,7 @@ title: "Estadística Inferencial: De la Muestra a la Población"
 author: "LC Pallares"
 date: "2025-03-05"
 categories: [estadística, análisis, tutoriales]
-image: "https://placehold.co/800x400"
+image: "https://i.imgur.com/a3T68i5.jpeg"
 ---
 
 # Estadística Inferencial: De la Muestra a la Población

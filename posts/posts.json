@@ -2,13 +2,13 @@
   {
     "title": "Introducción a la Estadística Descriptiva",
     "description": "En este blog exploro los conceptos básicos de la estadística descriptiva, como la media, mediana y moda.",
-    "image": "https://placehold.co/300x200",
+    "image": "https://i.imgur.com/HZz45hP.jpeg",
     "link": "/quarto-LCPallares/posts/estadistica-descriptiva.html"
   },
   {
     "title": "Estadística Inferencial",
     "description": "Aprende cómo hacer inferencias sobre poblaciones a partir de muestras utilizando técnicas estadísticas avanzadas.",
-    "image": "https://placehold.co/300x200",
+    "image": "https://i.imgur.com/a3T68i5.jpeg",
     "link": "/quarto-LCPallares/posts/estadistica-inferencial.html"
   }
 ]

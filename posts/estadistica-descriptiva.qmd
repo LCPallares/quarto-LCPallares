@@ -3,7 +3,7 @@ title: "Estadística Descriptiva: La Base del Análisis de Datos"
 author: "LC Pallares"
 date: "2025-02-15"
 categories: [estadística, análisis, tutoriales]
-image: "https://placehold.co/800x400"
+image: "https://i.imgur.com/HZz45hP.jpeg"
 ---
 
 # Estadística Descriptiva: La Base del Análisis de Datos

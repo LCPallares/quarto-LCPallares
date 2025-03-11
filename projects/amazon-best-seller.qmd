@@ -2,7 +2,7 @@
 title: "Amazon Best Seller Analysis"
 author: "LC Pallares"
 date: "2025-03-01"
-image: "https://placehold.co/800x400"
+image: "https://www.ecomengine.com/hubfs/images/featured/blog/amazon-best-seller.jpg"
 categories: [web scraping, data cleaning, visualization]
 description: |
     Streamlit has quickly become the hot thing in data app frameworks. We put it to the
