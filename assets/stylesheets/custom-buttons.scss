@@ -1,0 +1,31 @@
+/* assets/styles/custom-buttons.scss */
+
+/* Variables básicas (puedes ajustar los colores) */
+$body-color: #333333; /* Color claro para los íconos, tomado de coeos */
+$hover-scale: 1.25;   /* Escala al hacer hover */
+
+/* Estilo para los enlaces con íconos */
+div.quarto-about-solana .about-entity .about-link {
+  font-size: 1.5em;          /* Tamaño del ícono */
+  color: $body-color;        /* Color del ícono */
+  border-style: none;        /* Sin bordes */
+  transition: all 0.35s ease; /* Transición suave */
+  display: inline-block;     /* Necesario para que transform funcione */
+}
+
+div.quarto-about-solana .about-entity .about-link:hover {
+  transform: scale($hover-scale); /* Aumenta al pasar el ratón */
+}
+
+div.quarto-about-solana .about-entity .about-links {
+  column-gap: 0;             /* Sin espacio entre íconos */
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  div.quarto-about-solana .about-entity .about-links {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
