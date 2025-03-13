@@ -5,6 +5,7 @@ body {
   background-color: #f9f9f9;
 }
 
+
 .navbar {
   background-color: #ffffff;
   border-bottom: 1px solid #eaeaea;
@@ -233,7 +234,6 @@ div.quarto-about-solana .about-entity .about-links {
 }
 
 
-
 /* Grid de proyectos */
 .project-grid {
   display: grid;
@@ -281,5 +281,27 @@ div.quarto-about-solana .about-entity .about-links {
 .tag-cloud li:nth-child(2) { font-size: 0.95em; }
 .tag-cloud li:nth-child(3) { font-size: 1.05em; }
 .tag-cloud li:nth-child(4) { font-size: 0.9em; }
+
+
+
+
+
+
+#tecnologías ul {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
+  gap: 1rem; /* Espacio entre elementos, ajustable */
+  list-style: none;
+  padding-left: 0;
+}
+
+#tecnologías ul li {
+  display: flex;
+  align-items: center; /* Centra verticalmente ícono y texto */
+  background-color: #ffffff ; /* Gris claro #d3d3d3, azul claro #d3eaf7 */
+  padding: 0.3rem 0.6rem; /* Espacio interno para que el fondo se vea bien */
+  border-radius: 4px; /* Bordes redondeados (opcional) */
+}
+
 
 
