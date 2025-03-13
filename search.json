@@ -170,9 +170,37 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Acerca de",
+    "title": "Acerca de mi",
     "section": "",
-    "text": "Hola, mundo.\n\n\n\n Back to top"
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
+  },
+  {
+    "objectID": "about.html#proyectos-destacados",
+    "href": "about.html#proyectos-destacados",
+    "title": "Acerca de mi",
+    "section": "Proyectos Destacados",
+    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
+  },
+  {
+    "objectID": "about.html#tecnologías",
+    "href": "about.html#tecnologías",
+    "title": "Acerca de mi",
+    "section": "Tecnologías",
+    "text": "Tecnologías\n\nLenguajes\n\n\n Python\n R\n SQL\n\n\n\n\nHerramientas\n\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\n\nVisualización\n\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\n\nBusiness Intelligence\n\n\n Power BI\n Tableau\n Looker Studio\n\n\n\n\nOtros\n\n\n Kivy"
+  },
+  {
+    "objectID": "about.html#experiencia",
+    "href": "about.html#experiencia",
+    "title": "Acerca de mi",
+    "section": "Experiencia",
+    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
+  },
+  {
+    "objectID": "about.html#educación",
+    "href": "about.html#educación",
+    "title": "Acerca de mi",
+    "section": "Educación",
+    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
   },
   {
     "objectID": "index.html",

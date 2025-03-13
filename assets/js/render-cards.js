@@ -25,11 +25,13 @@ async function renderCards(jsonFile, containerId) {
       const link = item.link.startsWith('/') ? item.link : `/${item.link}`;
       return `
         <div class="card">
-          <img src="${item.image}" alt="${item.title}" class="card-image">
-          <div class="card-content">
-            <h3><a href="${link}">${item.title}</a></h3>
-            <p>${item.description}</p>
-          </div>
+          <a href="${link}" class="card-link">
+            <img src="${item.image}" alt="${item.title}" class="card-image">
+            <div class="card-content">
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+            </div>
+          </a>
         </div>
       `;
     }).join('');
