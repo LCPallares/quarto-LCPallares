@@ -2,7 +2,7 @@
 title: "Acerca de mi"
 subtitle: |
   Administrador de empresas aprendiendo análisis de datos.
-image: /assets/images/profile1.png
+image: /quarto-LCPallares/assets/images/profile1.png
 about:
   id: edu-exp
   template: solana
