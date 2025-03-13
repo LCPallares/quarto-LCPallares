@@ -9,8 +9,8 @@ project:
 
 website:
   title: "LCPallares"
-  favicon: /assets/images/logo.svg
-  image: /assets/images/profile1.png
+  favicon: assets/images/logo.svg  # Sin "/" inicial
+  image: assets/images/profile1.png  # Sin "/" inicial
   page-navigation: true
   back-to-top-navigation: true
   navbar:
@@ -53,6 +53,7 @@ website:
 format:
   html:
     theme: 
-      - cosmo
+      light: cosmo  # Tema claro
+      #dark: darkly  # Tema oscuro (o cualquier otro tema oscuro de Bootswatch)
     css: styles.css
     toc: true

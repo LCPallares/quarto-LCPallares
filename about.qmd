@@ -2,7 +2,7 @@
 title: "Acerca de mi"
 subtitle: |
   Administrador de empresas aprendiendo análisis de datos.
-image: /quarto-LCPallares/assets/images/profile1.png
+image: assets/images/profile1.png  # Solo una definición, sin "/" inicial
 about:
   id: edu-exp
   template: solana
@@ -50,12 +50,12 @@ about:
 
 ::: {.project-grid}
 
-![Análisis de Ventas](/proyectos/ventas.jpg){.project-img}  
+![Análisis de Ventas](/projects/analisis_predictivo_ventas/ventas.png){.project-img}  
 **Análisis Predictivo de Ventas**  
 [{{< iconify octicon:repo-16 >}} Repositorio](https://github.com/...){.btn}  
 [{{< iconify octicon:report-16 >}} Reporte](/informes/ventas.html){.btn}
 
-![Dashboard Logístico](/proyectos/logistica.jpg){.project-img}  
+![Dashboard Logístico](/projects/dashboard_logistica/logistica.jpg){.project-img}  
 **Dashboard de Logística**  
 Tecnologías: Power BI, SQL  
 [Demo en vivo »](#){.button}
@@ -67,36 +67,27 @@ Tecnologías: Power BI, SQL
 ## Tecnologías
 
 ### Lenguajes
-::: {.tag-cloud}
 - {{< iconify devicon:python >}} Python
 - {{< iconify logos:r-lang >}} R
 - {{< iconify devicon:sqlite >}} SQL
-:::
+
 ### Herramientas
-::: {.tag-cloud}
 - {{< iconify devicon:scikitlearn >}} Scikit-learn
 - {{< iconify devicon:pandas >}} Pandas
 - {{< iconify devicon:numpy >}} NumPy
-:::
+
 ### Visualización
-::: {.tag-cloud}
 - {{< iconify devicon:matplotlib >}} Matplotlib
 - {{< iconify logos:seaborn-icon >}} Seaborn
 - {{< iconify devicon:plotly >}} Plotly
-:::
+
 ### Business Intelligence
-::: {.tag-cloud}
 - {{< iconify logos:microsoft-power-bi >}} Power BI
 - {{< iconify logos:tableau-icon >}} Tableau
 - {{< iconify devicon:googlecloud >}} Looker Studio
-:::
+
 ### Otros
-::: {.tag-cloud}
 - {{< iconify material-icon-theme:kivy >}} Kivy
-:::
-
-
-
 
 
 
@@ -138,4 +129,3 @@ Tecnologías: Power BI, SQL
 - Machine Learning Fundamentals (DeepLearning.AI)
 
 :::
-

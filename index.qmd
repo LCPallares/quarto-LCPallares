@@ -2,7 +2,7 @@
 title: "LCPallares - Análisis de Datos y Más"
 subtitle: |
   Administrador de empresas aprendiendo análisis de datos.
-image: /quarto-LCPallares/assets/images/profile1.png
+image: assets/images/profile1.png
 about:
   id: edu-exp
   template: solana

@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/estadistica-descriptiva.html",
+      "/posts/estadistica-inferencial.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/amazon-best-seller.html",
+      "/projects/university-dropout.html"
+    ]
+  }
+]
