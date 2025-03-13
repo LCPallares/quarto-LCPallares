@@ -63,9 +63,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install Quarto Extensions
-        run: |
-          quarto add mcanouil/quarto-iconify
+      #- name: Install Quarto Extensions
+        #run: |
+          #quarto add mcanouil/quarto-iconify
 
       - name: Render Quarto Site
         run: quarto render

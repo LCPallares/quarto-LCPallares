@@ -10,6 +10,7 @@ project:
 website:
   title: "LCPallares"
   favicon: /assets/images/logo.svg
+  image: /assets/images/profile1.png
   page-navigation: true
   back-to-top-navigation: true
   navbar:
