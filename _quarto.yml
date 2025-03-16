@@ -9,12 +9,12 @@ project:
 
 website:
   title: "LCPallares"
-  favicon: assets/images/logo.svg  # Sin "/" inicial
+  favicon: assets/images/favicon.ico  # Sin "/" inicial
   image: assets/images/profile1.png  # Sin "/" inicial
   page-navigation: true
   back-to-top-navigation: true
   navbar:
-    logo: assets/images/logo.svg
+    logo: assets/images/logo.png  # convertir a svg
     left:
       - href: index.qmd
         text: Inicio
