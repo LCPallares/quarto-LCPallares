@@ -2,7 +2,7 @@
 title: "Análisis del Hipotiroidismo Congénito: Datos y Comunicación"
 author: "LC Pallares"
 date: "2025-03-24"
-image: "https://imgur.com/UysVCy9"  # Reemplaza con una URL de imagen relevante
+image: "https://i.imgur.com/UysVCy9.jpeg" #"https://imgur.com/UysVCy9"
 categories: [data cleaning, exploratory analysis, streamlit, health, sms-api]
 description: |
     Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.
