@@ -10,5 +10,11 @@
     "description": "Extracted data via web scraping, performed data cleaning, and created visualizations to reveal insights into Amazon’s top-selling books.",
     "image": "https://www.ecomengine.com/hubfs/images/featured/blog/amazon-best-seller.jpg",
     "link": "/quarto-LCPallares/projects/amazon-best-seller.html"
+  },
+  {
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "description": "Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres",
+    "image": "https://imgur.com/UysVCy9",
+    "link": "/quarto-LCPallares/projects/congenital-hypothyroidism.html"
   }
 ]

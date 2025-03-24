@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="LC Pallares">
+<meta name="dcterms.date" content="2025-03-24">
+<meta name="description" content="Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.">
 
-<title>Data Analysis Blog – LCPallares</title>
+<title>Análisis del Hipotiroidismo Congénito: Datos y Comunicación – LCPallares</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +23,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +68,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assets/images/favicon.ico" rel="icon">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,65 +105,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing-projects .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-stars-sort'] },{ data: ['listing-date-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing-projects'] = new List('listing-listing-projects', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -197,24 +174,59 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#blogs" id="toc-blogs" class="nav-link active" data-scroll-target="#blogs">Blogs</a></li>
+  <li><a href="#análisis-del-hipotiroidismo-congénito-datos-y-comunicación" id="toc-análisis-del-hipotiroidismo-congénito-datos-y-comunicación" class="nav-link active" data-scroll-target="#análisis-del-hipotiroidismo-congénito-datos-y-comunicación">Análisis del Hipotiroidismo Congénito: Datos y Comunicación</a>
+  <ul class="collapse">
+  <li><a href="#resumen-del-proyecto" id="toc-resumen-del-proyecto" class="nav-link" data-scroll-target="#resumen-del-proyecto">Resumen del Proyecto</a></li>
+  <li><a href="#parte-1-limpieza-de-la-base-de-datos" id="toc-parte-1-limpieza-de-la-base-de-datos" class="nav-link" data-scroll-target="#parte-1-limpieza-de-la-base-de-datos">Parte 1: Limpieza de la Base de Datos</a></li>
+  <li><a href="#parte-2-exploración-de-datos-y-dashboard" id="toc-parte-2-exploración-de-datos-y-dashboard" class="nav-link" data-scroll-target="#parte-2-exploración-de-datos-y-dashboard">Parte 2: Exploración de Datos y Dashboard</a>
+  <ul class="collapse">
+  <li><a href="#funcionalidad-del-dashboard" id="toc-funcionalidad-del-dashboard" class="nav-link" data-scroll-target="#funcionalidad-del-dashboard">Funcionalidad del Dashboard</a></li>
+  <li><a href="#hallazgos-preliminares" id="toc-hallazgos-preliminares" class="nav-link" data-scroll-target="#hallazgos-preliminares">Hallazgos Preliminares</a></li>
+  </ul></li>
+  <li><a href="#parte-3-estadística-avanzada-en-desarrollo" id="toc-parte-3-estadística-avanzada-en-desarrollo" class="nav-link" data-scroll-target="#parte-3-estadística-avanzada-en-desarrollo">Parte 3: Estadística Avanzada (En Desarrollo)</a></li>
+  <li><a href="#conclusiones-preliminares" id="toc-conclusiones-preliminares" class="nav-link" data-scroll-target="#conclusiones-preliminares">Conclusiones Preliminares</a></li>
+  <li><a href="#próximos-pasos" id="toc-próximos-pasos" class="nav-link" data-scroll-target="#próximos-pasos">Próximos Pasos</a></li>
+  </ul></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW4lQzMlQTFsaXNpcw==">análisis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXN0YWQlQzMlQURzdGljYQ==">estadística <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dHV0b3JpYWxlcw==">tutoriales <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Analysis Blog</h1>
-<p class="subtitle lead">Articles, tutorials and thoughts on data analysis</p>
-</div>
+<h1 class="title">Análisis del Hipotiroidismo Congénito: Datos y Comunicación</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">data cleaning</div>
+    <div class="quarto-category">exploratory analysis</div>
+    <div class="quarto-category">streamlit</div>
+    <div class="quarto-category">health</div>
+    <div class="quarto-category">sms-api</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>LC Pallares </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 24, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -224,125 +236,104 @@ window.Quarto = {
 </header>
 
 
-<p>Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.</p>
-<section id="blogs" class="level3">
-<h3 class="anchored" data-anchor-id="blogs">Blogs</h3>
-<p>Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
-
+<section id="análisis-del-hipotiroidismo-congénito-datos-y-comunicación" class="level1">
+<h1>Análisis del Hipotiroidismo Congénito: Datos y Comunicación</h1>
+<section id="resumen-del-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-del-proyecto">Resumen del Proyecto</h2>
+<p>El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.</p>
+</section>
+<section id="parte-1-limpieza-de-la-base-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="parte-1-limpieza-de-la-base-de-datos">Parte 1: Limpieza de la Base de Datos</h2>
+<p>La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:</p>
+<ol type="1">
+<li><strong>Estandarización</strong>: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).</li>
+<li><strong>Valores faltantes</strong>: Gestioné datos incompletos, priorizando la imputación cuando fue posible.</li>
+<li><strong>Corrección de errores</strong>: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.</li>
+<li><strong>Preparación para SMS</strong>: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.</li>
+<li><strong>Código documentado</strong>: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].</li>
+</ol>
+<p>El resultado es un conjunto de datos confiable para análisis y comunicación.</p>
+</section>
+<section id="parte-2-exploración-de-datos-y-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="parte-2-exploración-de-datos-y-dashboard">Parte 2: Exploración de Datos y Dashboard</h2>
+<p>El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:</p>
+<div id="2cfa9401" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo placeholder (ajusta con tus datos)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>tsh_levels <span class="op">=</span> np.random.lognormal(mean<span class="op">=</span><span class="dv">2</span>, sigma<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span><span class="dv">100</span>)  <span class="co"># Simulación de TSH</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sns.histplot(tsh_levels, bins<span class="op">=</span><span class="dv">20</span>, kde<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribución de Niveles de TSH al Nacer'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Nivel de TSH (mIU/L)'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frecuencia'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.axvline(tsh_levels.mean(), color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Media: </span><span class="sc">{</span>tsh_levels<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="congenital-hypothyroidism_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<figcaption>Distribución de niveles de TSH al nacer</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgur.com/h0xy5Jb.png" class="img-fluid figure-img"></p>
+<figcaption>Distribución de TSH</figcaption>
+</figure>
+</div>
+<section id="funcionalidad-del-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="funcionalidad-del-dashboard">Funcionalidad del Dashboard</h3>
+<ul>
+<li><strong>Exploración interactiva</strong>: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).</li>
+<li><strong>Notificaciones SMS</strong>: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.</li>
+<li><strong>Acceso</strong>: Disponible <a href="https://congenitalhypothyroidismalert-fj2vvjhbx9kgjnmckexhn9.streamlit.app/">aquí</a>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgur.com/cjqTfzL.png" class="img-fluid figure-img"></p>
+<figcaption>Interfaz del Dashboard</figcaption>
+</figure>
+</div>
+</section>
+<section id="hallazgos-preliminares" class="level3">
+<h3 class="anchored" data-anchor-id="hallazgos-preliminares">Hallazgos Preliminares</h3>
+<ul>
+<li>Los niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.</li>
+<li>La falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.</li>
+</ul>
+</section>
+</section>
+<section id="parte-3-estadística-avanzada-en-desarrollo" class="level2">
+<h2 class="anchored" data-anchor-id="parte-3-estadística-avanzada-en-desarrollo">Parte 3: Estadística Avanzada (En Desarrollo)</h2>
+<p>Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.</p>
+<p>Pronto actualizaré esta entrada con más detalles.</p>
+</section>
+<section id="conclusiones-preliminares" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones-preliminares">Conclusiones Preliminares</h2>
+<p>El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.</p>
+</section>
+<section id="próximos-pasos" class="level2">
+<h2 class="anchored" data-anchor-id="próximos-pasos">Próximos Pasos</h2>
+<ul>
+<li>Finalizar la sección de estadística avanzada.</li>
+<li>Optimizar el dashboard con más opciones de personalización para los SMS.</li>
+<li>Probar la API de SMS en un entorno real y evaluar su impacto.</li>
+</ul>
 
 
 </section>
+</section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing-projects">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-projects-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing-projects'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ZXN0YWQlQzMlQURzdGljYSUyQ2FuJUMzJUExbGlzaXMlMkN0dXRvcmlhbGVz" data-listing-date-sort="1741132800000" data-listing-file-modified-sort="1742843391475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="527">
-<div class="thumbnail">
-<p><a href="../posts/estadistica-inferencial.html" class="no-external"></a></p><a href="../posts/estadistica-inferencial.html" class="no-external">
-<p><img loading="lazy" src="https://i.imgur.com/a3T68i5.jpeg" class="thumbnail-image"></p>
-</a><p><a href="../posts/estadistica-inferencial.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/estadistica-inferencial.html" class="no-external">Estadística Inferencial: De la Muestra a la Población</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/estadistica-inferencial.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ZXN0YWQlQzMlQURzdGljYQ=='); return false;">
-estadística
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNpcw=='); return false;">
-análisis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('dHV0b3JpYWxlcw=='); return false;">
-tutoriales
-</div>
-</div>
-<div class="listing-description">
-<a href="../posts/estadistica-inferencial.html" class="no-external">La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../posts/estadistica-inferencial.html" class="no-external">
-<div class="listing-date">
-Mar 5, 2025
-</div>
-<div class="listing-author">
-LC Pallares
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZXN0YWQlQzMlQURzdGljYSUyQ2FuJUMzJUExbGlzaXMlMkN0dXRvcmlhbGVz" data-listing-date-sort="1739577600000" data-listing-file-modified-sort="1742843391475" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="403">
-<div class="thumbnail">
-<p><a href="../posts/estadistica-descriptiva.html" class="no-external"></a></p><a href="../posts/estadistica-descriptiva.html" class="no-external">
-<p><img loading="lazy" src="https://i.imgur.com/HZz45hP.jpeg" class="thumbnail-image"></p>
-</a><p><a href="../posts/estadistica-descriptiva.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/estadistica-descriptiva.html" class="no-external">Estadística Descriptiva: La Base del Análisis de Datos</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/estadistica-descriptiva.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ZXN0YWQlQzMlQURzdGljYQ=='); return false;">
-estadística
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('YW4lQzMlQTFsaXNpcw=='); return false;">
-análisis
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('dHV0b3JpYWxlcw=='); return false;">
-tutoriales
-</div>
-</div>
-<div class="listing-description">
-<a href="../posts/estadistica-descriptiva.html" class="no-external">La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../posts/estadistica-descriptiva.html" class="no-external">
-<div class="listing-date">
-Feb 15, 2025
-</div>
-<div class="listing-author">
-LC Pallares
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -1,115 +1,164 @@
 [
   {
-    "objectID": "projects/amazon-best-seller.html",
-    "href": "projects/amazon-best-seller.html",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html",
+    "href": "projects/congenital-hypothyroidism.html",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns.\n\n\n\nI built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency\n\n\n\nThe raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories\n\n\n\n\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books\n\n\n\n\n\n\n\n\nPricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales\n\n\n\n\nThis analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance.\n\n\n\nFuture extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\n\n\n\nLa base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación.\n\n\n\nEl análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n# Ejemplo placeholder (ajusta con tus datos)\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)  # Simulación de TSH\n\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.\n\n\n\n\n\nEsta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles.\n\n\n\nEl proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.\n\n\n\n\nFinalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#project-overview",
-    "href": "projects/amazon-best-seller.html#project-overview",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "href": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns."
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#web-scraping-process",
-    "href": "projects/amazon-best-seller.html#web-scraping-process",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "href": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "I built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency"
+    "text": "La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#data-cleaning-steps",
-    "href": "projects/amazon-best-seller.html#data-cleaning-steps",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "href": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "The raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories"
+    "text": "El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n# Ejemplo placeholder (ajusta con tus datos)\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)  # Simulación de TSH\n\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#exploratory-analysis",
-    "href": "projects/amazon-best-seller.html#exploratory-analysis",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "href": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books"
+    "text": "Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#key-insights",
-    "href": "projects/amazon-best-seller.html#key-insights",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "href": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "Pricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales"
+    "text": "El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#conclusions",
-    "href": "projects/amazon-best-seller.html#conclusions",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "href": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
     "section": "",
-    "text": "This analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance."
+    "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
   },
   {
-    "objectID": "projects/amazon-best-seller.html#next-steps",
-    "href": "projects/amazon-best-seller.html#next-steps",
-    "title": "Amazon Best Seller Analysis",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Data Analysis Projects",
     "section": "",
-    "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\n\n\n\neducation\n\n\nstatistics\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\n\n\n\nweb scraping\n\n\ndata cleaning\n\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots. \n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito: Datos y Comunicación\n\n\n\n\n\n\ndata cleaning\n\n\nexploratory analysis\n\n\nstreamlit\n\n\nhealth\n\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API. \n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
-    "objectID": "projects/university-dropout.html",
-    "href": "projects/university-dropout.html",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html",
+    "href": "posts/estadistica-descriptiva.html",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n\n\nThe dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history\n\n\n\nI used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors\n\n\n\n\nFirst-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%\n\n\n\n\n\n\n\n\n\nDropout rates by semester and program\n\n\n\n\n\n\n\nBased on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods\n\n\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+    "text": "La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.\n\n\nLa estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.\n\n\n\nLas medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")\n\n\n\nLas medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil.\n\n\n\n\nLa representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()\n\n\n\n\nVeamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()\n\n\n\nLa estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
   },
   {
-    "objectID": "projects/university-dropout.html#introduction",
-    "href": "projects/university-dropout.html#introduction",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates."
+    "text": "La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos."
   },
   {
-    "objectID": "projects/university-dropout.html#data-collection",
-    "href": "projects/university-dropout.html#data-collection",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "The dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history"
+    "text": "Las medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")"
   },
   {
-    "objectID": "projects/university-dropout.html#methodology",
-    "href": "projects/university-dropout.html#methodology",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "I used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors"
+    "text": "Las medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil."
   },
   {
-    "objectID": "projects/university-dropout.html#key-findings",
-    "href": "projects/university-dropout.html#key-findings",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "First-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%"
+    "text": "La representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()"
   },
   {
-    "objectID": "projects/university-dropout.html#visualizations",
-    "href": "projects/university-dropout.html#visualizations",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "href": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "Dropout rates by semester and program"
+    "text": "Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()"
   },
   {
-    "objectID": "projects/university-dropout.html#recommendations",
-    "href": "projects/university-dropout.html#recommendations",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/estadistica-descriptiva.html#conclusión",
+    "href": "posts/estadistica-descriptiva.html#conclusión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
-    "text": "Based on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods"
+    "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
   },
   {
-    "objectID": "projects/university-dropout.html#conclusion",
-    "href": "projects/university-dropout.html#conclusion",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Data Analysis Blog",
     "section": "",
-    "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "",
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
+  },
+  {
+    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
+    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de mi",
+    "section": "",
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
+  },
+  {
+    "objectID": "about.html#proyectos-destacados",
+    "href": "about.html#proyectos-destacados",
+    "title": "Acerca de mi",
+    "section": "Proyectos Destacados",
+    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
+  },
+  {
+    "objectID": "about.html#tecnologías",
+    "href": "about.html#tecnologías",
+    "title": "Acerca de mi",
+    "section": "Tecnologías",
+    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
+  },
+  {
+    "objectID": "about.html#experiencia",
+    "href": "about.html#experiencia",
+    "title": "Acerca de mi",
+    "section": "Experiencia",
+    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
+  },
+  {
+    "objectID": "about.html#educación",
+    "href": "about.html#educación",
+    "title": "Acerca de mi",
+    "section": "Educación",
+    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
   },
   {
     "objectID": "posts/estadistica-inferencial.html",
@@ -168,115 +217,115 @@
     "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Acerca de mi",
+    "objectID": "projects/university-dropout.html",
+    "href": "projects/university-dropout.html",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n\n\nThe dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history\n\n\n\nI used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors\n\n\n\n\nFirst-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%\n\n\n\n\n\n\n\n\n\nDropout rates by semester and program\n\n\n\n\n\n\n\nBased on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods\n\n\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
   },
   {
-    "objectID": "about.html#proyectos-destacados",
-    "href": "about.html#proyectos-destacados",
-    "title": "Acerca de mi",
-    "section": "Proyectos Destacados",
-    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
-  },
-  {
-    "objectID": "about.html#tecnologías",
-    "href": "about.html#tecnologías",
-    "title": "Acerca de mi",
-    "section": "Tecnologías",
-    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
-  },
-  {
-    "objectID": "about.html#experiencia",
-    "href": "about.html#experiencia",
-    "title": "Acerca de mi",
-    "section": "Experiencia",
-    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
-  },
-  {
-    "objectID": "about.html#educación",
-    "href": "about.html#educación",
-    "title": "Acerca de mi",
-    "section": "Educación",
-    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "LCPallares - Análisis de Datos y Más",
+    "objectID": "projects/university-dropout.html#introduction",
+    "href": "projects/university-dropout.html#introduction",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates."
   },
   {
-    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "title": "LCPallares - Análisis de Datos y Más",
-    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
-    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
-  },
-  {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Data Analysis Blog",
+    "objectID": "projects/university-dropout.html#data-collection",
+    "href": "projects/university-dropout.html#data-collection",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\n\n\n\nestadística\n\n\nanálisis\n\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "The dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html",
-    "href": "posts/estadistica-descriptiva.html",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/university-dropout.html#methodology",
+    "href": "projects/university-dropout.html#methodology",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.\n\n\nLa estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.\n\n\n\nLas medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")\n\n\n\nLas medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil.\n\n\n\n\nLa representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()\n\n\n\n\nVeamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()\n\n\n\nLa estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+    "text": "I used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
-    "href": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/university-dropout.html#key-findings",
+    "href": "projects/university-dropout.html#key-findings",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos."
+    "text": "First-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
-    "href": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/university-dropout.html#visualizations",
+    "href": "projects/university-dropout.html#visualizations",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "Las medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")"
+    "text": "Dropout rates by semester and program"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
-    "href": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/university-dropout.html#recommendations",
+    "href": "projects/university-dropout.html#recommendations",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "Las medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil."
+    "text": "Based on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
-    "href": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/university-dropout.html#conclusion",
+    "href": "projects/university-dropout.html#conclusion",
+    "title": "University Dropout Analysis",
     "section": "",
-    "text": "La representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()"
+    "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
-    "href": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/amazon-best-seller.html",
+    "href": "projects/amazon-best-seller.html",
+    "title": "Amazon Best Seller Analysis",
     "section": "",
-    "text": "Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()"
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns.\n\n\n\nI built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency\n\n\n\nThe raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories\n\n\n\n\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books\n\n\n\n\n\n\n\n\nPricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales\n\n\n\n\nThis analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance.\n\n\n\nFuture extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
   },
   {
-    "objectID": "posts/estadistica-descriptiva.html#conclusión",
-    "href": "posts/estadistica-descriptiva.html#conclusión",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "objectID": "projects/amazon-best-seller.html#project-overview",
+    "href": "projects/amazon-best-seller.html#project-overview",
+    "title": "Amazon Best Seller Analysis",
     "section": "",
-    "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns."
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Data Analysis Projects",
+    "objectID": "projects/amazon-best-seller.html#web-scraping-process",
+    "href": "projects/amazon-best-seller.html#web-scraping-process",
+    "title": "Amazon Best Seller Analysis",
     "section": "",
-    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\n\n\n\neducation\n\n\nstatistics\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\n\n\n\nweb scraping\n\n\ndata cleaning\n\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots. \n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "I built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "href": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "The raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#exploratory-analysis",
+    "href": "projects/amazon-best-seller.html#exploratory-analysis",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\nPrice distribution of best-selling books"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#key-insights",
+    "href": "projects/amazon-best-seller.html#key-insights",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Pricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#conclusions",
+    "href": "projects/amazon-best-seller.html#conclusions",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#next-steps",
+    "href": "projects/amazon-best-seller.html#next-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
   }
 ]
