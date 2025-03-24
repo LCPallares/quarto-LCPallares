@@ -1,0 +1,86 @@
+---
+title: "Análisis del Hipotiroidismo Congénito: Datos y Comunicación"
+author: "LC Pallares"
+date: "2025-03-24"
+image: "https://imgur.com/UysVCy9"  # Reemplaza con una URL de imagen relevante
+categories: [data cleaning, exploratory analysis, streamlit, health, sms-api]
+description: |
+    Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.
+---
+
+# Análisis del Hipotiroidismo Congénito: Datos y Comunicación
+
+## Resumen del Proyecto
+
+El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.
+
+## Parte 1: Limpieza de la Base de Datos
+
+La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:
+
+1. **Estandarización**: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).
+2. **Valores faltantes**: Gestioné datos incompletos, priorizando la imputación cuando fue posible.
+3. **Corrección de errores**: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.
+4. **Preparación para SMS**: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.
+5. **Código documentado**: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].
+
+El resultado es un conjunto de datos confiable para análisis y comunicación.
+
+## Parte 2: Exploración de Datos y Dashboard
+
+El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:
+
+```{python}
+#| fig-cap: "Distribución de niveles de TSH al nacer"
+
+# Ejemplo placeholder (ajusta con tus datos)
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+np.random.seed(42)
+tsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)  # Simulación de TSH
+
+plt.figure(figsize=(10, 6))
+sns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')
+plt.title('Distribución de Niveles de TSH al Nacer')
+plt.xlabel('Nivel de TSH (mIU/L)')
+plt.ylabel('Frecuencia')
+plt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+```
+
+![Distribución de TSH](https://imgur.com/h0xy5Jb)  
+
+### Funcionalidad del Dashboard
+- **Exploración interactiva**: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).
+- **Notificaciones SMS**: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como "Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico".
+- **Acceso**: Disponible [aquí](https://congenitalhypothyroidismalert-fj2vvjhbx9kgjnmckexhn9.streamlit.app/).
+
+![Interfaz del Dashboard](https://imgur.com/cjqTfzL)
+
+### Hallazgos Preliminares
+- Los niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.
+- La falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.
+
+## Parte 3: Estadística Avanzada (En Desarrollo)
+
+Esta sección está en progreso. Planeo incluir:
+- Modelos predictivos para identificar casos de riesgo elevado.
+- Análisis de correlación entre factores demográficos y retrasos en la notificación.
+- Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.
+
+Pronto actualizaré esta entrada con más detalles.
+
+## Conclusiones Preliminares
+
+El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.
+
+## Próximos Pasos
+
+- Finalizar la sección de estadística avanzada.
+- Optimizar el dashboard con más opciones de personalización para los SMS.
+- Probar la API de SMS en un entorno real y evaluar su impacto.
+
