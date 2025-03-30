@@ -57,3 +57,4 @@ format:
       #dark: darkly  # Tema oscuro (o cualquier otro tema oscuro de Bootswatch)
     css: styles.css
     toc: true
+code-fold: true  # Hace que todo el código sea colapsable por defecto

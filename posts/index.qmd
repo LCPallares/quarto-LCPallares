@@ -15,6 +15,10 @@ listing:
   categories: true
   page-size: 10
   max-description-length: 500
+
+format:
+  html:
+    toc: false  # Desactiva la tabla de contenidos solo en este archivo
 ---
 
 Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.

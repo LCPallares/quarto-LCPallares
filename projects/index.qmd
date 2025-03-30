@@ -15,6 +15,10 @@ listing:
   categories: true
   page-size: 10
   max-description-length: 500
+
+format:
+  html:
+    toc: false  # Desactiva la tabla de contenidos solo en este archivo
 ---
 
 Below you'll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.
