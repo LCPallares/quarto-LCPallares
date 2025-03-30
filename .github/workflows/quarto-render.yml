@@ -36,7 +36,8 @@ jobs:
         uses: actions/cache@v3
         with:
           #path: /usr/local/lib/R/site-library
-          path: /home/runner/work/_temp/Library  # Ruta real de instalación
+          #path: /home/runner/work/_temp/Library  # Ruta real de instalación
+          path: /opt/R/4.3.0/lib/R/library  # Ruta estable del sistema
           key: ${{ runner.os }}-r-${{ hashFiles('dependencies/install.R') }}
           restore-keys: ${{ runner.os }}-r-
 
@@ -54,7 +55,7 @@ jobs:
       - name: Install R dependencies
         run: |
           echo "Inicio: $(date)"
-          Rscript dependencies/install.R  # Sin sudo ni options(pkgType)
+          sudo Rscript -e ".libPaths('/opt/R/4.3.0/lib/R/library'); source('dependencies/install.R')"
           echo "Fin: $(date)"
 
       # Configurar caché para Quarto
