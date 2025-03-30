@@ -56,7 +56,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.quarto
-          key: ${{ runner.os }}-quarto-${{ hashFiles('.github/workflows/quarto-render.yml') }}
+          #key: ${{ runner.os }}-quarto-${{ hashFiles('.github/workflows/quarto-render.yml') }}
+          key: ${{ runner.os }}-quarto-${{ hashFiles('dependencies/quarto-extensions.txt') }}
           restore-keys: |
             ${{ runner.os }}-quarto-
 
@@ -66,6 +67,9 @@ jobs:
       #- name: Install Quarto Extensions
         #run: |
           #quarto add mcanouil/quarto-iconify
+      - name: Install Quarto Extensions
+        run: |
+          while IFS= read -r ext; do quarto add "$ext"; done < dependencies/quarto-extensions.txt
 
       - name: Render Quarto Site
         run: quarto render
