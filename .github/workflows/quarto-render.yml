@@ -46,9 +46,11 @@ jobs:
         with:
           r-version: '4.3.0'
 
-      - name: Check R library paths
+      - name: Check R environment
         run: |
+          Rscript -e "print(R.version.string)"
           Rscript -e "print(.libPaths())"
+          Rscript -e "print(getOption('pkgType'))"
 
       - name: Install R dependencies
         run: |

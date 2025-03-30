@@ -21,7 +21,7 @@ packages <- c(
 install_if_missing <- function(pkg) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     install.packages(pkg, repos = "https://cloud.r-project.org/", 
-                     type = "binary", dependencies = c("Depends", "Imports"))
+                     dependencies = c("Depends", "Imports"))
   }
 }
 
