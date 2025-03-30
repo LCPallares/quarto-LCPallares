@@ -6,13 +6,17 @@ image: "https://i.imgur.com/UysVCy9.jpeg" #"https://imgur.com/UysVCy9"
 categories: [data cleaning, exploratory analysis, streamlit, health, sms-api]
 description: |
     Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.
----
+---6
 
 # Análisis del Hipotiroidismo Congénito: Datos y Comunicación
 
 ## Resumen del Proyecto
 
 El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.
+
+The congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide.
+Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.
+
 
 ## Parte 1: Limpieza de la Base de Datos
 
@@ -33,14 +37,15 @@ El análisis exploratorio reveló patrones en los datos, mientras que el dashboa
 ```{python}
 #| fig-cap: "Distribución de niveles de TSH al nacer"
 
-# Ejemplo placeholder (ajusta con tus datos)
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import plotly.graph_objects as go
 
 np.random.seed(42)
-tsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)  # Simulación de TSH
+tsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)
 
+# Gráfico de seaborn
 plt.figure(figsize=(10, 6))
 sns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')
 plt.title('Distribución de Niveles de TSH al Nacer')
@@ -50,6 +55,14 @@ plt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_
 plt.legend()
 plt.grid(alpha=0.3)
 plt.show()
+
+# Gráfico de Plotly
+fig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])
+fig.update_layout(title='Distribución de Niveles de TSH al Nacer',
+                    xaxis_title='Nivel de TSH (mIU/L)',
+                    yaxis_title='Densidad de probabilidad')
+fig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')
+fig.show()
 ```
 
 ![Distribución de TSH](https://imgur.com/h0xy5Jb)  
