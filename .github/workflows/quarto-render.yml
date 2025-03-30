@@ -33,7 +33,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r dependencies/requirements.txt
 
-      # Configurar caché para R
       - name: Cache R dependencies
         uses: actions/cache@v3
         with:
@@ -47,9 +46,15 @@ jobs:
         with:
           r-version: '4.3.0'
 
+      - name: Check R library paths
+        run: |
+          Rscript -e "print(.libPaths())"
+
       - name: Install R dependencies
         run: |
-          Rscript dependencies/install.R
+          echo "Inicio: $(date)"
+          sudo Rscript dependencies/install.R
+          echo "Fin: $(date)"
 
       # Configurar caché para Quarto
       - name: Cache Quarto and Extensions
@@ -64,9 +69,6 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      #- name: Install Quarto Extensions
-        #run: |
-          #quarto add mcanouil/quarto-iconify
       - name: Install Quarto Extensions
         run: |
           while IFS= read -r ext; do quarto add "$ext"; done < dependencies/quarto-extensions.txt

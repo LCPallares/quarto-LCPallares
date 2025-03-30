@@ -1,4 +1,7 @@
 # install.R
+# Establecer la carpeta de instalación global (para el caché)
+.libPaths("/usr/local/lib/R/site-library")
+
 # Lista de paquetes necesarios
 packages <- c(
   "knitr",
@@ -14,5 +17,13 @@ packages <- c(
   "caret"
 )
 
-# Instalar paquetes si no están ya instalados
-install.packages(packages, repos = "https://cloud.r-project.org/")
+# Función para instalar solo si no está presente
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, repos = "https://cloud.r-project.org/", 
+                     type = "binary", dependencies = c("Depends", "Imports"))
+  }
+}
+
+# Aplicar la función a todos los paquetes
+invisible(lapply(packages, install_if_missing))
