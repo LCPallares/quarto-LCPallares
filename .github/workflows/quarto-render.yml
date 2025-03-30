@@ -54,8 +54,6 @@ jobs:
       - name: Install R dependencies
         run: |
           echo "Inicio: $(date)"
-          #sudo Rscript dependencies/install.R
-          #sudo Rscript -e "options(pkgType = 'binary'); source('dependencies/install.R')"
           Rscript dependencies/install.R  # Sin sudo ni options(pkgType)
           echo "Fin: $(date)"
 
