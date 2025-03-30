@@ -2,7 +2,7 @@ name: Render Quarto Site
 
 on:
   push:
-    branches: [main]  # Cambia a "master" si tu rama principal es diferente
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -14,14 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Configurar caché para Python
       - name: Cache Python dependencies
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dependencies/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          restore-keys: ${{ runner.os }}-pip-
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,10 +34,9 @@ jobs:
       - name: Cache R dependencies
         uses: actions/cache@v3
         with:
-          path: /usr/local/lib/R/site-library
+          path: /home/runner/work/_temp/Library  # Ajustado a la ruta real
           key: ${{ runner.os }}-r-${{ hashFiles('dependencies/install.R') }}
-          restore-keys: |
-            ${{ runner.os }}-r-
+          restore-keys: ${{ runner.os }}-r-
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
@@ -55,18 +52,15 @@ jobs:
       - name: Install R dependencies
         run: |
           echo "Inicio: $(date)"
-          sudo Rscript dependencies/install.R
+          sudo Rscript -e "options(pkgType = 'binary'); source('dependencies/install.R')"
           echo "Fin: $(date)"
 
-      # Configurar caché para Quarto
       - name: Cache Quarto and Extensions
         uses: actions/cache@v3
         with:
           path: ~/.quarto
-          #key: ${{ runner.os }}-quarto-${{ hashFiles('.github/workflows/quarto-render.yml') }}
           key: ${{ runner.os }}-quarto-${{ hashFiles('dependencies/quarto-extensions.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-quarto-
+          restore-keys: ${{ runner.os }}-quarto-
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
