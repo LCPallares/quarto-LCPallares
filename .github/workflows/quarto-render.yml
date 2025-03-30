@@ -14,6 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Configurar caché para Python
       - name: Cache Python dependencies
         uses: actions/cache@v3
         with:
@@ -34,7 +35,8 @@ jobs:
       - name: Cache R dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/_temp/Library  # Ajustado a la ruta real
+          #path: /usr/local/lib/R/site-library
+          path: /home/runner/work/_temp/Library  # Ruta real de instalación
           key: ${{ runner.os }}-r-${{ hashFiles('dependencies/install.R') }}
           restore-keys: ${{ runner.os }}-r-
 
@@ -52,13 +54,17 @@ jobs:
       - name: Install R dependencies
         run: |
           echo "Inicio: $(date)"
-          sudo Rscript -e "options(pkgType = 'binary'); source('dependencies/install.R')"
+          #sudo Rscript dependencies/install.R
+          #sudo Rscript -e "options(pkgType = 'binary'); source('dependencies/install.R')"
+          Rscript dependencies/install.R  # Sin sudo ni options(pkgType)
           echo "Fin: $(date)"
 
+      # Configurar caché para Quarto
       - name: Cache Quarto and Extensions
         uses: actions/cache@v3
         with:
           path: ~/.quarto
+          #key: ${{ runner.os }}-quarto-${{ hashFiles('.github/workflows/quarto-render.yml') }}
           key: ${{ runner.os }}-quarto-${{ hashFiles('dependencies/quarto-extensions.txt') }}
           restore-keys: ${{ runner.os }}-quarto-
 
