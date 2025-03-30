@@ -1,6 +1,8 @@
 # install.R
 # Establecer la carpeta de instalación global (para el caché)
-.libPaths("/usr/local/lib/R/site-library")
+#.libPaths("/usr/local/lib/R/site-library")
+# Usar la ruta del sistema
+.libPaths("/opt/R/4.3.0/lib/R/library")
 
 # Lista de paquetes necesarios
 packages <- c(
