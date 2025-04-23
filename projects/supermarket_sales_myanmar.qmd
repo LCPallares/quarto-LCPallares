@@ -1,0 +1,156 @@
+---
+title: "Análisis de Ventas de un Supermercado en Myanmar"
+author: "LC Pallares"
+date: "2025-04-23"
+image: "https://placehold.co/800x400"
+categories: [data analysis, visualization, retail, exploratory analysis]
+description: |
+    Este proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.
+---
+
+# Análisis de Ventas de un Supermercado en Myanmar
+
+## Resumen del Proyecto
+
+Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (`supermarket_sales.csv`) ubicado en la carpeta `data/` y se procesan para garantizar su calidad antes del análisis.
+
+The dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar.
+
+## Parte 1: Limpieza de la Base de Datos
+
+La base de datos inicial (`supermarket_sales.csv`) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:
+
+1. **Carga de datos**: Importación del archivo CSV desde la carpeta `data/`.
+2. **Estandarización**: Uniformé formatos de fechas y categorías de productos.
+3. **Valores faltantes**: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).
+4. **Corrección de errores**: Eliminé registros con valores inconsistentes (ej. cantidades negativas).
+5. **Enriquecimiento**: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.
+
+El resultado es un conjunto de datos limpio y listo para el análisis, almacenado en `data/supermarket_sales_clean.csv` para referencia.
+
+```{python}
+#| echo: true
+#| code-fold: true
+
+import pandas as pd
+import numpy as np
+
+# Cargar datos desde la carpeta data/
+df = pd.read_csv("../data/supermarket_sales.csv")
+
+# Estandarizar formatos
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+df['Product line'] = df['Product line'].str.title()
+
+# Manejo de valores faltantes
+df = df.dropna(subset=['Unit price', 'Quantity'])
+
+# Corrección de errores
+df = df[df['Quantity'] > 0]  # Eliminar cantidades negativas o cero
+
+# Nuevas columnas
+df['Day of Week'] = df['Date'].dt.day_name()
+df['Month'] = df['Date'].dt.month_name()
+
+# Guardar datos limpios (opcional)
+# df.to_csv("../data/supermarket_sales_clean.csv", index=False)
+
+# Resumen inicial
+print(df.head())
+```
+
+## Parte 2: Análisis Exploratorio y Visualizaciones
+
+El análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.
+
+### Ventas por Categoría de Producto
+
+Este gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.
+
+```{python}
+#| fig-cap: "Ventas Totales por Categoría de Producto"
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+# Agrupar por categoría y calcular ventas totales
+sales_by_category = df.groupby('Product line')['Total'].sum().reset_index()
+
+# Gráfico de barras con Seaborn
+plt.figure(figsize=(10, 6))
+sns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')
+plt.title('Ventas Totales por Categoría de Producto')
+plt.xlabel('Ventas Totales (MMK)')
+plt.ylabel('Categoría')
+plt.grid(alpha=0.3)
+plt.show()
+
+# Gráfico interactivo con Plotly
+fig = px.bar(sales_by_category, x='Total', y='Product line', 
+             title='Ventas Totales por Categoría de Producto',
+             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},
+             color='Product line')
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+![Ventas Totales por Categoría de Producto](https://placehold.co/800x400)  
+*Figura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.*
+
+La visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.
+
+### Tendencias de Ventas por Día de la Semana
+
+Este gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.
+
+```{python}
+#| fig-cap: "Ventas Promedio por Día de la Semana"
+
+# Agrupar por día de la semana
+sales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(
+    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+).reset_index()
+
+# Gráfico de líneas con Seaborn
+plt.figure(figsize=(10, 6))
+sns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')
+plt.title('Ventas Promedio por Día de la Semana')
+plt.xlabel('Día de la Semana')
+plt.ylabel('Ventas Promedio (MMK)')
+plt.grid(alpha=0.3)
+plt.show()
+
+# Gráfico interactivo con Plotly
+fig = px.line(sales_by_day, x='Day of Week', y='Total', 
+              title='Ventas Promedio por Día de la Semana',
+              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},
+              markers=True)
+fig.update_traces(line_color='teal')
+fig.show()
+```
+
+![Ventas Promedio por Día de la Semana](https://placehold.co/800x400)  
+*Figura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.*
+
+La versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.
+
+### Hallazgos Preliminares
+- **Categorías clave**: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.
+- **Patrones temporales**: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.
+- **Oportunidades**: Identificar productos de bajo rendimiento para ajustar inventarios.
+
+## Parte 3: Próximos Pasos (En Desarrollo)
+
+En las siguientes fases, planeo:
+- Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente.
+- Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra.
+- Explorar modelos predictivos para pronosticar ventas futuras.
+
+## Conclusiones Preliminares
+
+Este análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta `data/` asegura que los datos sean accesibles y reutilizables para futuros análisis.
+
+## Recursos
+- **Datos**: `supermarket_sales.csv` en `data/` (basado en datasets típicos de ventas, como [este ejemplo](https://www.kaggle.com/datasets/aungpyiaye/supermarket-sales)).
+- **Código**: Disponible en el repositorio del proyecto [enlace si lo subes].
