@@ -1,18 +1,19 @@
 [
   {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/estadistica-inferencial.html",
+      "/posts/estadistica-descriptiva.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/amazon-best-seller.html",
       "/projects/university-dropout.html",
       "/projects/supermarket_sales_myanmar.html",
+      "/projects/web_scraping_csc_india.html",
       "/projects/congenital-hypothyroidism.html"
-    ]
-  },
-  {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/estadistica-inferencial.html",
-      "/posts/estadistica-descriptiva.html"
     ]
   }
 ]
