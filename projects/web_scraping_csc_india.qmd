@@ -1,0 +1,170 @@
+---
+title: "Web Scraping: Ubicaciones de Common Service Centers (India)"
+author: "LC Pallares"
+date: "2023-08-20"
+image: "https://placehold.co/800x400"
+categories: ["web-scraping", "data-collection", "python", "freelance"]
+---
+
+## **Contexto del Proyecto**
+
+Este proyecto nació de una solicitud freelance para mapear los **Common Service Centers (CSCs)** de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:
+
+- Un listado estructurado de todos los CSCs.  
+- Filtros por estado, distrito y bloque.  
+- Datos para análisis de cobertura geográfica.  
+
+El sitio oficial ([csclocator.com](https://www.csclocator.com)) no ofrecía una API pública, por lo que desarrollé un **scraper automatizado** para extraer los datos directamente del HTML.
+
+---
+
+## **Técnicas Utilizadas**
+
+```python
+# Tecnologías clave:
+- Python (BeautifulSoup, requests, pandas).
+- Web scraping con manejo de headers y delays.
+- Extracción de datos anidados (selectores HTML).
+- Almacenamiento en Excel para facilitar su uso.
+```
+
+---
+
+## **Datos Obtenidos**
+
+Se extrajeron registros con las siguientes variables:
+
+| Variable    | Descripción                | Ejemplo                      |
+|-------------|----------------------------|------------------------------|
+| `vle_name`  | Nombre del operador del CSC| "Alankit_Deepika Rustagi"    |
+| `address`   | Dirección física           | "Shop No: 4547, Karol Bagh"  |
+| `state`     | Estado                     | "andaman-and-nicobar"        |
+| `district` | Distrito                   | "central"                    |
+| `block`     | Bloque administrativo      | "central-delhi-nielit"       |
+
+### **Muestra de Datos**
+![Datos resultantes](https://imgur.com/KanRcMa)
+
+---
+
+## **Desafíos y Soluciones**
+
+1. **Estructura compleja**:  
+   - Los CSCs se organizaban en jerarquías (estado → distrito → bloque).  
+   - **Solución**: Scrapeé secuencialmente los `select` options del HTML.  
+
+2. **Protección contra scraping**:  
+   - El sitio bloqueaba peticiones rápidas.  
+   - **Solución**: Implementé `headers` con User-Agent y `time.sleep(15)` entre requests.  
+
+3. **Datos inconsistentes**:  
+   - Algunas direcciones usaban formatos no estandarizados (ej: "WZ: 125 Dusghara").  
+   - **Solución**: Normalización manual posterior en Excel.  
+
+---
+
+## **Impacto del Proyecto**
+
+- El cliente pudo **identificar zonas con baja densidad de CSCs** para priorizar nuevas instalaciones.  
+- Los datos se usaron como base para un **sistema de geolocalización** interno.  
+- Demostró que el scraping puede ser una alternativa viable cuando no hay APIs disponibles.  
+
+---
+
+## **Código Completo**
+
+El script de Python está disponible en [GitHub](...) o en el siguiente bloque:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+
+def make_soup(url):
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    headers = {'User-Agent': user_agent}
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        return soup
+    else:
+        print(f"Error while getting the page. State code: {response.status_code}")
+        return None
+
+
+def scrape_select_values(url):
+    soup = make_soup(url)
+    
+    state_selector = soup.find('select', {'id': 'state'})
+    district_selector = soup.find('select', {'id': 'district'})
+    block_selector = soup.find('select', {'id': 'block'})
+
+    state_options = state_selector.find_all('option')
+    district_options = district_selector.find_all('option')
+    block_options = block_selector.find_all('option')
+
+    state_data = [option.get("value") for option in state_options[1:]]
+    district_data = [option.get("value") for option in district_options[1:]]
+    block_data = [option.get("value") for option in block_options[1:]]
+    
+    return state_data, district_data, block_data
+
+
+def get_info(soup, state, district, block):
+    headings = soup.find('div', class_='col-lg-12')
+    if headings:
+        row = headings.find(class_="row")
+        column_title = [x.text for x in row.find_all("th")]
+        tr_elements = row.find_all('tr')
+
+        data_list = []
+
+        for tr in tr_elements[1:]:
+            td_elements = tr.find_all('td')
+            if len(td_elements) >= 3:
+                vle_name = td_elements[0].text.strip()
+                address = td_elements[1].text.strip()
+                enlace = td_elements[2].find('a')['href']
+
+                data = {
+                    "vle_name": vle_name,
+                    "address": address,
+                    "enlace": enlace,
+                    "state": state,
+                    "district": district,
+                    "block": block
+                }
+
+                data_list.append(data)
+
+        return data_list
+
+    else:
+        print(f"No data found for {state}/{district}/{block}")
+        return []
+
+
+base_url = "https://www.csclocator.com"
+
+all_data = []
+state_list, district_list, block_list = scrape_select_values("https://www.csclocator.com/csc/delhi/delhi/new-delhi-nielit")
+
+for state in state_list:
+    for district in district_list:
+        for block in block_list:
+            url = f"{base_url}/csc/{state}/{district}/{block}"
+            print(f"Scraping: {url}")
+            soup = make_soup(url)
+
+            if soup:
+                data_list = get_info(soup, state, district, block)
+                all_data.extend(data_list)
+                df = pd.DataFrame(all_data)
+                df.to_excel("csc_data_partial.xlsx", index=False)
+            time.sleep(15) 
+
+final_df = pd.DataFrame(all_data)
+final_df.to_excel("csc_data.xlsx", index=False)
+```
