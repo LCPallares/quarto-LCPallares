@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="LC Pallares">
+<meta name="dcterms.date" content="2025-03-24">
+<meta name="description" content="Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.">
+
+<title>Análisis del Hipotiroidismo Congénito – LCPallares</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1586632377c84f13055504b8a8d100be.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LCPallares</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/"> 
+<span class="menu-text">Proyectos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts/"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lcpallares"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/lcpallares"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#análisis-del-hipotiroidismo-congénito-datos-y-comunicación" id="toc-análisis-del-hipotiroidismo-congénito-datos-y-comunicación" class="nav-link active" data-scroll-target="#análisis-del-hipotiroidismo-congénito-datos-y-comunicación">Análisis del Hipotiroidismo Congénito: Datos y Comunicación</a>
+  <ul class="collapse">
+  <li><a href="#resumen-del-proyecto" id="toc-resumen-del-proyecto" class="nav-link" data-scroll-target="#resumen-del-proyecto">Resumen del Proyecto</a></li>
+  <li><a href="#parte-1-procesamiento-y-limpieza-de-datos" id="toc-parte-1-procesamiento-y-limpieza-de-datos" class="nav-link" data-scroll-target="#parte-1-procesamiento-y-limpieza-de-datos">Parte 1: 🔍 Procesamiento y Limpieza de Datos</a>
+  <ul class="collapse">
+  <li><a href="#corrección-de-fechas-inconsistentes" id="toc-corrección-de-fechas-inconsistentes" class="nav-link" data-scroll-target="#corrección-de-fechas-inconsistentes">📅 <strong>Corrección de Fechas Inconsistentes</strong></a></li>
+  <li><a href="#limpieza-de-valores-de-tsh-neonatal" id="toc-limpieza-de-valores-de-tsh-neonatal" class="nav-link" data-scroll-target="#limpieza-de-valores-de-tsh-neonatal">🧪 <strong>Limpieza de Valores de TSH Neonatal</strong></a></li>
+  <li><a href="#normalización-de-género" id="toc-normalización-de-género" class="nav-link" data-scroll-target="#normalización-de-género">👶 <strong>Normalización de Género</strong></a></li>
+  <li><a href="#manejo-de-datos-faltantes" id="toc-manejo-de-datos-faltantes" class="nav-link" data-scroll-target="#manejo-de-datos-faltantes">� <strong>Manejo de Datos Faltantes</strong></a></li>
+  <li><a href="#datos-finales" id="toc-datos-finales" class="nav-link" data-scroll-target="#datos-finales">📊 Datos Finales</a></li>
+  </ul></li>
+  <li><a href="#parte-2-exploración-de-datos" id="toc-parte-2-exploración-de-datos" class="nav-link" data-scroll-target="#parte-2-exploración-de-datos">Parte 2: Exploración de Datos</a></li>
+  <li><a href="#parte-3-dashboard" id="toc-parte-3-dashboard" class="nav-link" data-scroll-target="#parte-3-dashboard">Parte 3: Dashboard</a>
+  <ul class="collapse">
+  <li><a href="#funcionalidad-del-dashboard" id="toc-funcionalidad-del-dashboard" class="nav-link" data-scroll-target="#funcionalidad-del-dashboard">Funcionalidad del Dashboard</a></li>
+  <li><a href="#hallazgos-preliminares" id="toc-hallazgos-preliminares" class="nav-link" data-scroll-target="#hallazgos-preliminares">Hallazgos Preliminares</a></li>
+  </ul></li>
+  <li><a href="#parte-4-estadística-avanzada-en-desarrollo" id="toc-parte-4-estadística-avanzada-en-desarrollo" class="nav-link" data-scroll-target="#parte-4-estadística-avanzada-en-desarrollo">Parte 4: Estadística Avanzada (En Desarrollo)</a></li>
+  <li><a href="#conclusiones-preliminares" id="toc-conclusiones-preliminares" class="nav-link" data-scroll-target="#conclusiones-preliminares">Conclusiones Preliminares</a></li>
+  <li><a href="#próximos-pasos" id="toc-próximos-pasos" class="nav-link" data-scroll-target="#próximos-pasos">Próximos Pasos</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análisis del Hipotiroidismo Congénito</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">data cleaning</div>
+    <div class="quarto-category">exploratory analysis</div>
+    <div class="quarto-category">streamlit</div>
+    <div class="quarto-category">health</div>
+    <div class="quarto-category">sms-api</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>LC Pallares </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 24, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 17, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="análisis-del-hipotiroidismo-congénito-datos-y-comunicación" class="level1">
+<h1>Análisis del Hipotiroidismo Congénito: Datos y Comunicación</h1>
+<section id="resumen-del-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-del-proyecto">Resumen del Proyecto</h2>
+<p>El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.</p>
+<p>The congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.</p>
+</section>
+<section id="parte-1-procesamiento-y-limpieza-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="parte-1-procesamiento-y-limpieza-de-datos">Parte 1: 🔍 Procesamiento y Limpieza de Datos</h2>
+<p>El conjunto de datos médicos requirió un extenso proceso de limpieza. A continuación, se detallan los principales desafíos y soluciones implementadas:</p>
+<section id="corrección-de-fechas-inconsistentes" class="level3">
+<h3 class="anchored" data-anchor-id="corrección-de-fechas-inconsistentes">📅 <strong>Corrección de Fechas Inconsistentes</strong></h3>
+<p>El dataset contenía múltiples columnas de fechas (<code>fecha_ingreso</code>, <code>fecha_toma_muestra</code>, <code>fecha_resultado</code>, etc.). Se identificaron errores críticos: - <strong>Fechas imposibles</strong>: Diferencias negativas entre <code>fecha_resultado</code> y <code>fecha_toma_muestra</code> (ej: resultados que aparecían <strong>20 años antes</strong> de la toma de muestra). - <strong>Causas</strong>: Errores de digitación (ej: <code>2022</code> vs <code>2002</code>) y registros invertidos.</p>
+<p><strong>Acciones tomadas</strong>: 1. Filtrado de registros con diferencias mayores a ±30 días (umbral clínicamente relevante). 2. Corrección manual de fechas mal ingresadas cruzando con otros campos (ej: edad del paciente). 3. Eliminación de 15 registros con inconsistencias irrecuperables.</p>
+<p><em>Ejemplo de dato corregido</em>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Antes: </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> fecha_toma_muestra: <span class="dv">2022</span><span class="op">-</span><span class="dv">0</span><span class="er">7</span><span class="op">-</span><span class="dv">17</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> fecha_resultado: <span class="dv">2002</span><span class="op">-</span><span class="dv">0</span><span class="er">8</span><span class="op">-</span><span class="dv">0</span><span class="er">5</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> días_pasados: <span class="op">-</span><span class="dv">7286</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Después: </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> fecha_toma_muestra: <span class="dv">2022</span><span class="op">-</span><span class="dv">0</span><span class="er">7</span><span class="op">-</span><span class="dv">17</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> fecha_resultado: <span class="dv">2022</span><span class="op">-</span><span class="dv">0</span><span class="er">8</span><span class="op">-</span><span class="dv">0</span><span class="er">5</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> días_pasados: <span class="op">+</span><span class="dv">19</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="limpieza-de-valores-de-tsh-neonatal" class="level3">
+<h3 class="anchored" data-anchor-id="limpieza-de-valores-de-tsh-neonatal">🧪 <strong>Limpieza de Valores de TSH Neonatal</strong></h3>
+<p>Los resultados de TSH presentaban: - <strong>Valores atípicos</strong>: Resultados fuera del rango fisiológico (ej: <code>&gt;100 mUI/L</code>). - <strong>Datos faltantes</strong>: <code>NaN</code> en ~8% de los registros.</p>
+<p><strong>Estrategia</strong>: - Rango válido definido: <strong>0.5 - 20 mUI/L</strong> (basado en literatura médica). - Imputación de faltantes con la media (<code>5.2 mUI/L</code>).</p>
+</section>
+<section id="normalización-de-género" class="level3">
+<h3 class="anchored" data-anchor-id="normalización-de-género">👶 <strong>Normalización de Género</strong></h3>
+<p>La columna <code>sexo</code> contenía categorías inconsistentes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AMBIGUO: <span class="dv">1</span>      <span class="op">|</span> FEMENINO: <span class="dv">16</span>,<span class="dv">298</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>NO ESCRITO: <span class="dv">126</span> <span class="op">|</span> MASCULINO: <span class="dv">17</span>,<span class="dv">140</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Solución</strong>: 1. Reclasificación de “NO ESCRITO” mediante <strong>análisis de nombres</strong> (ej: “María” → FEMENINO). 2. Corrección manual del único caso “AMBIGUO” revisando historia clínica. 3. Resultado final: Solo categorías <code>FEMENINO</code>/<code>MASCULINO</code>.</p>
+</section>
+<section id="manejo-de-datos-faltantes" class="level3">
+<h3 class="anchored" data-anchor-id="manejo-de-datos-faltantes">� <strong>Manejo de Datos Faltantes</strong></h3>
+<ul>
+<li>Columnas numéricas: Imputación con <strong>media/mediana</strong> según distribución.</li>
+<li>Columnas categóricas: Relleno con <code>"DESCONOCIDO"</code> para preservar registros.</li>
+</ul>
+</section>
+<section id="datos-finales" class="level3">
+<h3 class="anchored" data-anchor-id="datos-finales">📊 Datos Finales</h3>
+<p>Tras la limpieza, el dataset quedó con: - Registros: no se elimino ningun registro. - Variables críticas validadas: TSH neonatal, fechas, género.</p>
+<blockquote class="blockquote">
+<p><strong>Nota técnica</strong>: El código completo de limpieza está disponible bajo solicitud para fines de reproducibilidad.</p>
+</blockquote>
+</section>
+</section>
+<section id="parte-2-exploración-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="parte-2-exploración-de-datos">Parte 2: Exploración de Datos</h2>
+<p>El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:</p>
+<div id="cell-6" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">ficha_id</th>
+<th data-quarto-table-cell-role="th">fecha_ingreso</th>
+<th data-quarto-table-cell-role="th">institucion</th>
+<th data-quarto-table-cell-role="th">ars</th>
+<th data-quarto-table-cell-role="th">historia_clinica</th>
+<th data-quarto-table-cell-role="th">tipo_documento</th>
+<th data-quarto-table-cell-role="th">numero_documento</th>
+<th data-quarto-table-cell-role="th">ciudad</th>
+<th data-quarto-table-cell-role="th">departamento</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">fecha_resultado_muestra_2</th>
+<th data-quarto-table-cell-role="th">resultado_muestra_2</th>
+<th data-quarto-table-cell-role="th">contador</th>
+<th data-quarto-table-cell-role="th">muestra_rechazada</th>
+<th data-quarto-table-cell-role="th">fecha_toma_rechazada</th>
+<th data-quarto-table-cell-role="th">tipo_vinculacion</th>
+<th data-quarto-table-cell-role="th">resultado_rechazada</th>
+<th data-quarto-table-cell-role="th">fecha_resultado_rechazada</th>
+<th data-quarto-table-cell-role="th">dias_pasados</th>
+<th data-quarto-table-cell-role="th">dias_pasados2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>365048</td>
+<td>369980</td>
+<td>2019-05-06</td>
+<td>VICTORIA</td>
+<td>MEDIMAS</td>
+<td>1000</td>
+<td>1</td>
+<td>2000</td>
+<td>Bogota</td>
+<td>Cundinamarca</td>
+<td>...</td>
+<td>NaT</td>
+<td>0.0</td>
+<td>1</td>
+<td>False</td>
+<td>NaT</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaT</td>
+<td>1</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>365049</td>
+<td>369981</td>
+<td>2019-05-06</td>
+<td>VICTORIA</td>
+<td>CAPITAL SALUD</td>
+<td>1000</td>
+<td>2</td>
+<td>2000</td>
+<td>Bogota</td>
+<td>Cundinamarca</td>
+<td>...</td>
+<td>NaT</td>
+<td>0.0</td>
+<td>1</td>
+<td>False</td>
+<td>NaT</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaT</td>
+<td>2</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>365050</td>
+<td>369982</td>
+<td>2019-05-06</td>
+<td>VICTORIA</td>
+<td>CAPITAL SALUD</td>
+<td>1000</td>
+<td>1</td>
+<td>2000</td>
+<td>Bogota</td>
+<td>Cundinamarca</td>
+<td>...</td>
+<td>NaT</td>
+<td>0.0</td>
+<td>1</td>
+<td>False</td>
+<td>NaT</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaT</td>
+<td>1</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>365051</td>
+<td>369983</td>
+<td>2019-05-06</td>
+<td>VICTORIA</td>
+<td>CAPITAL SALUD</td>
+<td>1000</td>
+<td>1</td>
+<td>2000</td>
+<td>Bogota</td>
+<td>Cundinamarca</td>
+<td>...</td>
+<td>NaT</td>
+<td>0.0</td>
+<td>1</td>
+<td>False</td>
+<td>NaT</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaT</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>365052</td>
+<td>369984</td>
+<td>2019-05-07</td>
+<td>VICTORIA</td>
+<td>VINCULADO</td>
+<td>1000</td>
+<td>4</td>
+<td>2000</td>
+<td>Bogota</td>
+<td>Cundinamarca</td>
+<td>...</td>
+<td>NaT</td>
+<td>0.0</td>
+<td>1</td>
+<td>False</td>
+<td>NaT</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaT</td>
+<td>3</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 41 columns</p>
+</div>
+</div>
+</div>
+<p>Notas:</p>
+<p><strong>Sospecha de hipotiroidismo</strong>: TSH ≥ 15 mIU/L en la primera muestra.</p>
+<p><strong>Confirmación</strong> de <strong>hipotiroidismo</strong>: TSH ≥ 15 mIU/L en la primera y segunda muestra.</p>
+<div id="cell-8" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sospecha_hipotiroidismo'</span>] <span class="op">=</span> df[<span class="st">'tsh_neonatal'</span>] <span class="op">&gt;=</span> <span class="dv">15</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'confirmado_hipotiroidismo'</span>] <span class="op">=</span> df[<span class="st">'sospecha_hipotiroidismo'</span>] <span class="op">&amp;</span> (df[<span class="st">'resultado_muestra_2'</span>] <span class="op">&gt;=</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-9" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total de Registros"</span>, <span class="ss">f"</span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Casos Sospechosos (TSH ≥ 15)"</span>, <span class="ss">f"</span><span class="sc">{</span>df[<span class="st">'sospecha_hipotiroidismo'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Casos Confirmados"</span>, <span class="ss">f"</span><span class="sc">{</span>df[<span class="st">'confirmado_hipotiroidismo'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el promedio de días hasta el resultado</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dias_promedio <span class="op">=</span> <span class="bu">round</span>(df[<span class="st">'dias_pasados'</span>].mean(), <span class="dv">1</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Promedio Días hasta Resultado"</span>, <span class="ss">f"</span><span class="sc">{</span>dias_promedio<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total de Registros 33,565
+Casos Sospechosos (TSH ≥ 15) 572
+Casos Confirmados 6
+Promedio Días hasta Resultado 2.7</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de pirámide de diagnóstico</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>stages <span class="op">=</span> [<span class="st">'Tamizados'</span>, <span class="st">'TSH ≥ 15'</span>, <span class="st">'Confirmados'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [df.shape[<span class="dv">0</span>], df[<span class="st">'sospecha_hipotiroidismo'</span>].<span class="bu">sum</span>(), df[<span class="st">'confirmado_hipotiroidismo'</span>].<span class="bu">sum</span>()]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig_funnel <span class="op">=</span> go.Figure(go.Funnel(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>stages,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>values,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    textinfo<span class="op">=</span><span class="st">"value+percent initial"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span>{<span class="st">"color"</span>: [<span class="st">"#4682B4"</span>, <span class="st">"#FFA500"</span>, <span class="st">"#FF4500"</span>]}</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>fig_funnel.update_layout(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Pirámide de Diagnóstico de Hipotiroidismo Congénito"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">800</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>fig_funnel.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+<p>Pirámide de Diagnóstico de Hipotiroidismo Congénito</p>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="32">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar valores extremos para mejor visualización</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tsh_max_visual <span class="op">=</span> df[<span class="st">'tsh_neonatal'</span>].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_tsh_visual <span class="op">=</span> df[df[<span class="st">'tsh_neonatal'</span>] <span class="op">&lt;=</span> tsh_max_visual]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fig_tsh_hist <span class="op">=</span> px.histogram(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    df_tsh_visual, </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'tsh_neonatal'</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    nbins<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    color_discrete_sequence<span class="op">=</span>[<span class="st">'#3CB371'</span>],</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">'tsh_neonatal'</span>: <span class="st">'TSH Neonatal (mIU/L)'</span>}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadir línea vertical para el umbral</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>fig_tsh_hist.add_vline(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="dv">15</span>, </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    line_dash<span class="op">=</span><span class="st">"dash"</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    line_color<span class="op">=</span><span class="st">"red"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    annotation_text<span class="op">=</span><span class="ss">f"Umbral: 15 mIU/L"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    annotation_position<span class="op">=</span><span class="st">"top right"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>fig_tsh_hist.update_layout(title<span class="op">=</span><span class="st">'Distribución de Niveles de TSH al Nacer'</span>, xaxis_title<span class="op">=</span><span class="st">"Valor de TSH (mIU/L)"</span>, yaxis_title<span class="op">=</span><span class="st">"Frecuencia"</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>fig_tsh_hist.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+<p>Distribución de niveles de TSH al nacer</p>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="33">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig_box_sex <span class="op">=</span> px.box(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    df_tsh_visual,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'sexo'</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'tsh_neonatal'</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'sexo'</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    points<span class="op">=</span><span class="st">"outliers"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">'sexo'</span>: <span class="st">'Sexo'</span>, <span class="st">'tsh_neonatal'</span>: <span class="st">'TSH Neonatal (mIU/L)'</span>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>fig_box_sex.add_hline(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="dv">15</span>, </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    line_dash<span class="op">=</span><span class="st">"dash"</span>, </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    line_color<span class="op">=</span><span class="st">"red"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    annotation_text<span class="op">=</span><span class="st">"Umbral: 15 mIU/L"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    annotation_position<span class="op">=</span><span class="st">"top right"</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>fig_box_sex.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+<p>Boxplots dispercion entre sexo y TSH</p>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="35">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>filtered_df <span class="op">=</span> df</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupar datos por mes y año</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>filtered_df[<span class="st">'año_mes'</span>] <span class="op">=</span> filtered_df[<span class="st">'fecha_nacimiento'</span>].dt.to_period(<span class="st">'M'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tendencia temporal de casos</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>temporal_df <span class="op">=</span> filtered_df.groupby([<span class="st">'año_mes'</span>]).agg(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>total_casos<span class="op">=</span>(<span class="st">'tsh_neonatal'</span>, <span class="st">'count'</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>casos_sospechosos<span class="op">=</span>(<span class="st">'sospecha_hipotiroidismo'</span>, <span class="st">'sum'</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>casos_confirmados<span class="op">=</span>(<span class="st">'confirmado_hipotiroidismo'</span>, <span class="st">'sum'</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>tsh_promedio<span class="op">=</span>(<span class="st">'tsh_neonatal'</span>, <span class="st">'mean'</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>temporal_df[<span class="st">'año_mes'</span>] <span class="op">=</span> temporal_df[<span class="st">'año_mes'</span>].dt.to_timestamp()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>temporal_df[<span class="st">'tasa_confirmacion'</span>] <span class="op">=</span> temporal_df[<span class="st">'casos_confirmados'</span>] <span class="op">/</span> temporal_df[<span class="st">'casos_sospechosos'</span>]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>temporal_df[<span class="st">'incidencia'</span>] <span class="op">=</span> temporal_df[<span class="st">'casos_confirmados'</span>] <span class="op">/</span> temporal_df[<span class="st">'total_casos'</span>]</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de línea para casos y tasa de confirmación</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>fig_temporal <span class="op">=</span> go.Figure()</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>fig_temporal.add_trace(go.Scatter(</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>temporal_df[<span class="st">'año_mes'</span>],</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>temporal_df[<span class="st">'casos_sospechosos'</span>],</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>name<span class="op">=</span><span class="st">'Casos Sospechosos'</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#FFA500'</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>fig_temporal.add_trace(go.Scatter(</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>temporal_df[<span class="st">'año_mes'</span>],</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>temporal_df[<span class="st">'casos_confirmados'</span>],</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>name<span class="op">=</span><span class="st">'Casos Confirmados'</span>,</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#FF4500'</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>fig_temporal.add_trace(go.Scatter(</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>temporal_df[<span class="st">'año_mes'</span>],</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>temporal_df[<span class="st">'tasa_confirmacion'</span>],</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>mode<span class="op">=</span><span class="st">'lines'</span>,</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>name<span class="op">=</span><span class="st">'Tasa de Confirmación'</span>,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#4682B4'</span>, width<span class="op">=</span><span class="dv">2</span>, dash<span class="op">=</span><span class="st">'dot'</span>),</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>yaxis<span class="op">=</span><span class="st">'y2'</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>fig_temporal.update_layout(</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">'Evolución Temporal de Casos de Hipotiroidismo Congénito'</span>,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>xaxis_title<span class="op">=</span><span class="st">'Fecha'</span>,</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Número de Casos'</span>,</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    titlefont<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#FF4500'</span>),</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    tickfont<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#FF4500'</span>)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>yaxis2<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Tasa de Confirmación'</span>,</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>    titlefont<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#4682B4'</span>),</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>    tickfont<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#4682B4'</span>),</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>    anchor<span class="op">=</span><span class="st">'x'</span>,</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    overlaying<span class="op">=</span><span class="st">'y'</span>,</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>    side<span class="op">=</span><span class="st">'right'</span>,</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>legend<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>    orientation<span class="op">=</span><span class="st">"h"</span>,</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>    yanchor<span class="op">=</span><span class="st">"bottom"</span>,</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="fl">1.02</span>,</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>    xanchor<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>fig_temporal.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+<p>Evolución Temporal de Casos de Hipotiroidismo Congénito</p>
+</div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="37">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversión de peso a kilogramos para mejor visualización</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>filtered_df[<span class="st">'peso_kg'</span>] <span class="op">=</span> filtered_df[<span class="st">'peso'</span>] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig_peso_tsh <span class="op">=</span> px.scatter(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    filtered_df,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'peso_kg'</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'tsh_neonatal'</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'confirmado_hipotiroidismo'</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    color_discrete_map<span class="op">=</span>{<span class="va">True</span>: <span class="st">'#FF4500'</span>, <span class="va">False</span>: <span class="st">'#4682B4'</span>},</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'peso_kg'</span>: <span class="st">'Peso al Nacer (kg)'</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'tsh_neonatal'</span>: <span class="st">'TSH Neonatal (mIU/L)'</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'confirmado_hipotiroidismo'</span>: <span class="st">'Hipotiroidismo Confirmado'</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    trendline<span class="op">=</span><span class="st">"ols"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.7</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>fig_peso_tsh.add_hline(</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="dv">15</span>, </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    line_dash<span class="op">=</span><span class="st">"dash"</span>, </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    line_color<span class="op">=</span><span class="st">"red"</span>,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    annotation_text<span class="op">=</span><span class="st">"Umbral TSH: 15 mIU/L"</span>,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    annotation_position<span class="op">=</span><span class="st">"top right"</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>fig_peso_tsh.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+<p>Relacion entre peso y Hipotiroidismo Congénito</p>
+</div>
+</div>
+</section>
+<section id="parte-3-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="parte-3-dashboard">Parte 3: Dashboard</h2>
+<section id="funcionalidad-del-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="funcionalidad-del-dashboard">Funcionalidad del Dashboard</h3>
+<ul>
+<li><strong>Exploración interactiva</strong>: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).</li>
+<li><strong>Notificaciones SMS</strong>: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.</li>
+<li><strong>Acceso</strong>: Disponible <a href="https://congenitalhypothyroidismalert-fj2vvjhbx9kgjnmckexhn9.streamlit.app/">aquí</a>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgur.com/cjqTfzL.png" class="img-fluid figure-img"></p>
+<figcaption>Interfaz del Dashboard</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://imgur.com/h0xy5Jb.png" class="img-fluid figure-img"></p>
+<figcaption>Distribución de TSH</figcaption>
+</figure>
+</div>
+</section>
+<section id="hallazgos-preliminares" class="level3">
+<h3 class="anchored" data-anchor-id="hallazgos-preliminares">Hallazgos Preliminares</h3>
+<ul>
+<li>Los niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.</li>
+<li>La falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.</li>
+</ul>
+</section>
+</section>
+<section id="parte-4-estadística-avanzada-en-desarrollo" class="level2">
+<h2 class="anchored" data-anchor-id="parte-4-estadística-avanzada-en-desarrollo">Parte 4: Estadística Avanzada (En Desarrollo)</h2>
+<p>Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.</p>
+<p>Pronto actualizaré esta entrada con más detalles.</p>
+</section>
+<section id="conclusiones-preliminares" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones-preliminares">Conclusiones Preliminares</h2>
+<p>El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.</p>
+</section>
+<section id="próximos-pasos" class="level2">
+<h2 class="anchored" data-anchor-id="próximos-pasos">Próximos Pasos</h2>
+<ul>
+<li>Finalizar la sección de estadística avanzada.</li>
+<li>Optimizar el dashboard con más opciones de personalización para los SMS.</li>
+<li>Probar la API de SMS en un entorno real y evaluar su impacto.</li>
+</ul>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Icon quarto from simple-icons Iconify.design set." title="Icon quarto from simple-icons Iconify.design set."></iconify-icon> Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2025 LCPallares.</p>
+</div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
