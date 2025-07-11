@@ -9,12 +9,13 @@
   {
     "listing": "/projects/index.html",
     "items": [
-      "/projects/web_scraping_csc_india.html",
+      "/projects/amazon-best-seller.html",
       "/projects/congenital-hypothyroidism2.html",
-      "/projects/university-dropout.html",
+      "/projects/web_scraping_csc_india.html",
       "/projects/congenital-hypothyroidism.html",
+      "/projects/rick-and-morty-app.html",
       "/projects/supermarket_sales_myanmar.html",
-      "/projects/amazon-best-seller.html"
+      "/projects/university-dropout.html"
     ]
   }
 ]

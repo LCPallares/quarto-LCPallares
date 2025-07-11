@@ -1,173 +1,5 @@
 [
   {
-    "objectID": "posts/estadistica-inferencial.html",
-    "href": "posts/estadistica-inferencial.html",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.\n\n\nLa estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra.\n\n\n\n\nLos intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")\n\n\n\nLas pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")\n\n\n\n\nANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\n\n\n\nLa regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")\n\n\n\nEs importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten\n\n\n\n\nLa estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
-    "href": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra."
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#intervalos-de-confianza",
-    "href": "posts/estadistica-inferencial.html#intervalos-de-confianza",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Los intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
-    "href": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Las pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
-    "href": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "ANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#regresión-lineal",
-    "href": "posts/estadistica-inferencial.html#regresión-lineal",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
-    "href": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Es importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#conclusión",
-    "href": "posts/estadistica-inferencial.html#conclusión",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
-  },
-  {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Data Analysis Blog",
-    "section": "",
-    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html",
-    "href": "projects/amazon-best-seller.html",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns.\n\n\n\nI built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency\n\n\n\nThe raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories\n\n\n\n\n\nCode\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\nPrice distribution of best-selling books\n\n\n\n\n\n\n\n\nPricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales\n\n\n\n\nThis analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance.\n\n\n\nFuture extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#project-overview",
-    "href": "projects/amazon-best-seller.html#project-overview",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns."
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#web-scraping-process",
-    "href": "projects/amazon-best-seller.html#web-scraping-process",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "I built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#data-cleaning-steps",
-    "href": "projects/amazon-best-seller.html#data-cleaning-steps",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "The raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#exploratory-analysis",
-    "href": "projects/amazon-best-seller.html#exploratory-analysis",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "Code\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\nPrice distribution of best-selling books"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#key-insights",
-    "href": "projects/amazon-best-seller.html#key-insights",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "Pricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales"
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#conclusions",
-    "href": "projects/amazon-best-seller.html#conclusions",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "This analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance."
-  },
-  {
-    "objectID": "projects/amazon-best-seller.html#next-steps",
-    "href": "projects/amazon-best-seller.html#next-steps",
-    "title": "Amazon Best Seller Analysis",
-    "section": "",
-    "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html",
-    "href": "projects/congenital-hypothyroidism.html",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.\n\n\n\nLa base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación.\n\n\n\nEl análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.\n\n\n\n\n\nEsta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles.\n\n\n\nEl proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.\n\n\n\n\nFinalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
-    "href": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
-    "href": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
-    "href": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
-    "href": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
-    "href": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#próximos-pasos",
-    "href": "projects/congenital-hypothyroidism.html#próximos-pasos",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
-  },
-  {
     "objectID": "projects/university-dropout.html",
     "href": "projects/university-dropout.html",
     "title": "University Dropout Analysis",
@@ -224,88 +56,102 @@
     "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
   },
   {
-    "objectID": "projects/web_scraping_csc_india.html",
-    "href": "projects/web_scraping_csc_india.html",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "objectID": "projects/supermarket_sales_myanmar.html",
+    "href": "projects/supermarket_sales_myanmar.html",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
     "section": "",
-    "text": "Este proyecto nació de una solicitud freelance para mapear los Common Service Centers (CSCs) de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:\n\nUn listado estructurado de todos los CSCs.\n\nFiltros por estado, distrito y bloque.\n\nDatos para análisis de cobertura geográfica.\n\nEl sitio oficial (csclocator.com) no ofrecía una API pública, por lo que desarrollé un scraper automatizado para extraer los datos directamente del HTML."
+    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar.\n\n\n\nLa base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February  \n\n\n\n\n\nEl análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios.\n\n\n\n\n\nEn las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras.\n\n\n\nEste análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis.\n\n\n\n\nDatos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
   },
   {
-    "objectID": "projects/web_scraping_csc_india.html#contexto-del-proyecto",
-    "href": "projects/web_scraping_csc_india.html#contexto-del-proyecto",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "objectID": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
+    "href": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
     "section": "",
-    "text": "Este proyecto nació de una solicitud freelance para mapear los Common Service Centers (CSCs) de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:\n\nUn listado estructurado de todos los CSCs.\n\nFiltros por estado, distrito y bloque.\n\nDatos para análisis de cobertura geográfica.\n\nEl sitio oficial (csclocator.com) no ofrecía una API pública, por lo que desarrollé un scraper automatizado para extraer los datos directamente del HTML."
+    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar."
   },
   {
-    "objectID": "projects/web_scraping_csc_india.html#técnicas-utilizadas",
-    "href": "projects/web_scraping_csc_india.html#técnicas-utilizadas",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
-    "section": "Técnicas Utilizadas",
-    "text": "Técnicas Utilizadas\n# Tecnologías clave:\n- Python (BeautifulSoup, requests, pandas).\n- Web scraping con manejo de headers y delays.\n- Extracción de datos anidados (selectores HTML).\n- Almacenamiento en Excel para facilitar su uso."
-  },
-  {
-    "objectID": "projects/web_scraping_csc_india.html#datos-obtenidos",
-    "href": "projects/web_scraping_csc_india.html#datos-obtenidos",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
-    "section": "Datos Obtenidos",
-    "text": "Datos Obtenidos\nSe extrajeron registros con las siguientes variables:\n\n\n\n\n\n\n\n\nVariable\nDescripción\nEjemplo\n\n\n\n\nvle_name\nNombre del operador del CSC\n“Alankit_Deepika Rustagi”\n\n\naddress\nDirección física\n“Shop No: 4547, Karol Bagh”\n\n\nstate\nEstado\n“andaman-and-nicobar”\n\n\ndistrict\nDistrito\n“central”\n\n\nblock\nBloque administrativo\n“central-delhi-nielit”\n\n\n\n\nMuestra de Datos\n\n\n\nDatos resultantes"
-  },
-  {
-    "objectID": "projects/web_scraping_csc_india.html#desafíos-y-soluciones",
-    "href": "projects/web_scraping_csc_india.html#desafíos-y-soluciones",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
-    "section": "Desafíos y Soluciones",
-    "text": "Desafíos y Soluciones\n\nEstructura compleja:\n\nLos CSCs se organizaban en jerarquías (estado → distrito → bloque).\n\nSolución: Scrapeé secuencialmente los select options del HTML.\n\nProtección contra scraping:\n\nEl sitio bloqueaba peticiones rápidas.\n\nSolución: Implementé headers con User-Agent y time.sleep(15) entre requests.\n\nDatos inconsistentes:\n\nAlgunas direcciones usaban formatos no estandarizados (ej: “WZ: 125 Dusghara”).\n\nSolución: Normalización manual posterior en Excel."
-  },
-  {
-    "objectID": "projects/web_scraping_csc_india.html#impacto-del-proyecto",
-    "href": "projects/web_scraping_csc_india.html#impacto-del-proyecto",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
-    "section": "Impacto del Proyecto",
-    "text": "Impacto del Proyecto\n\nEl cliente pudo identificar zonas con baja densidad de CSCs para priorizar nuevas instalaciones.\n\nLos datos se usaron como base para un sistema de geolocalización interno.\n\nDemostró que el scraping puede ser una alternativa viable cuando no hay APIs disponibles."
-  },
-  {
-    "objectID": "projects/web_scraping_csc_india.html#código-completo",
-    "href": "projects/web_scraping_csc_india.html#código-completo",
-    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
-    "section": "Código Completo",
-    "text": "Código Completo\nEl script de Python está disponible en GitHub o en el siguiente bloque:\nimport requests\nfrom bs4 import BeautifulSoup\nimport pandas as pd\nimport time\n\ndef make_soup(url):\n    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'\n    headers = {'User-Agent': user_agent}\n    response = requests.get(url, headers=headers)\n    \n    if response.status_code == 200:\n        soup = BeautifulSoup(response.text, 'html.parser')\n        return soup\n    else:\n        print(f\"Error while getting the page. State code: {response.status_code}\")\n        return None\n\n\ndef scrape_select_values(url):\n    soup = make_soup(url)\n    \n    state_selector = soup.find('select', {'id': 'state'})\n    district_selector = soup.find('select', {'id': 'district'})\n    block_selector = soup.find('select', {'id': 'block'})\n\n    state_options = state_selector.find_all('option')\n    district_options = district_selector.find_all('option')\n    block_options = block_selector.find_all('option')\n\n    state_data = [option.get(\"value\") for option in state_options[1:]]\n    district_data = [option.get(\"value\") for option in district_options[1:]]\n    block_data = [option.get(\"value\") for option in block_options[1:]]\n    \n    return state_data, district_data, block_data\n\n\ndef get_info(soup, state, district, block):\n    headings = soup.find('div', class_='col-lg-12')\n    if headings:\n        row = headings.find(class_=\"row\")\n        column_title = [x.text for x in row.find_all(\"th\")]\n        tr_elements = row.find_all('tr')\n\n        data_list = []\n\n        for tr in tr_elements[1:]:\n            td_elements = tr.find_all('td')\n            if len(td_elements) &gt;= 3:\n                vle_name = td_elements[0].text.strip()\n                address = td_elements[1].text.strip()\n                enlace = td_elements[2].find('a')['href']\n\n                data = {\n                    \"vle_name\": vle_name,\n                    \"address\": address,\n                    \"enlace\": enlace,\n                    \"state\": state,\n                    \"district\": district,\n                    \"block\": block\n                }\n\n                data_list.append(data)\n\n        return data_list\n\n    else:\n        print(f\"No data found for {state}/{district}/{block}\")\n        return []\n\n\nbase_url = \"https://www.csclocator.com\"\n\nall_data = []\nstate_list, district_list, block_list = scrape_select_values(\"https://www.csclocator.com/csc/delhi/delhi/new-delhi-nielit\")\n\nfor state in state_list:\n    for district in district_list:\n        for block in block_list:\n            url = f\"{base_url}/csc/{state}/{district}/{block}\"\n            print(f\"Scraping: {url}\")\n            soup = make_soup(url)\n\n            if soup:\n                data_list = get_info(soup, state, district, block)\n                all_data.extend(data_list)\n                df = pd.DataFrame(all_data)\n                df.to_excel(\"csc_data_partial.xlsx\", index=False)\n            time.sleep(15) \n\nfinal_df = pd.DataFrame(all_data)\nfinal_df.to_excel(\"csc_data.xlsx\", index=False)"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Acerca de mi",
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
+    "href": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
     "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
+    "text": "La base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February"
   },
   {
-    "objectID": "about.html#proyectos-destacados",
-    "href": "about.html#proyectos-destacados",
-    "title": "Acerca de mi",
-    "section": "Proyectos Destacados",
-    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
+    "href": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
+    "section": "",
+    "text": "El análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios."
   },
   {
-    "objectID": "about.html#tecnologías",
-    "href": "about.html#tecnologías",
-    "title": "Acerca de mi",
-    "section": "Tecnologías",
-    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
+    "href": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
+    "section": "",
+    "text": "En las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras."
   },
   {
-    "objectID": "about.html#experiencia",
-    "href": "about.html#experiencia",
-    "title": "Acerca de mi",
-    "section": "Experiencia",
-    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
+    "objectID": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
+    "href": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
+    "section": "",
+    "text": "Este análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis."
   },
   {
-    "objectID": "about.html#educación",
-    "href": "about.html#educación",
-    "title": "Acerca de mi",
-    "section": "Educación",
-    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
+    "objectID": "projects/supermarket_sales_myanmar.html#recursos",
+    "href": "projects/supermarket_sales_myanmar.html#recursos",
+    "title": "Análisis de Ventas de un Supermercado en Myanmar",
+    "section": "",
+    "text": "Datos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html",
+    "href": "projects/congenital-hypothyroidism.html",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.\n\n\n\nLa base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación.\n\n\n\nEl análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.\n\n\n\n\n\nEsta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles.\n\n\n\nEl proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.\n\n\n\n\nFinalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "href": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "href": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "href": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "href": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "href": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "href": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
   },
   {
     "objectID": "projects/congenital-hypothyroidism2.html",
@@ -364,74 +210,46 @@
     "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Data Analysis Projects",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de mi",
     "section": "",
-    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWeb Scraping: Ubicaciones de Common Service Centers (India)\n\n\n\nweb-scraping\n\ndata-collection\n\npython\n\nfreelance\n\n\n\n\n\n\n\n\n\nAug 20, 2023\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\neducation\n\nstatistics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito: Datos y Comunicación\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de Ventas de un Supermercado en Myanmar\n\n\n\ndata analysis\n\nvisualization\n\nretail\n\nexploratory analysis\n\n\n\nEste proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.\n\n\n\n\n\nApr 23, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\nweb scraping\n\ndata cleaning\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.\n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
   },
   {
-    "objectID": "projects/supermarket_sales_myanmar.html",
-    "href": "projects/supermarket_sales_myanmar.html",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar.\n\n\n\nLa base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February  \n\n\n\n\n\nEl análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios.\n\n\n\n\n\nEn las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras.\n\n\n\nEste análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis.\n\n\n\n\nDatos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
+    "objectID": "about.html#proyectos-destacados",
+    "href": "about.html#proyectos-destacados",
+    "title": "Acerca de mi",
+    "section": "Proyectos Destacados",
+    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
   },
   {
-    "objectID": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
-    "href": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar."
+    "objectID": "about.html#tecnologías",
+    "href": "about.html#tecnologías",
+    "title": "Acerca de mi",
+    "section": "Tecnologías",
+    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
   },
   {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
-    "href": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "La base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February"
+    "objectID": "about.html#experiencia",
+    "href": "about.html#experiencia",
+    "title": "Acerca de mi",
+    "section": "Experiencia",
+    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
   },
   {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
-    "href": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "El análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios."
+    "objectID": "about.html#educación",
+    "href": "about.html#educación",
+    "title": "Acerca de mi",
+    "section": "Educación",
+    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
   },
   {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
-    "href": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Data Analysis Blog",
     "section": "",
-    "text": "En las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
-    "href": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#recursos",
-    "href": "projects/supermarket_sales_myanmar.html#recursos",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Datos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "LCPallares - Análisis de Datos y Más",
-    "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
-  },
-  {
-    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "title": "LCPallares - Análisis de Datos y Más",
-    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
-    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
+    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "posts/estadistica-descriptiva.html",
@@ -481,5 +299,264 @@
     "title": "Estadística Descriptiva: La Base del Análisis de Datos",
     "section": "",
     "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html",
+    "href": "posts/estadistica-inferencial.html",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.\n\n\nLa estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra.\n\n\n\n\nLos intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")\n\n\n\nLas pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")\n\n\n\n\nANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\n\n\n\nLa regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")\n\n\n\nEs importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten\n\n\n\n\nLa estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "href": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Los intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "href": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Las pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "href": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "ANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#regresión-lineal",
+    "href": "posts/estadistica-inferencial.html#regresión-lineal",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Es importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#conclusión",
+    "href": "posts/estadistica-inferencial.html#conclusión",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "",
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
+  },
+  {
+    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
+    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html",
+    "href": "projects/amazon-best-seller.html",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns.\n\n\n\nI built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency\n\n\n\nThe raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories\n\n\n\n\n\nCode\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\nPrice distribution of best-selling books\n\n\n\n\n\n\n\n\nPricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales\n\n\n\n\nThis analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance.\n\n\n\nFuture extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#project-overview",
+    "href": "projects/amazon-best-seller.html#project-overview",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This project analyzes Amazon’s top-selling books to identify trends in reading preferences, pricing strategies, and publishing patterns."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#web-scraping-process",
+    "href": "projects/amazon-best-seller.html#web-scraping-process",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "I built a custom web scraper using: - Python (BeautifulSoup and Selenium) - Request throttling to respect Amazon’s servers - Proxy rotation to avoid IP blocking - Data validation to ensure consistency"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "href": "projects/amazon-best-seller.html#data-cleaning-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "The raw data required extensive cleaning: 1. Standardizing author name formats 2. Extracting numerical ratings from text 3. Converting price strings to numerical values 4. Handling missing data points 5. Deduplicating entries for books appearing in multiple categories"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#exploratory-analysis",
+    "href": "projects/amazon-best-seller.html#exploratory-analysis",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Code\n####| echo: false\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Sample visualization code\nnp.random.seed(42)\nprices = np.random.normal(14.99, 5, 100)  # Simulated price data\n\nplt.figure(figsize=(10, 6))\nsns.histplot(prices, bins=20, kde=True)\nplt.title('Price Distribution of Amazon Best Sellers')\nplt.xlabel('Price ($)')\nplt.ylabel('Frequency')\nplt.axvline(prices.mean(), color='red', linestyle='--', label=f'Mean: ${prices.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\nPrice distribution of best-selling books"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#key-insights",
+    "href": "projects/amazon-best-seller.html#key-insights",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Pricing Strategy: Books priced between $12.99-$16.99 consistently outperform higher-priced alternatives\nGenre Trends: Self-help and business books dominate the top 20% of best sellers\nReview Impact: Books with 1,000+ reviews sell 3x more units regardless of rating\nPublication Timing: Books released on Tuesdays show 15% higher first-month sales"
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#conclusions",
+    "href": "projects/amazon-best-seller.html#conclusions",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "This analysis reveals that Amazon best sellers follow distinct patterns in pricing, genre positioning, and marketing approach. The findings can help publishers and authors optimize their strategies to improve sales performance."
+  },
+  {
+    "objectID": "projects/amazon-best-seller.html#next-steps",
+    "href": "projects/amazon-best-seller.html#next-steps",
+    "title": "Amazon Best Seller Analysis",
+    "section": "",
+    "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html",
+    "href": "projects/web_scraping_csc_india.html",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "",
+    "text": "Este proyecto nació de una solicitud freelance para mapear los Common Service Centers (CSCs) de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:\n\nUn listado estructurado de todos los CSCs.\n\nFiltros por estado, distrito y bloque.\n\nDatos para análisis de cobertura geográfica.\n\nEl sitio oficial (csclocator.com) no ofrecía una API pública, por lo que desarrollé un scraper automatizado para extraer los datos directamente del HTML."
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#contexto-del-proyecto",
+    "href": "projects/web_scraping_csc_india.html#contexto-del-proyecto",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "",
+    "text": "Este proyecto nació de una solicitud freelance para mapear los Common Service Centers (CSCs) de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:\n\nUn listado estructurado de todos los CSCs.\n\nFiltros por estado, distrito y bloque.\n\nDatos para análisis de cobertura geográfica.\n\nEl sitio oficial (csclocator.com) no ofrecía una API pública, por lo que desarrollé un scraper automatizado para extraer los datos directamente del HTML."
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#técnicas-utilizadas",
+    "href": "projects/web_scraping_csc_india.html#técnicas-utilizadas",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "Técnicas Utilizadas",
+    "text": "Técnicas Utilizadas\n# Tecnologías clave:\n- Python (BeautifulSoup, requests, pandas).\n- Web scraping con manejo de headers y delays.\n- Extracción de datos anidados (selectores HTML).\n- Almacenamiento en Excel para facilitar su uso."
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#datos-obtenidos",
+    "href": "projects/web_scraping_csc_india.html#datos-obtenidos",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "Datos Obtenidos",
+    "text": "Datos Obtenidos\nSe extrajeron registros con las siguientes variables:\n\n\n\n\n\n\n\n\nVariable\nDescripción\nEjemplo\n\n\n\n\nvle_name\nNombre del operador del CSC\n“Alankit_Deepika Rustagi”\n\n\naddress\nDirección física\n“Shop No: 4547, Karol Bagh”\n\n\nstate\nEstado\n“andaman-and-nicobar”\n\n\ndistrict\nDistrito\n“central”\n\n\nblock\nBloque administrativo\n“central-delhi-nielit”\n\n\n\n\nMuestra de Datos\n\n\n\nDatos resultantes"
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#desafíos-y-soluciones",
+    "href": "projects/web_scraping_csc_india.html#desafíos-y-soluciones",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "Desafíos y Soluciones",
+    "text": "Desafíos y Soluciones\n\nEstructura compleja:\n\nLos CSCs se organizaban en jerarquías (estado → distrito → bloque).\n\nSolución: Scrapeé secuencialmente los select options del HTML.\n\nProtección contra scraping:\n\nEl sitio bloqueaba peticiones rápidas.\n\nSolución: Implementé headers con User-Agent y time.sleep(15) entre requests.\n\nDatos inconsistentes:\n\nAlgunas direcciones usaban formatos no estandarizados (ej: “WZ: 125 Dusghara”).\n\nSolución: Normalización manual posterior en Excel."
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#impacto-del-proyecto",
+    "href": "projects/web_scraping_csc_india.html#impacto-del-proyecto",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "Impacto del Proyecto",
+    "text": "Impacto del Proyecto\n\nEl cliente pudo identificar zonas con baja densidad de CSCs para priorizar nuevas instalaciones.\n\nLos datos se usaron como base para un sistema de geolocalización interno.\n\nDemostró que el scraping puede ser una alternativa viable cuando no hay APIs disponibles."
+  },
+  {
+    "objectID": "projects/web_scraping_csc_india.html#código-completo",
+    "href": "projects/web_scraping_csc_india.html#código-completo",
+    "title": "Web Scraping: Ubicaciones de Common Service Centers (India)",
+    "section": "Código Completo",
+    "text": "Código Completo\nEl script de Python está disponible en GitHub o en el siguiente bloque:\nimport requests\nfrom bs4 import BeautifulSoup\nimport pandas as pd\nimport time\n\ndef make_soup(url):\n    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'\n    headers = {'User-Agent': user_agent}\n    response = requests.get(url, headers=headers)\n    \n    if response.status_code == 200:\n        soup = BeautifulSoup(response.text, 'html.parser')\n        return soup\n    else:\n        print(f\"Error while getting the page. State code: {response.status_code}\")\n        return None\n\n\ndef scrape_select_values(url):\n    soup = make_soup(url)\n    \n    state_selector = soup.find('select', {'id': 'state'})\n    district_selector = soup.find('select', {'id': 'district'})\n    block_selector = soup.find('select', {'id': 'block'})\n\n    state_options = state_selector.find_all('option')\n    district_options = district_selector.find_all('option')\n    block_options = block_selector.find_all('option')\n\n    state_data = [option.get(\"value\") for option in state_options[1:]]\n    district_data = [option.get(\"value\") for option in district_options[1:]]\n    block_data = [option.get(\"value\") for option in block_options[1:]]\n    \n    return state_data, district_data, block_data\n\n\ndef get_info(soup, state, district, block):\n    headings = soup.find('div', class_='col-lg-12')\n    if headings:\n        row = headings.find(class_=\"row\")\n        column_title = [x.text for x in row.find_all(\"th\")]\n        tr_elements = row.find_all('tr')\n\n        data_list = []\n\n        for tr in tr_elements[1:]:\n            td_elements = tr.find_all('td')\n            if len(td_elements) &gt;= 3:\n                vle_name = td_elements[0].text.strip()\n                address = td_elements[1].text.strip()\n                enlace = td_elements[2].find('a')['href']\n\n                data = {\n                    \"vle_name\": vle_name,\n                    \"address\": address,\n                    \"enlace\": enlace,\n                    \"state\": state,\n                    \"district\": district,\n                    \"block\": block\n                }\n\n                data_list.append(data)\n\n        return data_list\n\n    else:\n        print(f\"No data found for {state}/{district}/{block}\")\n        return []\n\n\nbase_url = \"https://www.csclocator.com\"\n\nall_data = []\nstate_list, district_list, block_list = scrape_select_values(\"https://www.csclocator.com/csc/delhi/delhi/new-delhi-nielit\")\n\nfor state in state_list:\n    for district in district_list:\n        for block in block_list:\n            url = f\"{base_url}/csc/{state}/{district}/{block}\"\n            print(f\"Scraping: {url}\")\n            soup = make_soup(url)\n\n            if soup:\n                data_list = get_info(soup, state, district, block)\n                all_data.extend(data_list)\n                df = pd.DataFrame(all_data)\n                df.to_excel(\"csc_data_partial.xlsx\", index=False)\n            time.sleep(15) \n\nfinal_df = pd.DataFrame(all_data)\nfinal_df.to_excel(\"csc_data.xlsx\", index=False)"
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html",
+    "href": "projects/rick-and-morty-app.html",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "This project is a mobile application built with Python, Kivy, and KivyMD, leveraging the Rick and Morty API to create an engaging experience for fans. The app allows users to browse characters, view detailed information, save favorites, and manage accounts through a sleek, Material Design-inspired interface. Itñs designed to be responsive across Android, iOS, and desktop platforms.\n\n\n\n\nFigura: Current development version of kivymd (2.0.1.dev0).\n\nFigura: Stable version of kivymd (1.1.1), no use of themes.\n\n\n\n\nLogin and Registration: Secure user authentication for personalized access.\nCharacter Browser: Displays characters from the Rick and Morty API, including name, species, and status.\nFavorites Screen: Save and view favorite characters.\nNavigation Bar: Intuitive navigation across app sections.\nResponsive UI: Built with KivyMD for a modern, cross-platform interface.\n\n\n\n\n\nPython: Core language for development.\nKivy: Framework for cross-platform UI.\nKivyMD: Material Design components for a polished look.\nRick and Morty API: Provides character data.\nRequests: Handles API calls.\n\n\n\n\nrickmorty_app/\n├── main.py                   # Entry point\n├── assets/                   # Static resources\n│   ├── fonts/                # Custom fonts\n│   │   ├── font1\n│   │   └── font2\n│   ├── images/               # App images (logo, icons)\n│   │   ├── logo.svg\n│   │   ├── icon.png\n│   │   └── placeholder.png\n│   └── screenshots/          # Screenshots for documentation\n├── components/               # Reusable UI components\n│   ├── character_tile.py     # Logic for character tile\n│   └── character_tile.kv     # Design for character tile\n├── controllers/              # Business logic\n│   ├── auth_controller.py    # Authentication logic\n│   ├── character_controller.py # Character data handling\n│   └── favorites_controller.py # Favorites management\n├── models/                   # Data models\n│   ├── user_model.py         # User data\n│   ├── favorite_model.py     # Favorite characters\n│   └── database.py           # Database operations\n├── views/                    # UI screens\n│   ├── auth/\n│   │   ├── login.kv          # Login screen design\n│   │   ├── login.py          # Login screen logic\n│   │   ├── register.kv       # Registration screen design\n│   │   └── register.py       # Registration screen logic\n│   ├── characters/\n│   │   ├── characters_list.kv  # Character list design\n│   │   ├── characters_list.py  # Character list logic\n│   │   ├── character_detail.kv # Character detail design\n│   │   └── character_detail.py # Character detail logic\n│   └── favorites/\n│       ├── favorites_list.kv # Favorites list design\n│       └── favorites_list.py # Favorites list logic\n└── utils/                    # Utilities\n    ├── api_client.py         # API requests\n    └── helpers.py            # Helper functions\n\n\n\n\nEnvironment Setup:\n\nInstalled Python 3.8+, Kivy, KivyMD, and Requests.\nConfigured Buildozer for Android packaging, excluding screenshots/ in buildozer.spec to keep the APK lightweight:\nsource.exclude_dirs = tests, bin, venv, drive, .git, .vscode, __pycache__, .kivy, screenshots\n\nUI Development:\n\nUsed KivyMD to create responsive screens with .kv files for design and .py files for logic.\nImplemented a navigation bar for seamless transitions.\n\nAPI Integration:\n\nDeveloped api_client.py to fetch character data from the Rick and Morty API.\nHandled pagination to load multiple pages of characters.\n\nData Management:\n\nCreated a local database (database.py) for user credentials and favorites.\nManaged favorites through favorites_controller.py.\n\nDocumentation:\n\nAdded a README.md with setup instructions and placeholders for screenshots in assets/screenshots/.\n\n\n\n\n\n\nKivyMD Syntax: Learning to separate design (.kv) and logic (.py) was initially tricky but improved code organization.\nAPI Pagination: Required extra logic in api_client.py to handle multiple API pages.\nBuildozer: Ensuring screenshots/ was excluded in buildozer.spec avoided bloating the APK.\n\n\n\n\n\nAdd search functionality for characters.\nImplement offline caching for API data.\nEnhance UI with animations for smoother transitions.\nUpdate screenshots in assets/screenshots/ and refine the Quarto project page.\n\n\n\n\nCheck out the project on GitHub.\n\n\n\nThis project was a fun way to combine my passion for Rick and Morty with mobile development. KivyMD made it easy to create a modern UI, and the Rick and Morty API provided rich data. Documenting it in my Quarto websiteñs projects section helps showcase my work and track progress. Stay tuned for updates!"
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#project-overview",
+    "href": "projects/rick-and-morty-app.html#project-overview",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "This project is a mobile application built with Python, Kivy, and KivyMD, leveraging the Rick and Morty API to create an engaging experience for fans. The app allows users to browse characters, view detailed information, save favorites, and manage accounts through a sleek, Material Design-inspired interface. Itñs designed to be responsive across Android, iOS, and desktop platforms."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#screenshots",
+    "href": "projects/rick-and-morty-app.html#screenshots",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Figura: Current development version of kivymd (2.0.1.dev0).\n\nFigura: Stable version of kivymd (1.1.1), no use of themes."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#features",
+    "href": "projects/rick-and-morty-app.html#features",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Login and Registration: Secure user authentication for personalized access.\nCharacter Browser: Displays characters from the Rick and Morty API, including name, species, and status.\nFavorites Screen: Save and view favorite characters.\nNavigation Bar: Intuitive navigation across app sections.\nResponsive UI: Built with KivyMD for a modern, cross-platform interface."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#tech-stack",
+    "href": "projects/rick-and-morty-app.html#tech-stack",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Python: Core language for development.\nKivy: Framework for cross-platform UI.\nKivyMD: Material Design components for a polished look.\nRick and Morty API: Provides character data.\nRequests: Handles API calls."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#project-structure",
+    "href": "projects/rick-and-morty-app.html#project-structure",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "rickmorty_app/\n├── main.py                   # Entry point\n├── assets/                   # Static resources\n│   ├── fonts/                # Custom fonts\n│   │   ├── font1\n│   │   └── font2\n│   ├── images/               # App images (logo, icons)\n│   │   ├── logo.svg\n│   │   ├── icon.png\n│   │   └── placeholder.png\n│   └── screenshots/          # Screenshots for documentation\n├── components/               # Reusable UI components\n│   ├── character_tile.py     # Logic for character tile\n│   └── character_tile.kv     # Design for character tile\n├── controllers/              # Business logic\n│   ├── auth_controller.py    # Authentication logic\n│   ├── character_controller.py # Character data handling\n│   └── favorites_controller.py # Favorites management\n├── models/                   # Data models\n│   ├── user_model.py         # User data\n│   ├── favorite_model.py     # Favorite characters\n│   └── database.py           # Database operations\n├── views/                    # UI screens\n│   ├── auth/\n│   │   ├── login.kv          # Login screen design\n│   │   ├── login.py          # Login screen logic\n│   │   ├── register.kv       # Registration screen design\n│   │   └── register.py       # Registration screen logic\n│   ├── characters/\n│   │   ├── characters_list.kv  # Character list design\n│   │   ├── characters_list.py  # Character list logic\n│   │   ├── character_detail.kv # Character detail design\n│   │   └── character_detail.py # Character detail logic\n│   └── favorites/\n│       ├── favorites_list.kv # Favorites list design\n│       └── favorites_list.py # Favorites list logic\n└── utils/                    # Utilities\n    ├── api_client.py         # API requests\n    └── helpers.py            # Helper functions"
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#development-process",
+    "href": "projects/rick-and-morty-app.html#development-process",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Environment Setup:\n\nInstalled Python 3.8+, Kivy, KivyMD, and Requests.\nConfigured Buildozer for Android packaging, excluding screenshots/ in buildozer.spec to keep the APK lightweight:\nsource.exclude_dirs = tests, bin, venv, drive, .git, .vscode, __pycache__, .kivy, screenshots\n\nUI Development:\n\nUsed KivyMD to create responsive screens with .kv files for design and .py files for logic.\nImplemented a navigation bar for seamless transitions.\n\nAPI Integration:\n\nDeveloped api_client.py to fetch character data from the Rick and Morty API.\nHandled pagination to load multiple pages of characters.\n\nData Management:\n\nCreated a local database (database.py) for user credentials and favorites.\nManaged favorites through favorites_controller.py.\n\nDocumentation:\n\nAdded a README.md with setup instructions and placeholders for screenshots in assets/screenshots/."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#challenges",
+    "href": "projects/rick-and-morty-app.html#challenges",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "KivyMD Syntax: Learning to separate design (.kv) and logic (.py) was initially tricky but improved code organization.\nAPI Pagination: Required extra logic in api_client.py to handle multiple API pages.\nBuildozer: Ensuring screenshots/ was excluded in buildozer.spec avoided bloating the APK."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#future-improvements",
+    "href": "projects/rick-and-morty-app.html#future-improvements",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Add search functionality for characters.\nImplement offline caching for API data.\nEnhance UI with animations for smoother transitions.\nUpdate screenshots in assets/screenshots/ and refine the Quarto project page."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#source-code",
+    "href": "projects/rick-and-morty-app.html#source-code",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "Check out the project on GitHub."
+  },
+  {
+    "objectID": "projects/rick-and-morty-app.html#conclusion",
+    "href": "projects/rick-and-morty-app.html#conclusion",
+    "title": "Rick and Morty Mobile App with KivyMD",
+    "section": "",
+    "text": "This project was a fun way to combine my passion for Rick and Morty with mobile development. KivyMD made it easy to create a modern UI, and the Rick and Morty API provided rich data. Documenting it in my Quarto websiteñs projects section helps showcase my work and track progress. Stay tuned for updates!"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Data Analysis Projects",
+    "section": "",
+    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\nweb scraping\n\ndata cleaning\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.\n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping: Ubicaciones de Common Service Centers (India)\n\n\n\nweb-scraping\n\ndata-collection\n\npython\n\nfreelance\n\n\n\n\n\n\n\n\n\nAug 20, 2023\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito: Datos y Comunicación\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nRick and Morty Mobile App with KivyMD\n\n\n\nMobile Development\n\nKivyMD\n\nPython\n\nAPI\n\n\n\nA cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.\n\n\n\n\n\nJul 10, 2025\n\n\nLuis Carlos Pallares Ascanio\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de Ventas de un Supermercado en Myanmar\n\n\n\ndata analysis\n\nvisualization\n\nretail\n\nexploratory analysis\n\n\n\nEste proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.\n\n\n\n\n\nApr 23, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\neducation\n\nstatistics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
   }
 ]

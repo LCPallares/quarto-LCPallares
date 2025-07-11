@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LC Pallares">
-<meta name="dcterms.date" content="2023-08-20">
+<meta name="author" content="Luis Carlos Pallares Ascanio">
+<meta name="dcterms.date" content="2025-07-10">
+<meta name="description" content="A cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.">
 
-<title>Web Scraping: Ubicaciones de Common Service Centers (India) – LCPallares</title>
+<title>Rick and Morty Mobile App with KivyMD – LCPallares</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -175,15 +176,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#contexto-del-proyecto" id="toc-contexto-del-proyecto" class="nav-link active" data-scroll-target="#contexto-del-proyecto"><strong>Contexto del Proyecto</strong></a></li>
-  <li><a href="#técnicas-utilizadas" id="toc-técnicas-utilizadas" class="nav-link" data-scroll-target="#técnicas-utilizadas"><strong>Técnicas Utilizadas</strong></a></li>
-  <li><a href="#datos-obtenidos" id="toc-datos-obtenidos" class="nav-link" data-scroll-target="#datos-obtenidos"><strong>Datos Obtenidos</strong></a>
+  <li><a href="#rick-and-morty-mobile-app" id="toc-rick-and-morty-mobile-app" class="nav-link active" data-scroll-target="#rick-and-morty-mobile-app">Rick and Morty Mobile App</a>
   <ul class="collapse">
-  <li><a href="#muestra-de-datos" id="toc-muestra-de-datos" class="nav-link" data-scroll-target="#muestra-de-datos"><strong>Muestra de Datos</strong></a></li>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#screenshots" id="toc-screenshots" class="nav-link" data-scroll-target="#screenshots">Screenshots</a></li>
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
+  <li><a href="#tech-stack" id="toc-tech-stack" class="nav-link" data-scroll-target="#tech-stack">Tech Stack</a></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#development-process" id="toc-development-process" class="nav-link" data-scroll-target="#development-process">Development Process</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#future-improvements" id="toc-future-improvements" class="nav-link" data-scroll-target="#future-improvements">Future Improvements</a></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code">Source Code</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
-  <li><a href="#desafíos-y-soluciones" id="toc-desafíos-y-soluciones" class="nav-link" data-scroll-target="#desafíos-y-soluciones"><strong>Desafíos y Soluciones</strong></a></li>
-  <li><a href="#impacto-del-proyecto" id="toc-impacto-del-proyecto" class="nav-link" data-scroll-target="#impacto-del-proyecto"><strong>Impacto del Proyecto</strong></a></li>
-  <li><a href="#código-completo" id="toc-código-completo" class="nav-link" data-scroll-target="#código-completo"><strong>Código Completo</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -192,15 +197,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Web Scraping: Ubicaciones de Common Service Centers (India)</h1>
+<h1 class="title">Rick and Morty Mobile App with KivyMD</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">web-scraping</div>
-    <div class="quarto-category">data-collection</div>
-    <div class="quarto-category">python</div>
-    <div class="quarto-category">freelance</div>
+    <div class="quarto-category">Mobile Development</div>
+    <div class="quarto-category">KivyMD</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">API</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    A cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -208,14 +218,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LC Pallares </p>
+             <p>Luis Carlos Pallares Ascanio </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 20, 2023</p>
+      <p class="date">July 10, 2025</p>
     </div>
   </div>
   
@@ -227,214 +237,138 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="contexto-del-proyecto" class="level2">
-<h2 class="anchored" data-anchor-id="contexto-del-proyecto"><strong>Contexto del Proyecto</strong></h2>
-<p>Este proyecto nació de una solicitud freelance para mapear los <strong>Common Service Centers (CSCs)</strong> de India, centros físicos que brindan acceso a servicios digitales gubernamentales en zonas rurales y urbanas. El cliente necesitaba:</p>
+<section id="rick-and-morty-mobile-app" class="level1">
+<h1>Rick and Morty Mobile App</h1>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>This project is a mobile application built with <strong>Python</strong>, <strong>Kivy</strong>, and <strong>KivyMD</strong>, leveraging the <a href="https://rickandmortyapi.com/">Rick and Morty API</a> to create an engaging experience for fans. The app allows users to browse characters, view detailed information, save favorites, and manage accounts through a sleek, Material Design-inspired interface. Itñs designed to be responsive across Android, iOS, and desktop platforms.</p>
+</section>
+<section id="screenshots" class="level2">
+<h2 class="anchored" data-anchor-id="screenshots">Screenshots</h2>
+<p><img src="https://i.imgur.com/u6i9N4G.jpeg" class="img-fluid" alt="kivymd-2.0.1.dev0"><br>
+<em>Figura: Current development version of kivymd (2.0.1.dev0).</em></p>
+<p><img src="https://i.imgur.com/j0AL1oc.jpeg" class="img-fluid" alt="kivymd-1.1.1"><br>
+<em>Figura: Stable version of kivymd (1.1.1), no use of themes.</em></p>
+</section>
+<section id="features" class="level2">
+<h2 class="anchored" data-anchor-id="features">Features</h2>
 <ul>
-<li>Un listado estructurado de todos los CSCs.<br>
-</li>
-<li>Filtros por estado, distrito y bloque.<br>
-</li>
-<li>Datos para análisis de cobertura geográfica.</li>
+<li><strong>Login and Registration</strong>: Secure user authentication for personalized access.</li>
+<li><strong>Character Browser</strong>: Displays characters from the Rick and Morty API, including name, species, and status.</li>
+<li><strong>Favorites Screen</strong>: Save and view favorite characters.</li>
+<li><strong>Navigation Bar</strong>: Intuitive navigation across app sections.</li>
+<li><strong>Responsive UI</strong>: Built with KivyMD for a modern, cross-platform interface.</li>
 </ul>
-<p>El sitio oficial (<a href="https://www.csclocator.com">csclocator.com</a>) no ofrecía una API pública, por lo que desarrollé un <strong>scraper automatizado</strong> para extraer los datos directamente del HTML.</p>
-<hr>
 </section>
-<section id="técnicas-utilizadas" class="level2">
-<h2 class="anchored" data-anchor-id="técnicas-utilizadas"><strong>Técnicas Utilizadas</strong></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tecnologías clave:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Python (BeautifulSoup, requests, pandas).</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Web scraping con manejo de headers y delays.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Extracción de datos anidados (selectores HTML).</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Almacenamiento en Excel para facilitar su uso.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<section id="tech-stack" class="level2">
+<h2 class="anchored" data-anchor-id="tech-stack">Tech Stack</h2>
+<ul>
+<li><strong>Python</strong>: Core language for development.</li>
+<li><strong>Kivy</strong>: Framework for cross-platform UI.</li>
+<li><strong>KivyMD</strong>: Material Design components for a polished look.</li>
+<li><strong>Rick and Morty API</strong>: Provides character data.</li>
+<li><strong>Requests</strong>: Handles API calls.</li>
+</ul>
 </section>
-<section id="datos-obtenidos" class="level2">
-<h2 class="anchored" data-anchor-id="datos-obtenidos"><strong>Datos Obtenidos</strong></h2>
-<p>Se extrajeron registros con las siguientes variables:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 39%">
-<col style="width: 42%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Descripción</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>vle_name</code></td>
-<td>Nombre del operador del CSC</td>
-<td>“Alankit_Deepika Rustagi”</td>
-</tr>
-<tr class="even">
-<td><code>address</code></td>
-<td>Dirección física</td>
-<td>“Shop No: 4547, Karol Bagh”</td>
-</tr>
-<tr class="odd">
-<td><code>state</code></td>
-<td>Estado</td>
-<td>“andaman-and-nicobar”</td>
-</tr>
-<tr class="even">
-<td><code>district</code></td>
-<td>Distrito</td>
-<td>“central”</td>
-</tr>
-<tr class="odd">
-<td><code>block</code></td>
-<td>Bloque administrativo</td>
-<td>“central-delhi-nielit”</td>
-</tr>
-</tbody>
-</table>
-<section id="muestra-de-datos" class="level3">
-<h3 class="anchored" data-anchor-id="muestra-de-datos"><strong>Muestra de Datos</strong></h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://imgur.com/KanRcMa.png" class="img-fluid figure-img"></p>
-<figcaption>Datos resultantes</figcaption>
-</figure>
-</div>
-<hr>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
+<pre><code>rickmorty_app/
+├── main.py                   # Entry point
+├── assets/                   # Static resources
+│   ├── fonts/                # Custom fonts
+│   │   ├── font1
+│   │   └── font2
+│   ├── images/               # App images (logo, icons)
+│   │   ├── logo.svg
+│   │   ├── icon.png
+│   │   └── placeholder.png
+│   └── screenshots/          # Screenshots for documentation
+├── components/               # Reusable UI components
+│   ├── character_tile.py     # Logic for character tile
+│   └── character_tile.kv     # Design for character tile
+├── controllers/              # Business logic
+│   ├── auth_controller.py    # Authentication logic
+│   ├── character_controller.py # Character data handling
+│   └── favorites_controller.py # Favorites management
+├── models/                   # Data models
+│   ├── user_model.py         # User data
+│   ├── favorite_model.py     # Favorite characters
+│   └── database.py           # Database operations
+├── views/                    # UI screens
+│   ├── auth/
+│   │   ├── login.kv          # Login screen design
+│   │   ├── login.py          # Login screen logic
+│   │   ├── register.kv       # Registration screen design
+│   │   └── register.py       # Registration screen logic
+│   ├── characters/
+│   │   ├── characters_list.kv  # Character list design
+│   │   ├── characters_list.py  # Character list logic
+│   │   ├── character_detail.kv # Character detail design
+│   │   └── character_detail.py # Character detail logic
+│   └── favorites/
+│       ├── favorites_list.kv # Favorites list design
+│       └── favorites_list.py # Favorites list logic
+└── utils/                    # Utilities
+    ├── api_client.py         # API requests
+    └── helpers.py            # Helper functions</code></pre>
 </section>
-</section>
-<section id="desafíos-y-soluciones" class="level2">
-<h2 class="anchored" data-anchor-id="desafíos-y-soluciones"><strong>Desafíos y Soluciones</strong></h2>
+<section id="development-process" class="level2">
+<h2 class="anchored" data-anchor-id="development-process">Development Process</h2>
 <ol type="1">
-<li><strong>Estructura compleja</strong>:
+<li><strong>Environment Setup</strong>:
 <ul>
-<li>Los CSCs se organizaban en jerarquías (estado → distrito → bloque).<br>
-</li>
-<li><strong>Solución</strong>: Scrapeé secuencialmente los <code>select</code> options del HTML.</li>
+<li><p>Installed Python 3.8+, Kivy, KivyMD, and Requests.</p></li>
+<li><p>Configured Buildozer for Android packaging, excluding <code>screenshots/</code> in <code>buildozer.spec</code> to keep the APK lightweight:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ini code-with-copy"><code class="sourceCode ini"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">source.exclude_dirs </span><span class="ot">=</span><span class="st"> tests, bin, venv, drive, .git, .vscode, __pycache__, .kivy, screenshots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul></li>
-<li><strong>Protección contra scraping</strong>:
+<li><strong>UI Development</strong>:
 <ul>
-<li>El sitio bloqueaba peticiones rápidas.<br>
-</li>
-<li><strong>Solución</strong>: Implementé <code>headers</code> con User-Agent y <code>time.sleep(15)</code> entre requests.</li>
+<li>Used KivyMD to create responsive screens with <code>.kv</code> files for design and <code>.py</code> files for logic.</li>
+<li>Implemented a navigation bar for seamless transitions.</li>
 </ul></li>
-<li><strong>Datos inconsistentes</strong>:
+<li><strong>API Integration</strong>:
 <ul>
-<li>Algunas direcciones usaban formatos no estandarizados (ej: “WZ: 125 Dusghara”).<br>
-</li>
-<li><strong>Solución</strong>: Normalización manual posterior en Excel.</li>
+<li>Developed <code>api_client.py</code> to fetch character data from the Rick and Morty API.</li>
+<li>Handled pagination to load multiple pages of characters.</li>
+</ul></li>
+<li><strong>Data Management</strong>:
+<ul>
+<li>Created a local database (<code>database.py</code>) for user credentials and favorites.</li>
+<li>Managed favorites through <code>favorites_controller.py</code>.</li>
+</ul></li>
+<li><strong>Documentation</strong>:
+<ul>
+<li>Added a <code>README.md</code> with setup instructions and placeholders for screenshots in <code>assets/screenshots/</code>.</li>
 </ul></li>
 </ol>
-<hr>
 </section>
-<section id="impacto-del-proyecto" class="level2">
-<h2 class="anchored" data-anchor-id="impacto-del-proyecto"><strong>Impacto del Proyecto</strong></h2>
+<section id="challenges" class="level2">
+<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
 <ul>
-<li>El cliente pudo <strong>identificar zonas con baja densidad de CSCs</strong> para priorizar nuevas instalaciones.<br>
-</li>
-<li>Los datos se usaron como base para un <strong>sistema de geolocalización</strong> interno.<br>
-</li>
-<li>Demostró que el scraping puede ser una alternativa viable cuando no hay APIs disponibles.</li>
+<li><strong>KivyMD Syntax</strong>: Learning to separate design (<code>.kv</code>) and logic (<code>.py</code>) was initially tricky but improved code organization.</li>
+<li><strong>API Pagination</strong>: Required extra logic in <code>api_client.py</code> to handle multiple API pages.</li>
+<li><strong>Buildozer</strong>: Ensuring <code>screenshots/</code> was excluded in <code>buildozer.spec</code> avoided bloating the APK.</li>
 </ul>
-<hr>
 </section>
-<section id="código-completo" class="level2">
-<h2 class="anchored" data-anchor-id="código-completo"><strong>Código Completo</strong></h2>
-<p>El script de Python está disponible en <a href="...">GitHub</a> o en el siguiente bloque:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_soup(url):</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    user_agent <span class="op">=</span> <span class="st">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> {<span class="st">'User-Agent'</span>: user_agent}</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        soup <span class="op">=</span> BeautifulSoup(response.text, <span class="st">'html.parser'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> soup</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error while getting the page. State code: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scrape_select_values(url):</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> make_soup(url)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    state_selector <span class="op">=</span> soup.find(<span class="st">'select'</span>, {<span class="st">'id'</span>: <span class="st">'state'</span>})</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    district_selector <span class="op">=</span> soup.find(<span class="st">'select'</span>, {<span class="st">'id'</span>: <span class="st">'district'</span>})</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    block_selector <span class="op">=</span> soup.find(<span class="st">'select'</span>, {<span class="st">'id'</span>: <span class="st">'block'</span>})</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    state_options <span class="op">=</span> state_selector.find_all(<span class="st">'option'</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    district_options <span class="op">=</span> district_selector.find_all(<span class="st">'option'</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    block_options <span class="op">=</span> block_selector.find_all(<span class="st">'option'</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    state_data <span class="op">=</span> [option.get(<span class="st">"value"</span>) <span class="cf">for</span> option <span class="kw">in</span> state_options[<span class="dv">1</span>:]]</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    district_data <span class="op">=</span> [option.get(<span class="st">"value"</span>) <span class="cf">for</span> option <span class="kw">in</span> district_options[<span class="dv">1</span>:]]</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    block_data <span class="op">=</span> [option.get(<span class="st">"value"</span>) <span class="cf">for</span> option <span class="kw">in</span> block_options[<span class="dv">1</span>:]]</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> state_data, district_data, block_data</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_info(soup, state, district, block):</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    headings <span class="op">=</span> soup.find(<span class="st">'div'</span>, class_<span class="op">=</span><span class="st">'col-lg-12'</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> headings:</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> headings.find(class_<span class="op">=</span><span class="st">"row"</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        column_title <span class="op">=</span> [x.text <span class="cf">for</span> x <span class="kw">in</span> row.find_all(<span class="st">"th"</span>)]</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        tr_elements <span class="op">=</span> row.find_all(<span class="st">'tr'</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        data_list <span class="op">=</span> []</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> tr <span class="kw">in</span> tr_elements[<span class="dv">1</span>:]:</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>            td_elements <span class="op">=</span> tr.find_all(<span class="st">'td'</span>)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(td_elements) <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                vle_name <span class="op">=</span> td_elements[<span class="dv">0</span>].text.strip()</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                address <span class="op">=</span> td_elements[<span class="dv">1</span>].text.strip()</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>                enlace <span class="op">=</span> td_elements[<span class="dv">2</span>].find(<span class="st">'a'</span>)[<span class="st">'href'</span>]</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                data <span class="op">=</span> {</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"vle_name"</span>: vle_name,</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"address"</span>: address,</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"enlace"</span>: enlace,</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"state"</span>: state,</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"district"</span>: district,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"block"</span>: block</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>                }</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>                data_list.append(data)</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data_list</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"No data found for </span><span class="sc">{</span>state<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>district<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>block<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"https://www.csclocator.com"</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> []</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>state_list, district_list, block_list <span class="op">=</span> scrape_select_values(<span class="st">"https://www.csclocator.com/csc/delhi/delhi/new-delhi-nielit"</span>)</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> state <span class="kw">in</span> state_list:</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> district <span class="kw">in</span> district_list:</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> block <span class="kw">in</span> block_list:</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>            url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>base_url<span class="sc">}</span><span class="ss">/csc/</span><span class="sc">{</span>state<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>district<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>block<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Scraping: </span><span class="sc">{</span>url<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>            soup <span class="op">=</span> make_soup(url)</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> soup:</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>                data_list <span class="op">=</span> get_info(soup, state, district, block)</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>                all_data.extend(data_list)</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>                df <span class="op">=</span> pd.DataFrame(all_data)</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>                df.to_excel(<span class="st">"csc_data_partial.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>            time.sleep(<span class="dv">15</span>) </span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>final_df <span class="op">=</span> pd.DataFrame(all_data)</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>final_df.to_excel(<span class="st">"csc_data.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="future-improvements" class="level2">
+<h2 class="anchored" data-anchor-id="future-improvements">Future Improvements</h2>
+<ul>
+<li>Add search functionality for characters.</li>
+<li>Implement offline caching for API data.</li>
+<li>Enhance UI with animations for smoother transitions.</li>
+<li>Update screenshots in <code>assets/screenshots/</code> and refine the Quarto project page.</li>
+</ul>
+</section>
+<section id="source-code" class="level2">
+<h2 class="anchored" data-anchor-id="source-code">Source Code</h2>
+<p>Check out the project on <a href="https://github.com/LCPallares/KivyMD-RickAndMorty">GitHub</a>.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This project was a fun way to combine my passion for <em>Rick and Morty</em> with mobile development. KivyMD made it easy to create a modern UI, and the Rick and Morty API provided rich data. Documenting it in my Quarto websiteñs projects section helps showcase my work and track progress. Stay tuned for updates!</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
