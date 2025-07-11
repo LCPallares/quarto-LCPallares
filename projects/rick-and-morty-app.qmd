@@ -1,0 +1,129 @@
+---
+title: Rick and Morty Mobile App with KivyMD
+author: "Luis Carlos Pallares Ascanio"
+date: 2025-07-10
+image: "https://i.imgur.com/uvYJOIQm.jpg"
+categories: [Mobile Development, KivyMD, Python, API]
+tags: [rick-and-morty, kivy, mobile-app, python]
+description: A cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.
+---
+
+# Rick and Morty Mobile App
+
+## Project Overview
+
+This project is a mobile application built with **Python**, **Kivy**, and **KivyMD**, leveraging the [Rick and Morty API](https://rickandmortyapi.com/) to create an engaging experience for fans. The app allows users to browse characters, view detailed information, save favorites, and manage accounts through a sleek, Material Design-inspired interface. Itñs designed to be responsive across Android, iOS, and desktop platforms.
+
+## Screenshots
+
+![kivymd-2.0.1.dev0](https://i.imgur.com/u6i9N4G.jpeg)  
+*Figura: Current development version of kivymd (2.0.1.dev0).*
+
+![kivymd-1.1.1](https://i.imgur.com/j0AL1oc.jpeg)  
+*Figura: Stable version of kivymd (1.1.1), no use of themes.*
+
+
+## Features
+
+- **Login and Registration**: Secure user authentication for personalized access.
+- **Character Browser**: Displays characters from the Rick and Morty API, including name, species, and status.
+- **Favorites Screen**: Save and view favorite characters.
+- **Navigation Bar**: Intuitive navigation across app sections.
+- **Responsive UI**: Built with KivyMD for a modern, cross-platform interface.
+
+## Tech Stack
+
+- **Python**: Core language for development.
+- **Kivy**: Framework for cross-platform UI.
+- **KivyMD**: Material Design components for a polished look.
+- **Rick and Morty API**: Provides character data.
+- **Requests**: Handles API calls.
+
+## Project Structure
+
+```
+rickmorty_app/
+├── main.py                   # Entry point
+├── assets/                   # Static resources
+│   ├── fonts/                # Custom fonts
+│   │   ├── font1
+│   │   └── font2
+│   ├── images/               # App images (logo, icons)
+│   │   ├── logo.svg
+│   │   ├── icon.png
+│   │   └── placeholder.png
+│   └── screenshots/          # Screenshots for documentation
+├── components/               # Reusable UI components
+│   ├── character_tile.py     # Logic for character tile
+│   └── character_tile.kv     # Design for character tile
+├── controllers/              # Business logic
+│   ├── auth_controller.py    # Authentication logic
+│   ├── character_controller.py # Character data handling
+│   └── favorites_controller.py # Favorites management
+├── models/                   # Data models
+│   ├── user_model.py         # User data
+│   ├── favorite_model.py     # Favorite characters
+│   └── database.py           # Database operations
+├── views/                    # UI screens
+│   ├── auth/
+│   │   ├── login.kv          # Login screen design
+│   │   ├── login.py          # Login screen logic
+│   │   ├── register.kv       # Registration screen design
+│   │   └── register.py       # Registration screen logic
+│   ├── characters/
+│   │   ├── characters_list.kv  # Character list design
+│   │   ├── characters_list.py  # Character list logic
+│   │   ├── character_detail.kv # Character detail design
+│   │   └── character_detail.py # Character detail logic
+│   └── favorites/
+│       ├── favorites_list.kv # Favorites list design
+│       └── favorites_list.py # Favorites list logic
+└── utils/                    # Utilities
+    ├── api_client.py         # API requests
+    └── helpers.py            # Helper functions
+```
+
+## Development Process
+
+1. **Environment Setup**:
+   - Installed Python 3.8+, Kivy, KivyMD, and Requests.
+   - Configured Buildozer for Android packaging, excluding `screenshots/` in `buildozer.spec` to keep the APK lightweight:
+     ```ini
+     source.exclude_dirs = tests, bin, venv, drive, .git, .vscode, __pycache__, .kivy, screenshots
+     ```
+
+2. **UI Development**:
+   - Used KivyMD to create responsive screens with `.kv` files for design and `.py` files for logic.
+   - Implemented a navigation bar for seamless transitions.
+
+3. **API Integration**:
+   - Developed `api_client.py` to fetch character data from the Rick and Morty API.
+   - Handled pagination to load multiple pages of characters.
+
+4. **Data Management**:
+   - Created a local database (`database.py`) for user credentials and favorites.
+   - Managed favorites through `favorites_controller.py`.
+
+5. **Documentation**:
+   - Added a `README.md` with setup instructions and placeholders for screenshots in `assets/screenshots/`.
+
+## Challenges
+
+- **KivyMD Syntax**: Learning to separate design (`.kv`) and logic (`.py`) was initially tricky but improved code organization.
+- **API Pagination**: Required extra logic in `api_client.py` to handle multiple API pages.
+- **Buildozer**: Ensuring `screenshots/` was excluded in `buildozer.spec` avoided bloating the APK.
+
+## Future Improvements
+
+- Add search functionality for characters.
+- Implement offline caching for API data.
+- Enhance UI with animations for smoother transitions.
+- Update screenshots in `assets/screenshots/` and refine the Quarto project page.
+
+## Source Code
+
+Check out the project on [GitHub](https://github.com/LCPallares/KivyMD-RickAndMorty).
+
+## Conclusion
+
+This project was a fun way to combine my passion for *Rick and Morty* with mobile development. KivyMD made it easy to create a modern UI, and the Rick and Morty API provided rich data. Documenting it in my Quarto websiteñs projects section helps showcase my work and track progress. Stay tuned for updates!
