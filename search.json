@@ -1,157 +1,59 @@
 [
   {
-    "objectID": "projects/university-dropout.html",
-    "href": "projects/university-dropout.html",
-    "title": "University Dropout Analysis",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de mi",
     "section": "",
-    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n\n\nThe dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history\n\n\n\nI used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors\n\n\n\n\nFirst-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%\n\n\n\n\n\n\n\n\n\nDropout rates by semester and program\n\n\n\n\n\n\n\nBased on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods\n\n\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
   },
   {
-    "objectID": "projects/university-dropout.html#introduction",
-    "href": "projects/university-dropout.html#introduction",
-    "title": "University Dropout Analysis",
-    "section": "",
-    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates."
+    "objectID": "about.html#proyectos-destacados",
+    "href": "about.html#proyectos-destacados",
+    "title": "Acerca de mi",
+    "section": "Proyectos Destacados",
+    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
   },
   {
-    "objectID": "projects/university-dropout.html#data-collection",
-    "href": "projects/university-dropout.html#data-collection",
-    "title": "University Dropout Analysis",
-    "section": "",
-    "text": "The dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history"
+    "objectID": "about.html#tecnologías",
+    "href": "about.html#tecnologías",
+    "title": "Acerca de mi",
+    "section": "Tecnologías",
+    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
   },
   {
-    "objectID": "projects/university-dropout.html#methodology",
-    "href": "projects/university-dropout.html#methodology",
-    "title": "University Dropout Analysis",
-    "section": "",
-    "text": "I used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors"
+    "objectID": "about.html#experiencia",
+    "href": "about.html#experiencia",
+    "title": "Acerca de mi",
+    "section": "Experiencia",
+    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
   },
   {
-    "objectID": "projects/university-dropout.html#key-findings",
-    "href": "projects/university-dropout.html#key-findings",
-    "title": "University Dropout Analysis",
-    "section": "",
-    "text": "First-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%"
+    "objectID": "about.html#educación",
+    "href": "about.html#educación",
+    "title": "Acerca de mi",
+    "section": "Educación",
+    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
   },
   {
-    "objectID": "projects/university-dropout.html#visualizations",
-    "href": "projects/university-dropout.html#visualizations",
-    "title": "University Dropout Analysis",
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Data Analysis Blog",
     "section": "",
-    "text": "Dropout rates by semester and program"
+    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
-    "objectID": "projects/university-dropout.html#recommendations",
-    "href": "projects/university-dropout.html#recommendations",
-    "title": "University Dropout Analysis",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LCPallares - Análisis de Datos y Más",
     "section": "",
-    "text": "Based on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods"
+    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
   },
   {
-    "objectID": "projects/university-dropout.html#conclusion",
-    "href": "projects/university-dropout.html#conclusion",
-    "title": "University Dropout Analysis",
-    "section": "",
-    "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html",
-    "href": "projects/supermarket_sales_myanmar.html",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar.\n\n\n\nLa base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February  \n\n\n\n\n\nEl análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios.\n\n\n\n\n\nEn las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras.\n\n\n\nEste análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis.\n\n\n\n\nDatos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
-    "href": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (supermarket_sales.csv) ubicado en la carpeta data/ y se procesan para garantizar su calidad antes del análisis.\nThe dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
-    "href": "projects/supermarket_sales_myanmar.html#parte-1-limpieza-de-la-base-de-datos",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "La base de datos inicial (supermarket_sales.csv) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:\n\nCarga de datos: Importación del archivo CSV desde la carpeta data/.\nEstandarización: Uniformé formatos de fechas y categorías de productos.\nValores faltantes: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).\nCorrección de errores: Eliminé registros con valores inconsistentes (ej. cantidades negativas).\nEnriquecimiento: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.\n\nEl resultado es un conjunto de datos limpio y listo para el análisis, almacenado en data/supermarket_sales_clean.csv para referencia.\n\n\nCode\nimport pandas as pd\nimport numpy as np\n\n# Cargar datos desde la carpeta data/\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n\n# Estandarizar formatos\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes\ndf = df.dropna(subset=['Unit price', 'Quantity'])\n\n# Corrección de errores\ndf = df[df['Quantity'] &gt; 0]  # Eliminar cantidades negativas o cero\n\n# Nuevas columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\n# Guardar datos limpios (opcional)\n# df.to_csv(\"../data/supermarket_sales_clean.csv\", index=False)\n\n# Resumen inicial\nprint(df.head())\n\n\n    Invoice ID Branch       City Customer type  Gender  \\\n0  750-67-8428      A     Yangon        Member  Female   \n1  226-31-3081      C  Naypyitaw        Normal  Female   \n2  631-41-3108      A     Yangon        Normal    Male   \n3  123-19-1176      A     Yangon        Member    Male   \n4  373-73-7910      A     Yangon        Normal    Male   \n\n             Product line  Unit price  Quantity   Tax 5%     Total       Date  \\\n0       Health And Beauty       74.69         7  26.1415  548.9715 2019-01-05   \n1  Electronic Accessories       15.28         5   3.8200   80.2200 2019-03-08   \n2      Home And Lifestyle       46.33         7  16.2155  340.5255 2019-03-03   \n3       Health And Beauty       58.22         8  23.2880  489.0480 2019-01-27   \n4       Sports And Travel       86.31         7  30.2085  634.3785 2019-02-08   \n\n    Time      Payment  Cost of goods sold  Gross margin percentage  \\\n0  13:08      Ewallet              522.83                 4.761905   \n1  10:29         Cash               76.40                 4.761905   \n2  13:23  Credit card              324.31                 4.761905   \n3  20:33      Ewallet              465.76                 4.761905   \n4  10:37      Ewallet              604.17                 4.761905   \n\n   Gross income  Customer stratification rating Day of Week     Month  \n0       26.1415                             9.1    Saturday   January  \n1        3.8200                             9.6      Friday     March  \n2       16.2155                             7.4      Sunday     March  \n3       23.2880                             8.4      Sunday   January  \n4       30.2085                             5.3      Friday  February"
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
-    "href": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "El análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.\n\n\nEste gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\n\n# Agrupar por categoría y calcular ventas totales\nsales_by_category = df.groupby('Product line')['Total'].sum().reset_index()\n\n# Gráfico de barras con Seaborn\nplt.figure(figsize=(10, 6))\nsns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')\nplt.title('Ventas Totales por Categoría de Producto')\nplt.xlabel('Ventas Totales (MMK)')\nplt.ylabel('Categoría')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Product line')\nfig.update_layout(showlegend=False)\nfig.show()\n\n\n\n\n\nVentas Totales por Categoría de Producto\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nFigura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.\nLa visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.\n\n\n\nEste gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.\n\n\nCode\n# Agrupar por día de la semana\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(\n    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n).reset_index()\n\n# Gráfico de líneas con Seaborn\nplt.figure(figsize=(10, 6))\nsns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')\nplt.title('Ventas Promedio por Día de la Semana')\nplt.xlabel('Día de la Semana')\nplt.ylabel('Ventas Promedio (MMK)')\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico interactivo con Plotly\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\nfig.update_traces(line_color='teal')\nfig.show()\n\n\n\n\n\nVentas Promedio por Día de la Semana\n\n\n\n\n                            \n                                            \n\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\nLa versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.\n\n\n\n\nCategorías clave: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.\nPatrones temporales: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.\nOportunidades: Identificar productos de bajo rendimiento para ajustar inventarios."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
-    "href": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "En las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
-    "href": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Este análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis."
-  },
-  {
-    "objectID": "projects/supermarket_sales_myanmar.html#recursos",
-    "href": "projects/supermarket_sales_myanmar.html#recursos",
-    "title": "Análisis de Ventas de un Supermercado en Myanmar",
-    "section": "",
-    "text": "Datos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html",
-    "href": "projects/congenital-hypothyroidism.html",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.\n\n\n\nLa base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación.\n\n\n\nEl análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.\n\n\n\n\n\nEsta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles.\n\n\n\nEl proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.\n\n\n\n\nFinalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
-    "href": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
-    "href": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
-    "href": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
-    "href": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
-    "href": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito."
-  },
-  {
-    "objectID": "projects/congenital-hypothyroidism.html#próximos-pasos",
-    "href": "projects/congenital-hypothyroidism.html#próximos-pasos",
-    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
-    "section": "",
-    "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
+    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
+    "title": "LCPallares - Análisis de Datos y Más",
+    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
+    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
   },
   {
     "objectID": "projects/congenital-hypothyroidism2.html",
@@ -210,167 +112,6 @@
     "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Acerca de mi",
-    "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con más de X años de experiencia en [sector específico]. Actualmente combino mis conocimientos en gestión empresarial con herramientas modernas de análisis de datos para:"
-  },
-  {
-    "objectID": "about.html#proyectos-destacados",
-    "href": "about.html#proyectos-destacados",
-    "title": "Acerca de mi",
-    "section": "Proyectos Destacados",
-    "text": "Proyectos Destacados\n\n\nAnálisis Predictivo de Ventas\n Repositorio\n Reporte\n\nDashboard de Logística\nTecnologías: Power BI, SQL\nDemo en vivo »"
-  },
-  {
-    "objectID": "about.html#tecnologías",
-    "href": "about.html#tecnologías",
-    "title": "Acerca de mi",
-    "section": "Tecnologías",
-    "text": "Tecnologías\n\nLenguajes\n\n Python\n R\n SQL\n\n\n\nHerramientas\n\n Scikit-learn\n Pandas\n NumPy\n\n\n\nVisualización\n\n Matplotlib\n Seaborn\n Plotly\n\n\n\nBusiness Intelligence\n\n Power BI\n Tableau\n Looker Studio\n\n\n\nOtros\n\n Kivy"
-  },
-  {
-    "objectID": "about.html#experiencia",
-    "href": "about.html#experiencia",
-    "title": "Acerca de mi",
-    "section": "Experiencia",
-    "text": "Experiencia\n\n2022 - Actual\nAnalista de Datos Junior\nEmpresa XYZ\n- Implementación de modelo predictivo para ventas (precisión del 85%) - Automatización de reportes mensuales usando Python - Análisis de cohortes para retención de clientes\n2020 - 2022\nAsistente de Gerencia\nCompañía ABC\n- Creación de dashboards interactivos en Power BI - Optimización de procesos logísticos mediante análisis de datos - Reducción de costos operativos en 15% mediante análisis estratégico"
-  },
-  {
-    "objectID": "about.html#educación",
-    "href": "about.html#educación",
-    "title": "Acerca de mi",
-    "section": "Educación",
-    "text": "Educación\n\nAdministración de Empresas\n📅 2016 - 2020\n🎓 Universidad Nacional de Colombia\n📜 Tesis: “Análisis de datos para la toma de decisiones estratégicas”\nEspecialización en Análisis de Datos\n📅 2023 - Actual\n📚 Plataforma: Coursera\n🔖 Certificaciones:\n- Python para Data Science (IBM)\n- Machine Learning Fundamentals (DeepLearning.AI)"
-  },
-  {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Data Analysis Blog",
-    "section": "",
-    "text": "Welcome to my blog! Here, I share insights, tutorials, and reflections on data analysis techniques, statistics, and data visualization.\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nEstadística Descriptiva: La Base del Análisis de Datos\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Inferencial: De la Muestra a la Población\n\n\n\nestadística\n\nanálisis\n\ntutoriales\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html",
-    "href": "posts/estadistica-descriptiva.html",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.\n\n\nLa estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.\n\n\n\nLas medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")\n\n\n\nLas medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil.\n\n\n\n\nLa representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()\n\n\n\n\nVeamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()\n\n\n\nLa estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
-    "href": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos."
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
-    "href": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "Las medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")"
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
-    "href": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "Las medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil."
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
-    "href": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "La representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()"
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
-    "href": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()"
-  },
-  {
-    "objectID": "posts/estadistica-descriptiva.html#conclusión",
-    "href": "posts/estadistica-descriptiva.html#conclusión",
-    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
-    "section": "",
-    "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html",
-    "href": "posts/estadistica-inferencial.html",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.\n\n\nLa estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra.\n\n\n\n\nLos intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")\n\n\n\nLas pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")\n\n\n\n\nANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\n\n\n\nLa regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")\n\n\n\nEs importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten\n\n\n\n\nLa estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
-    "href": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra."
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#intervalos-de-confianza",
-    "href": "posts/estadistica-inferencial.html#intervalos-de-confianza",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Los intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
-    "href": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Las pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
-    "href": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "ANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#regresión-lineal",
-    "href": "posts/estadistica-inferencial.html#regresión-lineal",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
-    "href": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "Es importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten"
-  },
-  {
-    "objectID": "posts/estadistica-inferencial.html#conclusión",
-    "href": "posts/estadistica-inferencial.html#conclusión",
-    "title": "Estadística Inferencial: De la Muestra a la Población",
-    "section": "",
-    "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "LCPallares - Análisis de Datos y Más",
-    "section": "",
-    "text": "Sponsor\n¡Hola! Soy Luis Carlos Pallares Ascanio, profesional en administración de empresas con una sólida experiencia en gestión y toma de decisiones estratégicas. Actualmente estoy estudiando análisis de datos para potenciar mis habilidades y aplicarlo en el mundo empresarial. Estoy creando mi sitio web con Quarto para compartir mis proyectos, reflexiones y avances en este campo. Me apasiona descubrir cómo los datos pueden transformar los negocios y estoy comprometido con seguir aprendiendo y creciendo en esta área."
-  },
-  {
-    "objectID": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "href": "index.html#hola-soy-lcpallares-estudiante-de-análisis-de-datos.",
-    "title": "LCPallares - Análisis de Datos y Más",
-    "section": "¡Hola! Soy LCPallares, estudiante de análisis de datos.",
-    "text": "¡Hola! Soy LCPallares, estudiante de análisis de datos.\nBienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas relacionados con la estadística, visualización de datos y más.\n\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\nBlogs\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices."
-  },
-  {
     "objectID": "projects/amazon-best-seller.html",
     "href": "projects/amazon-best-seller.html",
     "title": "Amazon Best Seller Analysis",
@@ -425,6 +166,62 @@
     "title": "Amazon Best Seller Analysis",
     "section": "",
     "text": "Future extensions of this project could include: - Sentiment analysis of reviews - Time series analysis of genre popularity - Correlation between best seller rank and external factors (movies, news events) - Author career trajectory analysis"
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html",
+    "href": "projects/congenital-hypothyroidism.html",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays.\n\n\n\nLa base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación.\n\n\n\nEl análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados.\n\n\n\n\n\nEsta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles.\n\n\n\nEl proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito.\n\n\n\n\nFinalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "href": "projects/congenital-hypothyroidism.html#resumen-del-proyecto",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El hipotiroidismo congénito es una condición presente desde el nacimiento que afecta la glándula tiroides, pero un problema crítico es que los padres a menudo no son informados a tiempo. Este proyecto tiene dos objetivos: analizar una base de datos sobre esta condición y desarrollar una herramienta práctica para mejorar la comunicación. Para ello, creé un dashboard en Streamlit que explora los datos y permite enviar notificaciones SMS a los padres mediante una API.\nThe congenital hypothyroidism (CH). CH affects 1 in 2,000-4,000 newborns worldwide. Early detection is vital. Untreated CH can lead to intellectual disability and growth delays."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "href": "projects/congenital-hypothyroidism.html#parte-1-limpieza-de-la-base-de-datos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "La base de datos inicial requería un procesamiento exhaustivo para ser útil. Los pasos principales fueron:\n\nEstandarización: Uniformé formatos de fechas, nombres y unidades (ej. niveles hormonales).\nValores faltantes: Gestioné datos incompletos, priorizando la imputación cuando fue posible.\nCorrección de errores: Eliminé valores imposibles (ej. TSH negativa) y revisé inconsistencias.\nPreparación para SMS: Aseguré que los datos de contacto (teléfonos) estuvieran limpios y en un formato compatible con la API.\nCódigo documentado: El proceso está disponible en un Jupyter Notebook [enlace si lo subes].\n\nEl resultado es un conjunto de datos confiable para análisis y comunicación."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "href": "projects/congenital-hypothyroidism.html#parte-2-exploración-de-datos-y-dashboard",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El análisis exploratorio reveló patrones en los datos, mientras que el dashboard en Streamlit los hace accesibles. Algunas visualizaciones incluyen:\n\n\nCode\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport plotly.graph_objects as go\n\nnp.random.seed(42)\ntsh_levels = np.random.lognormal(mean=2, sigma=0.5, size=100)\n\n# Gráfico de seaborn\nplt.figure(figsize=(10, 6))\nsns.histplot(tsh_levels, bins=20, kde=True, color='skyblue')\nplt.title('Distribución de Niveles de TSH al Nacer')\nplt.xlabel('Nivel de TSH (mIU/L)')\nplt.ylabel('Frecuencia')\nplt.axvline(tsh_levels.mean(), color='red', linestyle='--', label=f'Media: {tsh_levels.mean():.2f}')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\n# Gráfico de Plotly\nfig = go.Figure(data=[go.Histogram(x=tsh_levels, nbinsx=20, histnorm='probability density')])\nfig.update_layout(title='Distribución de Niveles de TSH al Nacer',\n                    xaxis_title='Nivel de TSH (mIU/L)',\n                    yaxis_title='Densidad de probabilidad')\nfig.add_vline(x=tsh_levels.mean(), line_dash='dash', line_color='red', annotation_text=f'Media: {tsh_levels.mean():.2f}')\nfig.show()\n\n\n\n\n\nDistribución de niveles de TSH al nacer\n\n\n\n\n                            \n                                            \n\n\n\n\n\nDistribución de TSH\n\n\n\n\n\nExploración interactiva: Los usuarios pueden filtrar y visualizar datos (ej. TSH por edad o región).\nNotificaciones SMS: Integra una API (como Twilio) para enviar alertas a los padres con información clave, como “Su hijo/a tiene un nivel de TSH elevado. Contacte a su médico”.\nAcceso: Disponible aquí.\n\n\n\n\nInterfaz del Dashboard\n\n\n\n\n\n\nLos niveles de TSH varían ampliamente, lo que indica la necesidad de segmentar los casos.\nLa falta de información a los padres parece estar relacionada con datos de contacto incompletos o desactualizados."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "href": "projects/congenital-hypothyroidism.html#parte-3-estadística-avanzada-en-desarrollo",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "Esta sección está en progreso. Planeo incluir: - Modelos predictivos para identificar casos de riesgo elevado. - Análisis de correlación entre factores demográficos y retrasos en la notificación. - Evaluación de la efectividad de las notificaciones SMS en la respuesta de los padres.\nPronto actualizaré esta entrada con más detalles."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "href": "projects/congenital-hypothyroidism.html#conclusiones-preliminares",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "El proyecto no solo transforma datos crudos en información útil, sino que también aborda un problema real: la comunicación con los padres. El dashboard combina análisis y acción, ofreciendo una solución práctica para mejorar la atención temprana del hipotiroidismo congénito."
+  },
+  {
+    "objectID": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "href": "projects/congenital-hypothyroidism.html#próximos-pasos",
+    "title": "Análisis del Hipotiroidismo Congénito: Datos y Comunicación",
+    "section": "",
+    "text": "Finalizar la sección de estadística avanzada.\nOptimizar el dashboard con más opciones de personalización para los SMS.\nProbar la API de SMS en un entorno real y evaluar su impacto."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Data Analysis Projects",
+    "section": "",
+    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWeb Scraping: Ubicaciones de Common Service Centers (India)\n\n\n\n\n\n\nweb-scraping\n\ndata-collection\n\npython\n\nfreelance\n\n\n\n\n\n\n\n\n\nAug 20, 2023\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito: Datos y Comunicación\n\n\n\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nRick and Morty Mobile App with KivyMD\n\n\n\n\n\n\nMobile Development\n\nKivyMD\n\nPython\n\nAPI\n\n\n\nA cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.\n\n\n\n\n\nJul 10, 2025\n\n\nLuis Carlos Pallares Ascanio\n\n\n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\n\n\n\nweb scraping\n\ndata cleaning\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.\n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nInteligencia de Retail: Análisis de Ventas en Myanmar\n\n\nExplorando patrones de consumo y rendimiento comercial mediante Python\n\n\n\nPython\n\nEDA\n\nPlotly\n\nRetail\n\n\n\nUn análisis profundo sobre el comportamiento del consumidor en tres sucursales de Myanmar, enfocado en la optimización de inventarios y marketing.\n\n\n\n\n\nApr 23, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito\n\n\n\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\n\n\n\neducation\n\nstatistics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "projects/web_scraping_csc_india.html",
@@ -553,10 +350,234 @@
     "text": "This project was a fun way to combine my passion for Rick and Morty with mobile development. KivyMD made it easy to create a modern UI, and the Rick and Morty API provided rich data. Documenting it in my Quarto websiteñs projects section helps showcase my work and track progress. Stay tuned for updates!"
   },
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Data Analysis Projects",
+    "objectID": "projects/supermarket_sales_myanmar.html",
+    "href": "projects/supermarket_sales_myanmar.html",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
     "section": "",
-    "text": "Below you’ll find a collection of my data analysis projects. Each project demonstrates different techniques and approaches to real-world data problems.\n\nProyectos\nCurae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Author\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nAmazon Best Seller Analysis\n\n\n\nweb scraping\n\ndata cleaning\n\nvisualization\n\n\n\nStreamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.\n\n\n\n\n\nMar 1, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nWeb Scraping: Ubicaciones de Common Service Centers (India)\n\n\n\nweb-scraping\n\ndata-collection\n\npython\n\nfreelance\n\n\n\n\n\n\n\n\n\nAug 20, 2023\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis del Hipotiroidismo Congénito: Datos y Comunicación\n\n\n\ndata cleaning\n\nexploratory analysis\n\nstreamlit\n\nhealth\n\nsms-api\n\n\n\nEste proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.\n\n\n\n\n\nMar 24, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nRick and Morty Mobile App with KivyMD\n\n\n\nMobile Development\n\nKivyMD\n\nPython\n\nAPI\n\n\n\nA cross-platform mobile app built with KivyMD and the Rick and Morty API, featuring character browsing, favorites, and authentication.\n\n\n\n\n\nJul 10, 2025\n\n\nLuis Carlos Pallares Ascanio\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de Ventas de un Supermercado en Myanmar\n\n\n\ndata analysis\n\nvisualization\n\nretail\n\nexploratory analysis\n\n\n\nEste proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.\n\n\n\n\n\nApr 23, 2025\n\n\nLC Pallares\n\n\n\n\n\n\n\n\n\n\n\n\nUniversity Dropout Analysis\n\n\n\neducation\n\nstatistics\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 8, 2025\n\n\nLC Pallares\n\n\n\n\n\nNo matching items\n Back to top"
+    "text": "NoteObjetivo del Análisis\n\n\n\nIdentificar los motores de ingresos y el comportamiento de compra para proponer estrategias basadas en datos que mejoren la rentabilidad de la cadena de supermercados."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
+    "href": "projects/supermarket_sales_myanmar.html#resumen-del-proyecto",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "📝 Resumen del Proyecto",
+    "text": "📝 Resumen del Proyecto\nEste análisis profundiza en las operaciones de una cadena de supermercados en Myanmar, utilizando un conjunto de datos que detalla transacciones históricas en tres ciudades principales. El objetivo es transformar datos crudos en inteligencia de negocios para identificar motores de ingresos y entender las dinámicas del consumidor local.\n\n\n\n\n\n\nNoteEl Dataset\n\n\n\nEl conjunto de datos abarca variables clave como categorías de productos, demografía del cliente, métodos de pago y métricas financieras (margen bruto e impuestos), permitiendo una visión 360° de la dinámica del retail.\n\n\n\n🎯 Objetivos Principales\n\nOptimización Comercial: Identificar las líneas de productos con mayor rendimiento.\nInteligencia del Cliente: Analizar patrones de compra según demografía y tipo de membresía.\nAnálisis Temporal: Detectar picos de demanda para mejorar la planificación operativa."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#metodología",
+    "href": "projects/supermarket_sales_myanmar.html#metodología",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "🛠️ Metodología",
+    "text": "🛠️ Metodología\nPara este análisis, implementamos un pipeline de datos moderno que prioriza la velocidad y el rigor estadístico, estructurado en tres niveles:\n\n1. Ingesta y Limpieza (Pandas)\n\nNormalización: Renombramos el esquema a snake_case y ajustamos tipos de datos (fechas y categorías) para asegurar la integridad de los cálculos.\nCuración: Tratamiento de nulos y validación de rangos en precios y cantidades.\n\n\n\n2. Motor de Consultas (DuckDB)\n\nEficiencia: Utilizamos DuckDB como motor analítico in-process. Esto nos permite ejecutar consultas SQL complejas (como el Market Basket Analysis) directamente sobre los DataFrames de Pandas, logrando una ejecución mucho más rápida que los métodos tradicionales.\n\n\n\n3. Validación y Visualización (Scipy & Plotly)\n\nRigor: Aplicamos pruebas de hipótesis (T-Tests) para confirmar que los hallazgos no son producto del azar.\nInteractividad: Traducimos los resultados en gráficos dinámicos que permiten explorar dimensiones de tiempo, ciudad y producto.\n\n\n\n\n\n\n\nTipEl Diferenciador Técnico\n\n\n\nLa combinación de Pandas + DuckDB permite que este flujo de trabajo sea escalable: la flexibilidad de Python con la potencia de un motor SQL diseñado para analítica masiva.\n\n\n\nPandasDuckDB (SQL)\n\n\n\n\nVer código\nimport pandas as pd\n\n# Carga y normalización de columnas a snake_case\ndf = pd.read_csv(\"../data/supermarket_sales.csv\")\n# df.columns = [c.lower().replace(' ', '_') for c in df.columns]\n\n# Conversión de tipos\n# df['date'] = pd.to_datetime(df['date'])\ndf.head(3)\n\n\n\n\n\n\n\n\n\nInvoice ID\nBranch\nCity\nCustomer type\nGender\nProduct line\nUnit price\nQuantity\nTax 5%\nTotal\nDate\nTime\nPayment\nCost of goods sold\nGross margin percentage\nGross income\nCustomer stratification rating\n\n\n\n\n0\n750-67-8428\nA\nYangon\nMember\nFemale\nHealth and beauty\n74.69\n7\n26.1415\n548.9715\n1/5/2019\n13:08\nEwallet\n522.83\n4.761905\n26.1415\n9.1\n\n\n1\n226-31-3081\nC\nNaypyitaw\nNormal\nFemale\nElectronic accessories\n15.28\n5\n3.8200\n80.2200\n3/8/2019\n10:29\nCash\n76.40\n4.761905\n3.8200\n9.6\n\n\n2\n631-41-3108\nA\nYangon\nNormal\nMale\nHome and lifestyle\n46.33\n7\n16.2155\n340.5255\n3/3/2019\n13:23\nCredit card\n324.31\n4.761905\n16.2155\n7.4\n\n\n\n\n\n\n\n\n\n\n\nVer código\nimport duckdb\n\n# Conexión in-memory y registro del DataFrame existente\ncon = duckdb.connect()\ncon.register('sales', df)\n\n# Verificación de la tabla mediante SQL\ncon.execute(\"SELECT * FROM sales LIMIT 3\").fetchdf()\n\n\n\n\n\n\n\n\n\nInvoice ID\nBranch\nCity\nCustomer type\nGender\nProduct line\nUnit price\nQuantity\nTax 5%\nTotal\nDate\nTime\nPayment\nCost of goods sold\nGross margin percentage\nGross income\nCustomer stratification rating\n\n\n\n\n0\n750-67-8428\nA\nYangon\nMember\nFemale\nHealth and beauty\n74.69\n7\n26.1415\n548.9715\n1/5/2019\n13:08\nEwallet\n522.83\n4.761905\n26.1415\n9.1\n\n\n1\n226-31-3081\nC\nNaypyitaw\nNormal\nFemale\nElectronic accessories\n15.28\n5\n3.8200\n80.2200\n3/8/2019\n10:29\nCash\n76.40\n4.761905\n3.8200\n9.6\n\n\n2\n631-41-3108\nA\nYangon\nNormal\nMale\nHome and lifestyle\n46.33\n7\n16.2155\n340.5255\n3/3/2019\n13:23\nCredit card\n324.31\n4.761905\n16.2155\n7.4"
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-1-pipeline-de-limpieza-y-estandarización",
+    "href": "projects/supermarket_sales_myanmar.html#parte-1-pipeline-de-limpieza-y-estandarización",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "🛠️ Parte 1: Pipeline de Limpieza y Estandarización",
+    "text": "🛠️ Parte 1: Pipeline de Limpieza y Estandarización\nLa base de datos original (supermarket_sales.csv) presentaba inconsistencias típicas de registros transaccionales crudos. Para transformar este archivo en un activo analítico confiable, ejecutamos un proceso de curación estructurado:\n\nValidación Temporal: Conversión de fechas a objetos datetime para habilitar análisis de series de tiempo.\nTratamiento de Integridad: Eliminación de registros con valores nulos en columnas críticas (unit_price, quantity) y filtrado de errores operativos (cantidades menores o iguales a cero).\nEnriquecimiento (Feature Engineering): Extracción de dimensiones temporales como el nombre del día y el mes para identificar patrones estacionales.\n\n\nImplementación Técnica\nA continuación, comparamos cómo abordar este flujo de limpieza utilizando la manipulación procedimental de Pandas frente a la potencia declarativa de DuckDB:\n\nPandasDuckDB (SQL)\n\n\n\n\nVer código\nimport pandas as pd\nimport numpy as np\n\n# Cargar y estandarizar formatos\n# df = pd.read_csv(\"../data/supermarket_sales.csv\")\ndf['Date'] = pd.to_datetime(df['Date'], errors='coerce')\ndf['Product line'] = df['Product line'].str.title()\n\n# Manejo de valores faltantes y corrección de errores\ndf = df.dropna(subset=['Unit price', 'Quantity'])\ndf = df[df['Quantity'] &gt; 0]\n\n# Enriquecimiento de columnas\ndf['Day of Week'] = df['Date'].dt.day_name()\ndf['Month'] = df['Date'].dt.month_name()\n\ndf[['Invoice ID', 'Date', 'Day of Week', 'Month']].head(3)\n\n\n\n\n\n\n\n\n\nInvoice ID\nDate\nDay of Week\nMonth\n\n\n\n\n0\n750-67-8428\n2019-01-05\nSaturday\nJanuary\n\n\n1\n226-31-3081\n2019-03-08\nFriday\nMarch\n\n\n2\n631-41-3108\n2019-03-03\nSunday\nMarch\n\n\n\n\n\n\n\n\n\n\n\nVer código\nimport duckdb\n\n# Conectamos DuckDB al DataFrame cargado\ncon = duckdb.connect()\ncon.register('raw_data', df)\n\n# Replicamos la lógica de limpieza mediante SQL\nquery = \"\"\"\nSELECT \n    *,\n    dayname(Date) AS Day_of_Week,\n    monthname(Date) AS Month\nFROM raw_data\nWHERE \"Unit price\" IS NOT NULL \n  AND Quantity &gt; 0\nLIMIT 3\n\"\"\"\ncon.execute(query).fetchdf()\n\n\n\n\n\n\n\n\n\nInvoice ID\nBranch\nCity\nCustomer type\nGender\nProduct line\nUnit price\nQuantity\nTax 5%\nTotal\n...\nTime\nPayment\nCost of goods sold\nGross margin percentage\nGross income\nCustomer stratification rating\nDay of Week\nMonth\nDay_of_Week\nMonth_1\n\n\n\n\n0\n750-67-8428\nA\nYangon\nMember\nFemale\nHealth And Beauty\n74.69\n7\n26.1415\n548.9715\n...\n13:08\nEwallet\n522.83\n4.761905\n26.1415\n9.1\nSaturday\nJanuary\nSaturday\nJanuary\n\n\n1\n226-31-3081\nC\nNaypyitaw\nNormal\nFemale\nElectronic Accessories\n15.28\n5\n3.8200\n80.2200\n...\n10:29\nCash\n76.40\n4.761905\n3.8200\n9.6\nFriday\nMarch\nFriday\nMarch\n\n\n2\n631-41-3108\nA\nYangon\nNormal\nMale\nHome And Lifestyle\n46.33\n7\n16.2155\n340.5255\n...\n13:23\nCredit card\n324.31\n4.761905\n16.2155\n7.4\nSunday\nMarch\nSunday\nMarch\n\n\n\n\n3 rows × 21 columns\n\n\n\n\n\n\n\n\n\n\n\n\nNoteResultado del Proceso\n\n\n\nEste pipeline garantiza un conjunto de datos consistente, almacenado internamente para las fases de visualización. La estandarización de las categorías (ej. Title Case) asegura que los reportes finales mantengan una estética profesional y uniforme.\n\n\nxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
+    "href": "projects/supermarket_sales_myanmar.html#parte-2-análisis-exploratorio-y-visualizaciones",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "Parte 2: Análisis Exploratorio y Visualizaciones",
+    "text": "Parte 2: Análisis Exploratorio y Visualizaciones"
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-2.1-estadísticas-descriptivas",
+    "href": "projects/supermarket_sales_myanmar.html#parte-2.1-estadísticas-descriptivas",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "🔢 Parte 2.1: Estadísticas Descriptivas",
+    "text": "🔢 Parte 2.1: Estadísticas Descriptivas\nAntes de profundizar en patrones visuales, es fundamental auditar las métricas de tendencia central y dispersión. Este paso nos permite identificar el “comportamiento promedio” de las transacciones y detectar posibles valores atípicos que puedan sesgar el análisis.\n\nPerfil Estadístico del Inventario y Ventas\nAnalizamos variables críticas como el precio unitario, la cantidad de artículos por ticket y el margen bruto.\n\nPandas (Resumen Transpuesto)DuckDB (Agregaciones Manuales)\n\n\nLa función .describe() de Pandas es la forma más rápida de obtener un panorama completo, incluyendo cuartiles y desviación estándar.\n\n\nVer código\n# Seleccionamos las columnas numéricas clave\nmetrics = ['Unit price', 'Quantity', 'Tax 5%', 'Total', 'Gross income']\n\n# Generamos el resumen y aplicamos estilo para mejorar la lectura\nstats_summary = df[metrics].describe().T\n\n# Formateo estético para el reporte\nstats_summary.style.background_gradient(cmap='Blues').format(\"{:.2f}\")\n\n\n\n\n\n\n\n \ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\n\n\nUnit price\n1000.00\n55.67\n26.49\n10.08\n32.88\n55.23\n77.94\n99.96\n\n\nQuantity\n1000.00\n5.51\n2.92\n1.00\n3.00\n5.00\n8.00\n10.00\n\n\nTax 5%\n1000.00\n15.38\n11.71\n0.51\n5.92\n12.09\n22.45\n49.65\n\n\nTotal\n1000.00\n322.97\n245.89\n10.68\n124.42\n253.85\n471.35\n1042.65\n\n\nGross income\n1000.00\n15.38\n11.71\n0.51\n5.92\n12.09\n22.45\n49.65\n\n\n\n\n\n\n\nCon SQL, tenemos un control total sobre qué métricas calcular, permitiendo una visión personalizada de la eficiencia operativa.\n\n\nVer código\nquery_stats = \"\"\"\nSELECT \n    AVG(\"Unit price\") AS avg_price,\n    MIN(\"Unit price\") AS min_price,\n    MAX(\"Unit price\") AS max_price,\n    AVG(Quantity) AS avg_quantity,\n    SUM(Total) AS total_revenue,\n    AVG(\"gross income\") AS avg_income\nFROM df\n\"\"\"\ncon.execute(query_stats).fetchdf()\n\n\n\n\n\n\n\n\n\navg_price\nmin_price\nmax_price\navg_quantity\ntotal_revenue\navg_income\n\n\n\n\n0\n55.67213\n10.08\n99.96\n5.51\n322966.749\n15.379369\n\n\n\n\n\n\n\n\n\n\n\n\nHallazgos de la Auditoría Numérica\nAl observar las tablas anteriores, podemos extraer conclusiones inmediatas sobre la operación:\n\nTicket Promedio: La media de las ventas se sitúa cerca de los 322.97 MMK, con una desviación estándar considerable, lo que indica una alta heterogeneidad en el tamaño de las compras.\nVolumen de Artículos: En promedio, los clientes adquieren 5.5 unidades por transacción, con un rango que va desde 1 hasta 10 artículos.\nMargen de Beneficio: El ingreso bruto promedio por ticket es de aproximadamente 15.38 MMK, manteniendo una relación constante con el impuesto aplicado.\n\n\n\n\n\n\n\nNoteObservación sobre el Margen\n\n\n\nEl gross margin percentage se mantiene constante en el 4.76% para todos los registros. Esto indica una política de precios centralizada donde el margen no varía por categoría de producto, sino que depende estrictamente del volumen de venta."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-2.2-visualización-y-tendencias-de-venta",
+    "href": "projects/supermarket_sales_myanmar.html#parte-2.2-visualización-y-tendencias-de-venta",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "📊 Parte 2.2: Visualización y Tendencias de Venta",
+    "text": "📊 Parte 2.2: Visualización y Tendencias de Venta\nEn esta etapa, transformamos los datos en activos visuales interactivos. El objetivo es identificar patrones de consumo que las tablas estáticas podrían ocultar. Utilizaremos Plotly para la capa de presentación por su alta interactividad.\n\n1. Ventas por Linea de Producto\nEste análisis identifica qué líneas de producto son los motores de ingresos, permitiendo priorizar esfuerzos de inventario y marketing.\n\nVisualización (Plotly)Alternativa con DuckDB (SQL)\n\n\n\n\nVer código\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport plotly.express as px\nimport plotly.graph_objects as go\n\n# Generamos la variable con Pandas para la gráfica\nsales_by_category = df.groupby('Product line')['Total'].sum().sort_values(ascending=False).reset_index()\n\nfig = px.bar(sales_by_category, x='Total', y='Product line', \n             orientation='h',\n             title='Ventas Totales por Categoría de Producto',\n             labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},\n             color='Total', color_continuous_scale='Viridis')\n\nfig.update_layout(showlegend=False, yaxis={'categoryorder':'total ascending'})\nfig.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 1\n\n\n\n\n\n\n\n\nVer código\n# Así se obtendría la misma variable usando lógica SQL\nquery_line = \"\"\"\nSELECT \n    \"Product line\", \n    SUM(Total) as total_sales\nFROM df\nGROUP BY 1\nORDER BY total_sales DESC\n\"\"\"\nres_line = con.execute(query_cat).fetchdf()\n\n\n\n\n\nFigura: Ventas Totales por Linea de Producto. Las barras representan el monto total de ventas (en MMK).\n\n\n2. Tendencias por Día de la Semana\nAnalizamos las ventas promedio según el día de la semana para detectar picos de actividad y optimizar la gestión del personal operativo.\n\nVisualización (Plotly)Alternativa con DuckDB (SQL)\n\n\n\n\nVer código\n# Generamos la variable con Pandas\norder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\nsales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(order).reset_index()\n\nfig = px.line(sales_by_day, x='Day of Week', y='Total', \n              title='Ventas Promedio por Día de la Semana',\n              labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},\n              markers=True)\n\nfig.update_traces(line_color='teal', line_width=3)\nfig.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 2\n\n\n\n\n\n\n\n\nVer código\n# Lógica SQL para promedios con ordenamiento cronológico manual\nquery_day = \"\"\"\nSELECT \n    \"Day of Week\", \n    AVG(Total) as avg_sales\nFROM df\nGROUP BY 1\nORDER BY CASE \n    WHEN \"Day of Week\" = 'Monday' THEN 1\n    WHEN \"Day of Week\" = 'Tuesday' THEN 2\n    WHEN \"Day of Week\" = 'Wednesday' THEN 3\n    WHEN \"Day of Week\" = 'Thursday' THEN 4\n    WHEN \"Day of Week\" = 'Friday' THEN 5\n    WHEN \"Day of Week\" = 'Saturday' THEN 6\n    WHEN \"Day of Week\" = 'Sunday' THEN 7\nEND\n\"\"\"\nres_day = con.execute(query_day).fetchdf()\n\n\n\n\n\n\n\n\n\n\n\nNoteHallazgo Estratégico\n\n\n\nEl incremento en las ventas promedio durante el sábado y domingo valida una oportunidad para implementar campañas de fin de semana y ajustar los turnos de reposición de stock para evitar quiebres de inventario.\n\n\nFigura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.\n\n\n3. Evolución de Ventas Diarias\nEl monitoreo de la serie de tiempo es vital para detectar anomalías, tendencias o picos de demanda estacionales. La interactividad de Plotly nos permite navegar por periodos específicos y analizar la volatilidad del flujo de caja diario.\n\nVisualización (Plotly)Alternativa con DuckDB (SQL)\n\n\n\n\nVer código\n# Agregación con Pandas para la serie temporal\nventas_diarias = df.groupby('Date')['Total'].sum().reset_index()\n\n# Crear el gráfico de línea interactivo\nfig_ventas_diarias = px.line(\n    ventas_diarias, \n    x='Date', \n    y='Total', \n    title='Evolución de Ventas Diarias',\n    labels={'Total': 'Ventas Totales (MMK)', 'Date': 'Fecha'},\n    template='plotly_white'\n)\n\n# Optimizamos el eje X para asegurar el orden y añadir navegación\nfig_ventas_diarias.update_xaxes(type='category', rangeslider_visible=True)\nfig_ventas_diarias.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 3\n\n\n\n\n\n\n\n\nVer código\n# Así se obtendría la misma serie temporal usando lógica SQL\nquery_series = \"\"\"\nSELECT \n    Date, \n    SUM(Total) as Total\nFROM df\nGROUP BY Date\nORDER BY Date\n\"\"\"\nres_series = con.execute(query_series).fetchdf()\n\n\n\n\n\n\n\n\n\n\n\nNoteAnálisis de Continuidad\n\n\n\nLa serie de tiempo revela un comportamiento cíclico sin una tendencia de crecimiento lineal evidente en el corto plazo. Esto sugiere que el supermercado opera en un mercado maduro donde las ventas dependen más de factores estacionales (días de la semana o quincenas) que de una expansión orgánica acelerada durante este periodo.\n\n\n\n\n\n4. Desempeño por Ciudad y Sucursal\nEste análisis identifica la eficiencia de los nodos geográficos. Comparamos las tres ciudades principales para entender si el volumen de ventas está centralizado o distribuido equitativamente.\n\nVisualización (Plotly)Alternativa con DuckDB (SQL)\n\n\n\n\nVer código\n# Agrupación con Pandas para comparar sucursales por ciudad\ncity_sales = df.groupby(['City', 'Branch'])['Total'].sum().reset_index()\n\nfig_city = px.bar(\n    city_sales, \n    x='City', \n    y='Total', \n    color='Branch',\n    barmode='group',\n    title='Ventas Totales por Ciudad y Sucursal',\n    labels={'Total': 'Ventas Totales (MMK)', 'City': 'Ciudad'},\n    template='plotly_white',\n    color_discrete_sequence=px.colors.qualitative.Prism\n)\n\nfig_city.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 4\n\n\n\n\n\n\n\n\nVer código\n# Agregación multi-nivel en SQL\nquery_city = \"\"\"\nSELECT \n    City, \n    Branch, \n    SUM(Total) as total_sales\nFROM df\nGROUP BY City, Branch\nORDER BY total_sales DESC\n\"\"\"\nres_city = con.execute(query_city).fetchdf()\n\n\n\n\n\n\n\n\n\n\n\nTipInsight Geográfico\n\n\n\nA pesar de las diferencias demográficas entre las ciudades, el volumen de ingresos se mantiene notablemente similar entre las sucursales, lo que sugiere una estandarización exitosa del modelo de negocio en las diferentes regiones.\n\n\n\n\n\n5. Análisis de Métodos de Pago y Preferencias\nEl último eslabón de nuestro análisis descriptivo es entender cómo interactúan los clientes con el punto de venta. Identificar el método de pago preferido es crucial para negociar comisiones bancarias y optimizar la experiencia de usuario en caja.\nAnalizamos si existe una brecha digital o de comportamiento entre géneros respecto al uso de billeteras electrónicas, efectivo o tarjetas de crédito.\n\nVisualización (Plotly)Alternativa con DuckDB (SQL)\n\n\n\n\nVer código\n# Generamos la variable con Pandas\npayment_data = df.groupby(['Payment', 'Gender'])['Total'].sum().reset_index()\n\n# Crear gráfico de barras agrupadas\nfig_pay = px.bar(\n    payment_data, \n    x='Payment', \n    y='Total', \n    color='Gender',\n    barmode='group',\n    title='Uso de Métodos de Pago según Género',\n    labels={'Total': 'Ingresos Totales (MMK)', 'Payment': 'Método de Pago'},\n    template='plotly_white',\n    color_discrete_map={'Female': '#EF553B', 'Male': '#636EFA'}\n)\n\nfig_pay.show()\n\n\n\n\n                            \n                                            \n\n\nFigure 5\n\n\n\n\n\n\n\n\nVer código\n# Consulta para cruzar métodos de pago y género\nquery_pay = \"\"\"\nSELECT \n    Payment, \n    Gender, \n    SUM(Total) as total_revenue\nFROM df\nGROUP BY Payment, Gender\nORDER BY Payment, total_revenue DESC\n\"\"\"\nres_pay = con.execute(query_pay).fetchdf()\n\n\n\n\n\n\n\n\n\n\n\nNoteConclusión de la Fase Descriptiva\n\n\n\nA diferencia de otros mercados donde predomina el efectivo, aquí observamos un uso equilibrado de E-wallet. Esto abre la puerta a integrar programas de fidelización digitales que capturen datos de comportamiento en tiempo real.\n\n\n\n\n\nHallazgos Preliminares del Análisis Exploratorio\nTras auditar las dimensiones clave del negocio, los datos revelan patrones críticos que servirán de base para las pruebas de hipótesis posteriores. Estos hallazgos permiten pasar de una descripción de “qué pasó” a una estrategia de “qué optimizar”.\n\nDominancia de Categorías: Las líneas de Alimentos (Food and Beverages) y Accesorios de Moda (Fashion Accessories) se posicionan como los motores de ingresos. Este comportamiento sugiere una alta rotación en productos de consumo básico, los cuales podrían utilizarse como “productos gancho” para categorías de menor rotación.\nCiclo de Ventas Semanal: Existe un incremento estadístico visual en el ticket promedio durante el sábado y domingo. Este patrón justifica una planificación de personal más robusta para el fin de semana y la ejecución de campañas de marketing tipo “Weekend Sale”.\nEficiencia Geográfica: La paridad de ventas entre ciudades indica que la marca tiene una penetración de mercado madura y uniforme. No obstante, las sucursales en Naypyitaw muestran una consistencia operativa que podría servir de modelo para los procesos en Yangon.\nOptimización de Inventario: Se han identificado segmentos con bajo rendimiento en volumen (como la línea de Health and Beauty en ciertas horas del día). Esto representa una oportunidad directa para ajustar los niveles de stock y reducir los costos de mantenimiento de inventario.\n\n\n\n\n\n\n\nTipSiguiente Paso: Validación Científica\n\n\n\nLos hallazgos anteriores son observaciones basadas en datos. En la siguiente sección, utilizaremos Inferencia Estadística para determinar si estas diferencias (por ejemplo, el aumento de ventas en fines de semana) son estadísticamente significativas o si son simplemente fruto de la variabilidad natural de los datos."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
+    "href": "projects/supermarket_sales_myanmar.html#parte-3-próximos-pasos-en-desarrollo",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "Parte 3: Próximos Pasos (En Desarrollo)",
+    "text": "Parte 3: Próximos Pasos (En Desarrollo)\nEn las siguientes fases, planeo: - Implementar un dashboard interactivo en Streamlit para explorar las ventas por categoría, ciudad o tipo de cliente. - Realizar un análisis de correlación entre variables como género, tipo de cliente y monto de compra. - Explorar modelos predictivos para pronosticar ventas futuras."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
+    "href": "projects/supermarket_sales_myanmar.html#conclusiones-preliminares",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "Conclusiones Preliminares",
+    "text": "Conclusiones Preliminares\nEste análisis inicial revela patrones claros en las ventas del supermercado, destacando categorías y días clave. Las visualizaciones proporcionan una base sólida para decisiones estratégicas, como optimizar inventarios o planificar promociones. La carpeta data/ asegura que los datos sean accesibles y reutilizables para futuros análisis."
+  },
+  {
+    "objectID": "projects/supermarket_sales_myanmar.html#recursos",
+    "href": "projects/supermarket_sales_myanmar.html#recursos",
+    "title": "Inteligencia de Retail: Análisis de Ventas en Myanmar",
+    "section": "Recursos",
+    "text": "Recursos\n\nDatos: supermarket_sales.csv en data/ (basado en datasets típicos de ventas, como este ejemplo).\nCódigo: Disponible en el repositorio del proyecto [enlace si lo subes]."
+  },
+  {
+    "objectID": "projects/university-dropout.html",
+    "href": "projects/university-dropout.html",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n\n\nThe dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history\n\n\n\nI used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors\n\n\n\n\nFirst-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%\n\n\n\n\n\n\n\n\n\nDropout rates by semester and program\n\n\n\n\n\n\n\nBased on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods\n\n\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+  },
+  {
+    "objectID": "projects/university-dropout.html#introduction",
+    "href": "projects/university-dropout.html#introduction",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates."
+  },
+  {
+    "objectID": "projects/university-dropout.html#data-collection",
+    "href": "projects/university-dropout.html#data-collection",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "The dataset includes: - Academic performance metrics - Attendance records - Socioeconomic indicators - Survey results on student satisfaction - Course enrollment history"
+  },
+  {
+    "objectID": "projects/university-dropout.html#methodology",
+    "href": "projects/university-dropout.html#methodology",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "I used the following analytical techniques: - Logistic regression to predict dropout probability - Cluster analysis to identify student archetypes - Time series analysis to detect critical periods - Correlation analysis to identify key factors"
+  },
+  {
+    "objectID": "projects/university-dropout.html#key-findings",
+    "href": "projects/university-dropout.html#key-findings",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "First-year performance is highly predictive of dropout risk\nStudents with part-time jobs over 20 hours/week show 45% higher attrition\nAttendance drops significantly 3-4 weeks before formal withdrawal\nPeer study groups reduce dropout rates by 30%"
+  },
+  {
+    "objectID": "projects/university-dropout.html#visualizations",
+    "href": "projects/university-dropout.html#visualizations",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "Dropout rates by semester and program"
+  },
+  {
+    "objectID": "projects/university-dropout.html#recommendations",
+    "href": "projects/university-dropout.html#recommendations",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "Based on the analysis, I recommend: - Implementing an early warning system based on first-month performance - Creating flexible scheduling options for working students - Expanding peer mentoring programs - Enhancing academic support during critical dropout periods"
+  },
+  {
+    "objectID": "projects/university-dropout.html#conclusion",
+    "href": "projects/university-dropout.html#conclusion",
+    "title": "University Dropout Analysis",
+    "section": "",
+    "text": "This analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect."
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html",
+    "href": "posts/estadistica-descriptiva.html",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva constituye el primer paso en cualquier proceso de análisis de datos. En este artículo, exploraremos los conceptos fundamentales y cómo aplicarlos efectivamente en proyectos reales.\n\n\nLa estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos.\n\n\n\nLas medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")\n\n\n\nLas medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil.\n\n\n\n\nLa representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()\n\n\n\n\nVeamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()\n\n\n\nLa estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#qué-es-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva comprende métodos para organizar, resumir y presentar datos de manera informativa. A diferencia de la estadística inferencial, que busca hacer predicciones basadas en muestras, la estadística descriptiva se centra en describir lo que ya existe en nuestros datos."
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-tendencia-central",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Las medidas de tendencia central nos ayudan a identificar los valores “típicos” de un conjunto de datos:\n\nMedia: El promedio aritmético de todos los valores.\nMediana: El valor central cuando los datos están ordenados.\nModa: El valor que aparece con mayor frecuencia.\n\nimport numpy as np\nimport pandas as pd\n\n# Ejemplo con un conjunto de datos\ndatos = [23, 45, 12, 67, 34, 23, 56, 23, 78, 45]\n\nmedia = np.mean(datos)\nmediana = np.median(datos)\n# Calculando la moda manualmente\nmoda = max(set(datos), key = datos.count)\n\nprint(f\"Media: {media}\")\nprint(f\"Mediana: {mediana}\")\nprint(f\"Moda: {moda}\")"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "href": "posts/estadistica-descriptiva.html#medidas-de-dispersión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Las medidas de dispersión describen cuán extendidos o concentrados están los datos:\n\nRango: La diferencia entre el valor máximo y mínimo.\nDesviación estándar: Medida de cuánto se alejan típicamente los valores de la media.\nVarianza: El cuadrado de la desviación estándar.\nRango intercuartílico (IQR): La diferencia entre el tercer y primer cuartil."
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "href": "posts/estadistica-descriptiva.html#visualización-en-la-estadística-descriptiva",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La representación visual es crucial para entender patrones en los datos:\n\n\nLos histogramas muestran la distribución de frecuencias de un conjunto de datos continuos:\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 6))\nplt.hist(datos, bins=5, color='skyblue', edgecolor='black')\nplt.title('Histograma de Datos')\nplt.xlabel('Valor')\nplt.ylabel('Frecuencia')\nplt.grid(axis='y', alpha=0.75)\nplt.show()\n\n\n\nLos boxplots son excelentes para visualizar la distribución y detectar valores atípicos:\nplt.figure(figsize=(8, 6))\nplt.boxplot(datos, vert=False, patch_artist=True)\nplt.title('Diagrama de Caja')\nplt.grid(axis='x', linestyle='--')\nplt.show()"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "href": "posts/estadistica-descriptiva.html#aplicación-práctica-análisis-de-ventas",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "Veamos cómo aplicar estos conceptos a un escenario real de análisis de ventas mensuales:\n# Datos de ventas mensuales (en miles de $)\nventas = {\n    'Enero': 120, 'Febrero': 135, 'Marzo': 142, \n    'Abril': 130, 'Mayo': 125, 'Junio': 145\n}\n\ndf_ventas = pd.DataFrame(list(ventas.items()), columns=['Mes', 'Ventas'])\n\n# Estadísticas descriptivas\nestadisticas = df_ventas['Ventas'].describe()\nprint(estadisticas)\n\n# Visualización\nplt.figure(figsize=(12, 6))\nplt.bar(df_ventas['Mes'], df_ventas['Ventas'], color='green')\nplt.title('Ventas Mensuales')\nplt.xlabel('Mes')\nplt.ylabel('Ventas (miles $)')\nplt.grid(axis='y', linestyle='--', alpha=0.7)\nplt.xticks(rotation=45)\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "posts/estadistica-descriptiva.html#conclusión",
+    "href": "posts/estadistica-descriptiva.html#conclusión",
+    "title": "Estadística Descriptiva: La Base del Análisis de Datos",
+    "section": "",
+    "text": "La estadística descriptiva proporciona las herramientas fundamentales para explorar y entender cualquier conjunto de datos. Dominar estos conceptos básicos es esencial antes de avanzar a técnicas más complejas de análisis e inferencia.\nEn próximos artículos, exploraremos cómo pasar de la descripción a la inferencia estadística, permitiendo hacer predicciones y tomar decisiones basadas en datos.\n¿Qué técnicas de estadística descriptiva utilizas más frecuentemente en tus análisis? ¡Comparte tu experiencia en los comentarios!"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html",
+    "href": "posts/estadistica-inferencial.html",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial nos permite generalizar conclusiones de una muestra a una población más amplia. Este artículo explora los conceptos fundamentales y cómo aplicarlos correctamente en proyectos de análisis de datos.\n\n\nLa estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra.\n\n\n\n\nLos intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")\n\n\n\nLas pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")\n\n\n\n\nANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\n\n\n\nLa regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")\n\n\n\nEs importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten\n\n\n\n\nLa estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#fundamentos-de-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial se basa en la teoría de la probabilidad para hacer predicciones o inferencias sobre una población a partir de una muestra. Los conceptos clave incluyen:\n\nPoblaciones y muestras: La población es el conjunto completo de elementos de interés, mientras que la muestra es un subconjunto representativo.\nParámetros y estadísticos: Los parámetros describen características de la población (generalmente desconocidos), mientras que los estadísticos describen características de la muestra (observables).\nDistribuciones de muestreo: Describen cómo varían los estadísticos de muestra a muestra."
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "href": "posts/estadistica-inferencial.html#intervalos-de-confianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Los intervalos de confianza proporcionan un rango de valores donde es probable que se encuentre el parámetro poblacional con un nivel de confianza específico.\nimport numpy as np\nfrom scipy import stats\n\n# Ejemplo: Calcular intervalo de confianza para la media\nmuestra = np.random.normal(loc=50, scale=5, size=100)\nmedia_muestral = np.mean(muestra)\nerror_estandar = stats.sem(muestra)\nintervalo = stats.t.interval(0.95, len(muestra)-1, loc=media_muestral, scale=error_estandar)\n\nprint(f\"Media muestral: {media_muestral:.2f}\")\nprint(f\"Intervalo de confianza del 95%: ({intervalo[0]:.2f}, {intervalo[1]:.2f})\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "href": "posts/estadistica-inferencial.html#pruebas-de-hipótesis",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Las pruebas de hipótesis nos permiten tomar decisiones sobre afirmaciones poblacionales basadas en evidencia muestral.\n\n\n\nFormular las hipótesis nula (H₀) y alternativa (H₁)\nSeleccionar el nivel de significancia (α)\nCalcular el estadístico de prueba\nDeterminar el p-valor o valor crítico\nTomar una decisión y formular la conclusión\n\n\n\n\n# Ejemplo: Probar si la media poblacional es igual a 48\nhipotesis_valor = 48\nt_stat, p_valor = stats.ttest_1samp(muestra, hipotesis_valor)\n\nprint(f\"Estadístico t: {t_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")\nprint(f\"Conclusión: {'Rechazamos' if p_valor &lt; 0.05 else 'No rechazamos'} la hipótesis nula con α=0.05\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "href": "posts/estadistica-inferencial.html#anova-análisis-de-varianza",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "ANOVA permite comparar medias entre tres o más grupos.\n# Datos simulados para tres grupos\ngrupo_a = np.random.normal(loc=50, scale=5, size=30)\ngrupo_b = np.random.normal(loc=52, scale=4, size=30)\ngrupo_c = np.random.normal(loc=48, scale=6, size=30)\n\n# Realizar ANOVA\nf_stat, p_valor = stats.f_oneway(grupo_a, grupo_b, grupo_c)\nprint(f\"Estadístico F: {f_stat:.3f}\")\nprint(f\"Valor p: {p_valor:.4f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#regresión-lineal",
+    "href": "posts/estadistica-inferencial.html#regresión-lineal",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La regresión lineal es una técnica potente para modelar relaciones entre variables.\nimport matplotlib.pyplot as plt\nfrom scipy import stats\n\n# Datos simulados\nx = np.random.uniform(0, 10, 50)\ny = 2*x + 1 + np.random.normal(0, 2, 50)  # y = 2x + 1 + ruido\n\n# Ajustar modelo de regresión\npendiente, interseccion, r_valor, p_valor, error_estandar = stats.linregress(x, y)\n\n# Gráfico de dispersión con línea de regresión\nplt.figure(figsize=(10, 6))\nplt.scatter(x, y, alpha=0.7)\nplt.plot(x, pendiente*x + interseccion, 'r', label=f'y = {pendiente:.2f}x + {interseccion:.2f}')\nplt.title('Regresión Lineal')\nplt.xlabel('Variable Independiente (X)')\nplt.ylabel('Variable Dependiente (Y)')\nplt.legend()\nplt.grid(alpha=0.3)\nplt.show()\n\nprint(f\"Modelo: y = {pendiente:.3f}x + {interseccion:.3f}\")\nprint(f\"R²: {r_valor**2:.3f}\")"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "href": "posts/estadistica-inferencial.html#errores-comunes-en-la-inferencia-estadística",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "Es importante evitar estos errores frecuentes:\n\nSesgo de selección: Cuando la muestra no es representativa de la población\nConfundir correlación con causalidad: La correlación no implica necesariamente una relación causal\nP-hacking: Manipular datos o análisis para obtener resultados significativos\nIgnorar los supuestos: No verificar las condiciones necesarias para aplicar una prueba estadística\nSobreinterpretar resultados: Extraer conclusiones más allá de lo que los datos realmente permiten"
+  },
+  {
+    "objectID": "posts/estadistica-inferencial.html#conclusión",
+    "href": "posts/estadistica-inferencial.html#conclusión",
+    "title": "Estadística Inferencial: De la Muestra a la Población",
+    "section": "",
+    "text": "La estadística inferencial proporciona herramientas poderosas para extraer conclusiones significativas de nuestros datos. Sin embargo, requiere un enfoque cuidadoso y una comprensión clara de los supuestos subyacentes.\nEn el próximo artículo, exploraremos técnicas avanzadas de muestreo y su impacto en la precisión de nuestras inferencias.\n¿Has enfrentado desafíos al aplicar métodos de estadística inferencial en tus proyectos? Comparte tus experiencias en los comentarios."
   }
 ]

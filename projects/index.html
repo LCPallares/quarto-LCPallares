@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,14 +35,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a906ea7b473f9eb96769ca7b9590b7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4787781f790d8e5383438dde6db4be23.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -81,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-stars-sort'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-stars-sort'] },{ data: ['listing-date-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-description"],
     };
@@ -115,7 +116,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -142,7 +143,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/images/logo.png" alt="" class="navbar-logo">
+    <img src="../assets/images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../assets/images/logo.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">LCPallares</span>
@@ -194,7 +196,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QVBJ">API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGFuYWx5c2lz">data analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGNsZWFuaW5n">data cleaning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZGF0YS1jb2xsZWN0aW9u">data-collection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWR1Y2F0aW9u">education <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwbG9yYXRvcnklMjBhbmFseXNpcw==">exploratory analysis <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZnJlZWxhbmNl">freelance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGVhbHRo">health <span class="quarto-category-count">(2)</span></div><div class="category" data-category="S2l2eU1E">KivyMD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9iaWxlJTIwRGV2ZWxvcG1lbnQ=">Mobile Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV0YWls">retail <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21zLWFwaQ==">sms-api <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RyZWFtbGl0">streamlit <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphdGlvbg==">visualization <span class="quarto-category-count">(2)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViLXNjcmFwaW5n">web-scraping <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QVBJ">API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGNsZWFuaW5n">data cleaning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZGF0YS1jb2xsZWN0aW9u">data-collection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RURB">EDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWR1Y2F0aW9u">education <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwbG9yYXRvcnklMjBhbmFseXNpcw==">exploratory analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZnJlZWxhbmNl">freelance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGVhbHRo">health <span class="quarto-category-count">(2)</span></div><div class="category" data-category="S2l2eU1E">KivyMD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9iaWxlJTIwRGV2ZWxvcG1lbnQ=">Mobile Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGxvdGx5">Plotly <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmV0YWls">Retail <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21zLWFwaQ==">sms-api <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RyZWFtbGl0">streamlit <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphdGlvbg==">visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViLXNjcmFwaW5n">web-scraping <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -254,79 +256,7 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="d2ViJTIwc2NyYXBpbmclMkNkYXRhJTIwY2xlYW5pbmclMkN2aXN1YWxpemF0aW9u" data-listing-date-sort="1740787200000" data-listing-file-modified-sort="1752192397226" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="241">
-<div class="thumbnail"><a href="../projects/amazon-best-seller.html" class="no-external">
-
-<img loading="lazy" src="https://www.ecomengine.com/hubfs/images/featured/blog/amazon-best-seller.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../projects/amazon-best-seller.html" class="no-external">Amazon Best Seller Analysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('d2ViJTIwc2NyYXBpbmc='); return false;">web scraping</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNsZWFuaW5n'); return false;">data cleaning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphdGlvbg=='); return false;">visualization</div>
-
-</div>
-<div class="delink listing-description"><a href="../projects/amazon-best-seller.html" class="no-external">
-<p>Streamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../projects/amazon-best-seller.html" class="no-external">
-<div class="listing-date">
-Mar 1, 2025
-</div>
-<div class="listing-author">
-LC Pallares
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZGF0YSUyMGNsZWFuaW5nJTJDZXhwbG9yYXRvcnklMjBhbmFseXNpcyUyQ3N0cmVhbWxpdCUyQ2hlYWx0aCUyQ3Ntcy1hcGk=" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1752192397241" data-listing-date-modified-sort="1747612800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="662">
-<div class="thumbnail"><a href="../projects/congenital-hypothyroidism2.html" class="no-external">
-
-<img loading="lazy" src="https://i.imgur.com/UysVCy9.jpeg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../projects/congenital-hypothyroidism2.html" class="no-external">Análisis del Hipotiroidismo Congénito</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNsZWFuaW5n'); return false;">data cleaning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhwbG9yYXRvcnklMjBhbmFseXNpcw=='); return false;">exploratory analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RyZWFtbGl0'); return false;">streamlit</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aGVhbHRo'); return false;">health</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c21zLWFwaQ=='); return false;">sms-api</div>
-
-</div>
-<div class="delink listing-description"><a href="../projects/congenital-hypothyroidism2.html" class="no-external">
-<p>Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../projects/congenital-hypothyroidism2.html" class="no-external">
-<div class="listing-date">
-Mar 24, 2025
-</div>
-<div class="listing-author">
-LC Pallares
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="d2ViLXNjcmFwaW5nJTJDZGF0YS1jb2xsZWN0aW9uJTJDcHl0aG9uJTJDZnJlZWxhbmNl" data-listing-date-sort="1692489600000" data-listing-file-modified-sort="1752192397242" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1192">
+<div class="quarto-post image-right" data-index="0" data-categories="d2ViLXNjcmFwaW5nJTJDZGF0YS1jb2xsZWN0aW9uJTJDcHl0aG9uJTJDZnJlZWxhbmNl" data-listing-date-sort="1692489600000" data-listing-file-modified-sort="1767745819976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1192">
 <div class="thumbnail"><a href="../projects/web_scraping_csc_india.html" class="no-external">
 
 <img loading="lazy" src="https://i.imgur.com/UA7hyob.png" class="thumbnail-image">
@@ -336,6 +266,9 @@ LC Pallares
 <h3 class="no-anchor listing-title">
 <a href="../projects/web_scraping_csc_india.html" class="no-external">Web Scraping: Ubicaciones de Common Service Centers (India)</a>
 </h3>
+<div class="listing-subtitle">
+<a href="../projects/web_scraping_csc_india.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('d2ViLXNjcmFwaW5n'); return false;">web-scraping</div>
@@ -362,7 +295,7 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="ZGF0YSUyMGNsZWFuaW5nJTJDZXhwbG9yYXRvcnklMjBhbmFseXNpcyUyQ3N0cmVhbWxpdCUyQ2hlYWx0aCUyQ3Ntcy1hcGk=" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1752192397226" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="549">
+<div class="quarto-post image-right" data-index="1" data-categories="ZGF0YSUyMGNsZWFuaW5nJTJDZXhwbG9yYXRvcnklMjBhbmFseXNpcyUyQ3N0cmVhbWxpdCUyQ2hlYWx0aCUyQ3Ntcy1hcGk=" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1767745819964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="549">
 <div class="thumbnail"><a href="../projects/congenital-hypothyroidism.html" class="no-external">
 
 <img loading="lazy" src="https://i.imgur.com/UysVCy9.jpeg" class="thumbnail-image">
@@ -372,6 +305,9 @@ LC Pallares
 <h3 class="no-anchor listing-title">
 <a href="../projects/congenital-hypothyroidism.html" class="no-external">Análisis del Hipotiroidismo Congénito: Datos y Comunicación</a>
 </h3>
+<div class="listing-subtitle">
+<a href="../projects/congenital-hypothyroidism.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNsZWFuaW5n'); return false;">data cleaning</div>
@@ -400,7 +336,7 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="TW9iaWxlJTIwRGV2ZWxvcG1lbnQlMkNLaXZ5TUQlMkNQeXRob24lMkNBUEk=" data-listing-date-sort="1752105600000" data-listing-file-modified-sort="1752192397242" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="975">
+<div class="quarto-post image-right" data-index="2" data-categories="TW9iaWxlJTIwRGV2ZWxvcG1lbnQlMkNLaXZ5TUQlMkNQeXRob24lMkNBUEk=" data-listing-date-sort="1752105600000" data-listing-file-modified-sort="1767745819976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="975">
 <div class="thumbnail"><a href="../projects/rick-and-morty-app.html" class="no-external">
 
 <img loading="lazy" src="https://i.imgur.com/uvYJOIQm.jpg" class="thumbnail-image">
@@ -410,6 +346,9 @@ LC Pallares
 <h3 class="no-anchor listing-title">
 <a href="../projects/rick-and-morty-app.html" class="no-external">Rick and Morty Mobile App with KivyMD</a>
 </h3>
+<div class="listing-subtitle">
+<a href="../projects/rick-and-morty-app.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TW9iaWxlJTIwRGV2ZWxvcG1lbnQ='); return false;">Mobile Development</div>
@@ -436,7 +375,44 @@ Luis Carlos Pallares Ascanio
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="ZGF0YSUyMGFuYWx5c2lzJTJDdmlzdWFsaXphdGlvbiUyQ3JldGFpbCUyQ2V4cGxvcmF0b3J5JTIwYW5hbHlzaXM=" data-listing-date-sort="1745366400000" data-listing-file-modified-sort="1752192397242" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="824">
+<div class="quarto-post image-right" data-index="3" data-categories="d2ViJTIwc2NyYXBpbmclMkNkYXRhJTIwY2xlYW5pbmclMkN2aXN1YWxpemF0aW9u" data-listing-date-sort="1740787200000" data-listing-file-modified-sort="1767745819964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="241">
+<div class="thumbnail"><a href="../projects/amazon-best-seller.html" class="no-external">
+
+<img loading="lazy" src="https://www.ecomengine.com/hubfs/images/featured/blog/amazon-best-seller.jpg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../projects/amazon-best-seller.html" class="no-external">Amazon Best Seller Analysis</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../projects/amazon-best-seller.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('d2ViJTIwc2NyYXBpbmc='); return false;">web scraping</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNsZWFuaW5n'); return false;">data cleaning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphdGlvbg=='); return false;">visualization</div>
+
+</div>
+<div class="delink listing-description"><a href="../projects/amazon-best-seller.html" class="no-external">
+<p>Streamlit has quickly become the hot thing in data app frameworks. We put it to the test to see how well it stands up to the hype. Come for the review, stay for the code demo, including detailed examples of Altair plots.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="../projects/amazon-best-seller.html" class="no-external">
+<div class="listing-date">
+Mar 1, 2025
+</div>
+<div class="listing-author">
+LC Pallares
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="UHl0aG9uJTJDRURBJTJDUGxvdGx5JTJDUmV0YWls" data-listing-date-sort="1745366400000" data-listing-file-modified-sort="1767745819976" data-listing-date-modified-sort="1767657600000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2464">
 <div class="thumbnail"><a href="../projects/supermarket_sales_myanmar.html" class="no-external">
 
 <img loading="lazy" src="https://placehold.co/800x400" class="thumbnail-image">
@@ -444,21 +420,24 @@ Luis Carlos Pallares Ascanio
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="../projects/supermarket_sales_myanmar.html" class="no-external">Análisis de Ventas de un Supermercado en Myanmar</a>
+<a href="../projects/supermarket_sales_myanmar.html" class="no-external">Inteligencia de Retail: Análisis de Ventas en Myanmar</a>
 </h3>
+<div class="listing-subtitle">
+<a href="../projects/supermarket_sales_myanmar.html" class="no-external">Explorando patrones de consumo y rendimiento comercial mediante Python</a>
+</div>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGFuYWx5c2lz'); return false;">data analysis</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('dmlzdWFsaXphdGlvbg=='); return false;">visualization</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">EDA</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('cmV0YWls'); return false;">retail</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGxvdGx5'); return false;">Plotly</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('ZXhwbG9yYXRvcnklMjBhbmFseXNpcw=='); return false;">exploratory analysis</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmV0YWls'); return false;">Retail</div>
 
 </div>
 <div class="delink listing-description"><a href="../projects/supermarket_sales_myanmar.html" class="no-external">
-<p>Este proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.</p>
+<p>Un análisis profundo sobre el comportamiento del consumidor en tres sucursales de Myanmar, enfocado en la optimización de inventarios y marketing.</p>
 </a></div>
 </div>
 <div class="metadata">
@@ -472,7 +451,48 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="ZWR1Y2F0aW9uJTJDc3RhdGlzdGljcyUyQ2FuYWx5c2lz" data-listing-date-sort="1741392000000" data-listing-file-modified-sort="1752192397242" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226">
+<div class="quarto-post image-right" data-index="5" data-categories="ZGF0YSUyMGNsZWFuaW5nJTJDZXhwbG9yYXRvcnklMjBhbmFseXNpcyUyQ3N0cmVhbWxpdCUyQ2hlYWx0aCUyQ3Ntcy1hcGk=" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1767745819975" data-listing-date-modified-sort="1747612800000" data-listing-reading-time-sort="4" data-listing-word-count-sort="662">
+<div class="thumbnail"><a href="../projects/congenital-hypothyroidism2.html" class="no-external">
+
+<img loading="lazy" src="https://i.imgur.com/UysVCy9.jpeg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../projects/congenital-hypothyroidism2.html" class="no-external">Análisis del Hipotiroidismo Congénito</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../projects/congenital-hypothyroidism2.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNsZWFuaW5n'); return false;">data cleaning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZXhwbG9yYXRvcnklMjBhbmFseXNpcw=='); return false;">exploratory analysis</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RyZWFtbGl0'); return false;">streamlit</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aGVhbHRo'); return false;">health</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c21zLWFwaQ=='); return false;">sms-api</div>
+
+</div>
+<div class="delink listing-description"><a href="../projects/congenital-hypothyroidism2.html" class="no-external">
+<p>Este proyecto analiza datos de hipotiroidismo congénito y aborda la falta de comunicación con los padres mediante un dashboard interactivo en Streamlit que no solo explora los datos, sino que también envía notificaciones SMS usando una API.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="../projects/congenital-hypothyroidism2.html" class="no-external">
+<div class="listing-date">
+Mar 24, 2025
+</div>
+<div class="listing-author">
+LC Pallares
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="ZWR1Y2F0aW9uJTJDc3RhdGlzdGljcyUyQ2FuYWx5c2lz" data-listing-date-sort="1741392000000" data-listing-file-modified-sort="1767745819976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226">
 <div class="thumbnail"><a href="../projects/university-dropout.html" class="no-external">
 
 <img loading="lazy" src="https://blog.pearsonlatam.com/hs-fs/hubfs/causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg?width=800&amp;height=852&amp;name=causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg" class="thumbnail-image">
@@ -482,6 +502,9 @@ LC Pallares
 <h3 class="no-anchor listing-title">
 <a href="../projects/university-dropout.html" class="no-external">University Dropout Analysis</a>
 </h3>
+<div class="listing-subtitle">
+<a href="../projects/university-dropout.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2F0aW9u'); return false;">education</div>
@@ -560,13 +583,14 @@ LC Pallares
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
