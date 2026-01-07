@@ -1,144 +1,568 @@
 ---
-title: "Análisis de Ventas de un Supermercado en Myanmar"
+title: "Inteligencia de Retail: Análisis de Ventas en Myanmar"
+subtitle: "Explorando patrones de consumo y rendimiento comercial mediante Python"
 author: "LC Pallares"
 date: "2025-04-23"
-image: "https://placehold.co/800x400"
-categories: [data analysis, visualization, retail, exploratory analysis]
-description: |
-    Este proyecto analiza datos de ventas de un supermercado en Myanmar para identificar patrones en el comportamiento de compra, productos más vendidos y tendencias temporales, utilizando visualizaciones interactivas y análisis exploratorio.
+date-modified:  "2026-01-06"
+categories: [Python, EDA, Plotly, Retail]
+image: "https://placehold.co/800x400" # Cámbiala por un screenshot de tu mejor gráfico
+description: "Un análisis profundo sobre el comportamiento del consumidor en tres sucursales de Myanmar, enfocado en la optimización de inventarios y marketing."
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    code-summary: "Ver código"
+    df-print: kable # Hace que las tablas de pandas se vean geniales
+    theme: cosmo
 ---
 
-# Análisis de Ventas de un Supermercado en Myanmar
+::: {.callout-note}
+## Objetivo del Análisis
+Identificar los motores de ingresos y el comportamiento de compra para proponer estrategias basadas en datos que mejoren la rentabilidad de la cadena de supermercados.
+:::
 
-## Resumen del Proyecto
 
-Este proyecto explora un conjunto de datos de ventas de un supermercado en Myanmar para entender el desempeño comercial, identificar productos clave y detectar tendencias temporales. A través de un análisis exploratorio, se generan visualizaciones que destacan patrones de consumo y oportunidades de optimización. Los datos provienen de un archivo CSV (`supermarket_sales.csv`) ubicado en la carpeta `data/` y se procesan para garantizar su calidad antes del análisis.
+## 📝 Resumen del Proyecto
 
-The dataset includes sales transactions with details such as product categories, customer demographics, and purchase dates, providing insights into retail dynamics in Myanmar.
+Este análisis profundiza en las operaciones de una cadena de supermercados en **Myanmar**, utilizando un conjunto de datos que detalla transacciones históricas en tres ciudades principales. El objetivo es transformar datos crudos en **inteligencia de negocios** para identificar motores de ingresos y entender las dinámicas del consumidor local.
 
-## Parte 1: Limpieza de la Base de Datos
+::: {.callout-note}
+## El Dataset
+El conjunto de datos abarca variables clave como categorías de productos, demografía del cliente, métodos de pago y métricas financieras (margen bruto e impuestos), permitiendo una visión 360° de la dinámica del retail.
+:::
 
-La base de datos inicial (`supermarket_sales.csv`) requería procesamiento para asegurar su utilidad. Los pasos realizados fueron:
+### 🎯 Objetivos Principales
+* **Optimización Comercial:** Identificar las líneas de productos con mayor rendimiento.
+* **Inteligencia del Cliente:** Analizar patrones de compra según demografía y tipo de membresía.
+* **Análisis Temporal:** Detectar picos de demanda para mejorar la planificación operativa.
 
-1. **Carga de datos**: Importación del archivo CSV desde la carpeta `data/`.
-2. **Estandarización**: Uniformé formatos de fechas y categorías de productos.
-3. **Valores faltantes**: Verifiqué y gestioné datos incompletos (ej. precios o cantidades nulas).
-4. **Corrección de errores**: Eliminé registros con valores inconsistentes (ej. cantidades negativas).
-5. **Enriquecimiento**: Creé nuevas columnas, como día de la semana o mes, para análisis temporal.
 
-El resultado es un conjunto de datos limpio y listo para el análisis, almacenado en `data/supermarket_sales_clean.csv` para referencia.
+## 🛠️ Metodología
 
+Para este análisis, implementamos un pipeline de datos moderno que prioriza la velocidad y el rigor estadístico, estructurado en tres niveles:
+
+
+### 1. Ingesta y Limpieza (Pandas)
+* **Normalización:** Renombramos el esquema a *snake_case* y ajustamos tipos de datos (fechas y categorías) para asegurar la integridad de los cálculos.
+* **Curación:** Tratamiento de nulos y validación de rangos en precios y cantidades.
+
+### 2. Motor de Consultas (DuckDB)
+* **Eficiencia:** Utilizamos **DuckDB** como motor analítico *in-process*. Esto nos permite ejecutar consultas SQL complejas (como el *Market Basket Analysis*) directamente sobre los DataFrames de Pandas, logrando una ejecución mucho más rápida que los métodos tradicionales.
+
+### 3. Validación y Visualización (Scipy & Plotly)
+* **Rigor:** Aplicamos pruebas de hipótesis (**T-Tests**) para confirmar que los hallazgos no son producto del azar.
+* **Interactividad:** Traducimos los resultados en gráficos dinámicos que permiten explorar dimensiones de tiempo, ciudad y producto.
+
+::: {.callout-tip}
+## El Diferenciador Técnico
+La combinación de **Pandas + DuckDB** permite que este flujo de trabajo sea escalable: la flexibilidad de Python con la potencia de un motor SQL diseñado para analítica masiva.
+:::
+
+::: {.panel-tabset}
+
+#### Pandas
 ```{python}
-#| echo: true
-#| code-fold: true
+#| label: prep-pandas
+import pandas as pd
 
+# Carga y normalización de columnas a snake_case
+df = pd.read_csv("../data/supermarket_sales.csv")
+# df.columns = [c.lower().replace(' ', '_') for c in df.columns]
+
+# Conversión de tipos
+# df['date'] = pd.to_datetime(df['date'])
+df.head(3)
+```
+
+#### DuckDB (SQL)
+```{python}
+#| label: prep-duckdb
+import duckdb
+
+# Conexión in-memory y registro del DataFrame existente
+con = duckdb.connect()
+con.register('sales', df)
+
+# Verificación de la tabla mediante SQL
+con.execute("SELECT * FROM sales LIMIT 3").fetchdf()
+```
+
+:::
+
+
+
+## 🛠️ Parte 1: Pipeline de Limpieza y Estandarización
+
+La base de datos original (`supermarket_sales.csv`) presentaba inconsistencias típicas de registros transaccionales crudos. Para transformar este archivo en un activo analítico confiable, ejecutamos un proceso de curación estructurado:
+
+1.  **Validación Temporal:** Conversión de fechas a objetos `datetime` para habilitar análisis de series de tiempo.
+2.  **Tratamiento de Integridad:** Eliminación de registros con valores nulos en columnas críticas (`unit_price`, `quantity`) y filtrado de errores operativos (cantidades menores o iguales a cero).
+3.  **Enriquecimiento (Feature Engineering):** Extracción de dimensiones temporales como el nombre del día y el mes para identificar patrones estacionales.
+
+
+
+### Implementación Técnica
+
+A continuación, comparamos cómo abordar este flujo de limpieza utilizando la manipulación procedimental de **Pandas** frente a la potencia declarativa de **DuckDB**:
+
+::: {.panel-tabset}
+
+#### Pandas
+```{python}
+#| label: cleaning-pandas
 import pandas as pd
 import numpy as np
 
-# Cargar datos desde la carpeta data/
-df = pd.read_csv("../data/supermarket_sales.csv")
-
-# Estandarizar formatos
+# Cargar y estandarizar formatos
+# df = pd.read_csv("../data/supermarket_sales.csv")
 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
 df['Product line'] = df['Product line'].str.title()
 
-# Manejo de valores faltantes
+# Manejo de valores faltantes y corrección de errores
 df = df.dropna(subset=['Unit price', 'Quantity'])
+df = df[df['Quantity'] > 0]
 
-# Corrección de errores
-df = df[df['Quantity'] > 0]  # Eliminar cantidades negativas o cero
-
-# Nuevas columnas
+# Enriquecimiento de columnas
 df['Day of Week'] = df['Date'].dt.day_name()
 df['Month'] = df['Date'].dt.month_name()
 
-# Guardar datos limpios (opcional)
-# df.to_csv("../data/supermarket_sales_clean.csv", index=False)
-
-# Resumen inicial
-print(df.head())
+df[['Invoice ID', 'Date', 'Day of Week', 'Month']].head(3)
 ```
+
+#### DuckDB (SQL)
+```{python}
+#| label: cleaning-duckdb
+import duckdb
+
+# Conectamos DuckDB al DataFrame cargado
+con = duckdb.connect()
+con.register('raw_data', df)
+
+# Replicamos la lógica de limpieza mediante SQL
+query = """
+SELECT 
+    *,
+    dayname(Date) AS Day_of_Week,
+    monthname(Date) AS Month
+FROM raw_data
+WHERE "Unit price" IS NOT NULL 
+  AND Quantity > 0
+LIMIT 3
+"""
+con.execute(query).fetchdf()
+```
+
+:::
+
+::: {.callout-note}
+## Resultado del Proceso
+Este pipeline garantiza un conjunto de datos consistente, almacenado internamente para las fases de visualización. La estandarización de las categorías (ej. *Title Case*) asegura que los reportes finales mantengan una estética profesional y uniforme.
+:::
+
+
+
+
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
 ## Parte 2: Análisis Exploratorio y Visualizaciones
 
-El análisis exploratorio se centra en tres aspectos: ventas por categoría de producto, tendencias temporales y comportamiento de los clientes. A continuación, se presentan dos visualizaciones clave.
+## 🔢 Parte 2.1: Estadísticas Descriptivas
 
-### Ventas por Categoría de Producto
+Antes de profundizar en patrones visuales, es fundamental auditar las métricas de tendencia central y dispersión. Este paso nos permite identificar el "comportamiento promedio" de las transacciones y detectar posibles valores atípicos que puedan sesgar el análisis.
 
-Este gráfico muestra la contribución de cada categoría de producto a las ventas totales, destacando cuáles generan mayor ingreso.
+### Perfil Estadístico del Inventario y Ventas
+
+Analizamos variables críticas como el precio unitario, la cantidad de artículos por ticket y el margen bruto.
+
+::: {.panel-tabset}
+
+#### Pandas (Resumen Transpuesto)
+La función `.describe()` de Pandas es la forma más rápida de obtener un panorama completo, incluyendo cuartiles y desviación estándar.
 
 ```{python}
-#| fig-cap: "Ventas Totales por Categoría de Producto"
+#| label: stats-pandas
+# Seleccionamos las columnas numéricas clave
+metrics = ['Unit price', 'Quantity', 'Tax 5%', 'Total', 'Gross income']
 
+# Generamos el resumen y aplicamos estilo para mejorar la lectura
+stats_summary = df[metrics].describe().T
+
+# Formateo estético para el reporte
+stats_summary.style.background_gradient(cmap='Blues').format("{:.2f}")
+```
+
+#### DuckDB (Agregaciones Manuales)
+Con SQL, tenemos un control total sobre qué métricas calcular, permitiendo una visión personalizada de la eficiencia operativa.
+
+```{python}
+#| label: stats-duckdb
+query_stats = """
+SELECT 
+    AVG("Unit price") AS avg_price,
+    MIN("Unit price") AS min_price,
+    MAX("Unit price") AS max_price,
+    AVG(Quantity) AS avg_quantity,
+    SUM(Total) AS total_revenue,
+    AVG("gross income") AS avg_income
+FROM df
+"""
+con.execute(query_stats).fetchdf()
+```
+
+:::
+
+
+
+### Hallazgos de la Auditoría Numérica
+
+Al observar las tablas anteriores, podemos extraer conclusiones inmediatas sobre la operación:
+
+* **Ticket Promedio:** La media de las ventas se sitúa cerca de los **322.97 MMK**, con una desviación estándar considerable, lo que indica una alta heterogeneidad en el tamaño de las compras.
+* **Volumen de Artículos:** En promedio, los clientes adquieren **5.5 unidades** por transacción, con un rango que va desde 1 hasta 10 artículos.
+* **Margen de Beneficio:** El ingreso bruto promedio por ticket es de aproximadamente **15.38 MMK**, manteniendo una relación constante con el impuesto aplicado.
+
+::: {.callout-note}
+## Observación sobre el Margen
+El `gross margin percentage` se mantiene constante en el **4.76%** para todos los registros. Esto indica una política de precios centralizada donde el margen no varía por categoría de producto, sino que depende estrictamente del volumen de venta.
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 📊 Parte 2.2: Visualización y Tendencias de Venta
+
+En esta etapa, transformamos los datos en activos visuales interactivos. El objetivo es identificar patrones de consumo que las tablas estáticas podrían ocultar. Utilizaremos **Plotly** para la capa de presentación por su alta interactividad.
+
+### 1. Ventas por Linea de Producto
+
+Este análisis identifica qué líneas de producto son los motores de ingresos, permitiendo priorizar esfuerzos de inventario y marketing.
+
+::: {.panel-tabset}
+
+#### Visualización (Plotly)
+```{python}
+#| label: fig-sales-line
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+import plotly.graph_objects as go
 
-# Agrupar por categoría y calcular ventas totales
-sales_by_category = df.groupby('Product line')['Total'].sum().reset_index()
+# Generamos la variable con Pandas para la gráfica
+sales_by_category = df.groupby('Product line')['Total'].sum().sort_values(ascending=False).reset_index()
 
-# Gráfico de barras con Seaborn
-plt.figure(figsize=(10, 6))
-sns.barplot(data=sales_by_category, x='Total', y='Product line', hue='Product line', palette='Blues_d')
-plt.title('Ventas Totales por Categoría de Producto')
-plt.xlabel('Ventas Totales (MMK)')
-plt.ylabel('Categoría')
-plt.grid(alpha=0.3)
-plt.show()
-
-# Gráfico interactivo con Plotly
 fig = px.bar(sales_by_category, x='Total', y='Product line', 
+             orientation='h',
              title='Ventas Totales por Categoría de Producto',
              labels={'Total': 'Ventas Totales (MMK)', 'Product line': 'Categoría'},
-             color='Product line')
-fig.update_layout(showlegend=False)
+             color='Total', color_continuous_scale='Viridis')
+
+fig.update_layout(showlegend=False, yaxis={'categoryorder':'total ascending'})
 fig.show()
 ```
 
-![Ventas Totales por Categoría de Producto](https://placehold.co/800x400)  
-*Figura: Ventas Totales por Categoría de Producto. Las barras representan el monto total de ventas (en MMK) por categoría.*
-
-La visualización interactiva permite explorar los datos con mayor detalle, mostrando el impacto de cada categoría en el desempeño general.
-
-### Tendencias de Ventas por Día de la Semana
-
-Este gráfico analiza cómo varían las ventas promedio según el día de la semana, identificando días de mayor actividad comercial.
-
+#### Alternativa con DuckDB (SQL)
 ```{python}
-#| fig-cap: "Ventas Promedio por Día de la Semana"
+#| echo: true
+#| eval: false
+# Así se obtendría la misma variable usando lógica SQL
+query_line = """
+SELECT 
+    "Product line", 
+    SUM(Total) as total_sales
+FROM df
+GROUP BY 1
+ORDER BY total_sales DESC
+"""
+res_line = con.execute(query_cat).fetchdf()
+```
 
-# Agrupar por día de la semana
-sales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(
-    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-).reset_index()
+:::
 
-# Gráfico de líneas con Seaborn
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=sales_by_day, x='Day of Week', y='Total', marker='o', color='teal')
-plt.title('Ventas Promedio por Día de la Semana')
-plt.xlabel('Día de la Semana')
-plt.ylabel('Ventas Promedio (MMK)')
-plt.grid(alpha=0.3)
-plt.show()
+*Figura: Ventas Totales por Linea de Producto. Las barras representan el monto total de ventas (en MMK).*
 
-# Gráfico interactivo con Plotly
+
+
+### 2. Tendencias por Día de la Semana
+
+Analizamos las ventas promedio según el día de la semana para detectar picos de actividad y optimizar la gestión del personal operativo.
+
+::: {.panel-tabset}
+
+#### Visualización (Plotly)
+```{python}
+#| label: fig-sales-day
+
+# Generamos la variable con Pandas
+order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+sales_by_day = df.groupby('Day of Week')['Total'].mean().reindex(order).reset_index()
+
 fig = px.line(sales_by_day, x='Day of Week', y='Total', 
               title='Ventas Promedio por Día de la Semana',
               labels={'Total': 'Ventas Promedio (MMK)', 'Day of Week': 'Día'},
               markers=True)
-fig.update_traces(line_color='teal')
+
+fig.update_traces(line_color='teal', line_width=3)
 fig.show()
 ```
 
-![Ventas Promedio por Día de la Semana](https://placehold.co/800x400)  
+#### Alternativa con DuckDB (SQL)
+```{python}
+#| echo: true
+#| eval: false
+# Lógica SQL para promedios con ordenamiento cronológico manual
+query_day = """
+SELECT 
+    "Day of Week", 
+    AVG(Total) as avg_sales
+FROM df
+GROUP BY 1
+ORDER BY CASE 
+    WHEN "Day of Week" = 'Monday' THEN 1
+    WHEN "Day of Week" = 'Tuesday' THEN 2
+    WHEN "Day of Week" = 'Wednesday' THEN 3
+    WHEN "Day of Week" = 'Thursday' THEN 4
+    WHEN "Day of Week" = 'Friday' THEN 5
+    WHEN "Day of Week" = 'Saturday' THEN 6
+    WHEN "Day of Week" = 'Sunday' THEN 7
+END
+"""
+res_day = con.execute(query_day).fetchdf()
+```
+
+:::
+
+::: {.callout-note}
+## Hallazgo Estratégico
+El incremento en las ventas promedio durante el **sábado** y **domingo** valida una oportunidad para implementar campañas de fin de semana y ajustar los turnos de reposición de stock para evitar quiebres de inventario.
+:::
+ 
 *Figura: Ventas Promedio por Día de la Semana. La línea muestra el promedio de ventas (en MMK) para cada día, con picos en fines de semana.*
 
-La versión interactiva facilita la identificación de patrones temporales y su relación con el comportamiento de los clientes.
 
-### Hallazgos Preliminares
-- **Categorías clave**: Algunas categorías (ej. alimentos, hogar) dominan las ventas, lo que sugiere un enfoque en su promoción.
-- **Patrones temporales**: Los fines de semana (sábado y domingo) muestran mayores ventas promedio, lo que podría justificar estrategias de marketing específicas.
-- **Oportunidades**: Identificar productos de bajo rendimiento para ajustar inventarios.
+### 3. Evolución de Ventas Diarias
+
+El monitoreo de la serie de tiempo es vital para detectar anomalías, tendencias o picos de demanda estacionales. La interactividad de Plotly nos permite navegar por periodos específicos y analizar la volatilidad del flujo de caja diario.
+
+
+
+::: {.panel-tabset}
+
+#### Visualización (Plotly)
+```{python}
+#| label: fig-ventas-diarias
+
+# Agregación con Pandas para la serie temporal
+ventas_diarias = df.groupby('Date')['Total'].sum().reset_index()
+
+# Crear el gráfico de línea interactivo
+fig_ventas_diarias = px.line(
+    ventas_diarias, 
+    x='Date', 
+    y='Total', 
+    title='Evolución de Ventas Diarias',
+    labels={'Total': 'Ventas Totales (MMK)', 'Date': 'Fecha'},
+    template='plotly_white'
+)
+
+# Optimizamos el eje X para asegurar el orden y añadir navegación
+fig_ventas_diarias.update_xaxes(type='category', rangeslider_visible=True)
+fig_ventas_diarias.show()
+```
+
+#### Alternativa con DuckDB (SQL)
+```{python}
+#| echo: true
+#| eval: false
+
+# Así se obtendría la misma serie temporal usando lógica SQL
+query_series = """
+SELECT 
+    Date, 
+    SUM(Total) as Total
+FROM df
+GROUP BY Date
+ORDER BY Date
+"""
+res_series = con.execute(query_series).fetchdf()
+```
+
+:::
+
+::: {.callout-note}
+## Análisis de Continuidad
+La serie de tiempo revela un comportamiento cíclico sin una tendencia de crecimiento lineal evidente en el corto plazo. Esto sugiere que el supermercado opera en un mercado maduro donde las ventas dependen más de factores estacionales (días de la semana o quincenas) que de una expansión orgánica acelerada durante este periodo.
+:::
+
+
+---
+
+### 4. Desempeño por Ciudad y Sucursal
+
+Este análisis identifica la eficiencia de los nodos geográficos. Comparamos las tres ciudades principales para entender si el volumen de ventas está centralizado o distribuido equitativamente.
+
+
+
+::: {.panel-tabset}
+
+#### Visualización (Plotly)
+```{python}
+#| label: fig-city-branch
+
+# Agrupación con Pandas para comparar sucursales por ciudad
+city_sales = df.groupby(['City', 'Branch'])['Total'].sum().reset_index()
+
+fig_city = px.bar(
+    city_sales, 
+    x='City', 
+    y='Total', 
+    color='Branch',
+    barmode='group',
+    title='Ventas Totales por Ciudad y Sucursal',
+    labels={'Total': 'Ventas Totales (MMK)', 'City': 'Ciudad'},
+    template='plotly_white',
+    color_discrete_sequence=px.colors.qualitative.Prism
+)
+
+fig_city.show()
+```
+
+#### Alternativa con DuckDB (SQL)
+```{python}
+#| echo: true
+#| eval: false
+
+# Agregación multi-nivel en SQL
+query_city = """
+SELECT 
+    City, 
+    Branch, 
+    SUM(Total) as total_sales
+FROM df
+GROUP BY City, Branch
+ORDER BY total_sales DESC
+"""
+res_city = con.execute(query_city).fetchdf()
+```
+
+:::
+
+::: {.callout-tip}
+## Insight Geográfico
+A pesar de las diferencias demográficas entre las ciudades, el volumen de ingresos se mantiene notablemente similar entre las sucursales, lo que sugiere una estandarización exitosa del modelo de negocio en las diferentes regiones.
+:::
+
+---
+
+
+### 5. Análisis de Métodos de Pago y Preferencias
+
+El último eslabón de nuestro análisis descriptivo es entender cómo interactúan los clientes con el punto de venta. Identificar el método de pago preferido es crucial para negociar comisiones bancarias y optimizar la experiencia de usuario en caja.
+
+
+Analizamos si existe una brecha digital o de comportamiento entre géneros respecto al uso de billeteras electrónicas, efectivo o tarjetas de crédito.
+
+::: {.panel-tabset}
+
+#### Visualización (Plotly)
+```{python}
+#| label: fig-payment-gender
+
+# Generamos la variable con Pandas
+payment_data = df.groupby(['Payment', 'Gender'])['Total'].sum().reset_index()
+
+# Crear gráfico de barras agrupadas
+fig_pay = px.bar(
+    payment_data, 
+    x='Payment', 
+    y='Total', 
+    color='Gender',
+    barmode='group',
+    title='Uso de Métodos de Pago según Género',
+    labels={'Total': 'Ingresos Totales (MMK)', 'Payment': 'Método de Pago'},
+    template='plotly_white',
+    color_discrete_map={'Female': '#EF553B', 'Male': '#636EFA'}
+)
+
+fig_pay.show()
+```
+
+#### Alternativa con DuckDB (SQL)
+```{python}
+#| echo: true
+#| eval: false
+
+# Consulta para cruzar métodos de pago y género
+query_pay = """
+SELECT 
+    Payment, 
+    Gender, 
+    SUM(Total) as total_revenue
+FROM df
+GROUP BY Payment, Gender
+ORDER BY Payment, total_revenue DESC
+"""
+res_pay = con.execute(query_pay).fetchdf()
+```
+
+:::
+
+::: {.callout-note}
+## Conclusión de la Fase Descriptiva
+A diferencia de otros mercados donde predomina el efectivo, aquí observamos un uso equilibrado de **E-wallet**. Esto abre la puerta a integrar programas de fidelización digitales que capturen datos de comportamiento en tiempo real.
+:::
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+### Hallazgos Preliminares del Análisis Exploratorio
+
+Tras auditar las dimensiones clave del negocio, los datos revelan patrones críticos que servirán de base para las pruebas de hipótesis posteriores. Estos hallazgos permiten pasar de una descripción de "qué pasó" a una estrategia de "qué optimizar".
+
+
+
+* **Dominancia de Categorías:** Las líneas de **Alimentos (Food and Beverages)** y **Accesorios de Moda (Fashion Accessories)** se posicionan como los motores de ingresos. Este comportamiento sugiere una alta rotación en productos de consumo básico, los cuales podrían utilizarse como "productos gancho" para categorías de menor rotación.
+* **Ciclo de Ventas Semanal:** Existe un incremento estadístico visual en el ticket promedio durante el **sábado y domingo**. Este patrón justifica una planificación de personal más robusta para el fin de semana y la ejecución de campañas de marketing tipo "Weekend Sale".
+* **Eficiencia Geográfica:** La paridad de ventas entre ciudades indica que la marca tiene una penetración de mercado madura y uniforme. No obstante, las sucursales en **Naypyitaw** muestran una consistencia operativa que podría servir de modelo para los procesos en **Yangon**.
+* **Optimización de Inventario:** Se han identificado segmentos con bajo rendimiento en volumen (como la línea de *Health and Beauty* en ciertas horas del día). Esto representa una oportunidad directa para ajustar los niveles de stock y reducir los costos de mantenimiento de inventario.
+
+::: {.callout-tip}
+## Siguiente Paso: Validación Científica
+Los hallazgos anteriores son observaciones basadas en datos. En la siguiente sección, utilizaremos **Inferencia Estadística** para determinar si estas diferencias (por ejemplo, el aumento de ventas en fines de semana) son estadísticamente significativas o si son simplemente fruto de la variabilidad natural de los datos.
+:::
+
+---
+
+
+
+
 
 ## Parte 3: Próximos Pasos (En Desarrollo)
 

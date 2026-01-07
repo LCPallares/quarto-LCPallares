@@ -9,3 +9,4 @@ scikit-learn
 scikit-posthocs
 statsmodels
 plotly
+duckdb

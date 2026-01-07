@@ -215,7 +215,6 @@ div.quarto-about-solana .about-entity .about-links {
   }
 }
 
-
 .icons iconify-icon {
   font-size: 1.5em;
   vertical-align: middle;
@@ -285,8 +284,6 @@ div.quarto-about-solana .about-entity .about-links {
 
 
 
-
-
 #tecnologías ul {
   display: flex;
   flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no caben */
@@ -302,6 +299,9 @@ div.quarto-about-solana .about-entity .about-links {
   padding: 0.3rem 0.6rem; /* Espacio interno para que el fondo se vea bien */
   border-radius: 4px; /* Bordes redondeados (opcional) */
 }
+
+
+
 
 
 
