@@ -9,6 +9,7 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/barrancabermeja-comunas-geojson.html",
       "/projects/web_scraping_csc_india.html",
       "/projects/congenital-hypothyroidism.html",
       "/projects/rick-and-morty-app.html",
