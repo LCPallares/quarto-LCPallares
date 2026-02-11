@@ -137,8 +137,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#metodología" id="toc-metodología" class="nav-link" data-scroll-target="#metodología">Metodología</a></li>
+  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados">Resultados</a></li>
+  <li><a href="#mapa-de-comunas" id="toc-mapa-de-comunas" class="nav-link" data-scroll-target="#mapa-de-comunas">Mapa de Comunas</a></li>
+  <li><a href="#aplicaciones" id="toc-aplicaciones" class="nav-link" data-scroll-target="#aplicaciones">Aplicaciones</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -180,23 +190,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Introducción En este proyecto, se presentará el proceso de creación de un mapa de comunas de Barrancabermeja utilizando QGIS. El objetivo es proporcionar un recurso valioso para el análisis de datos geográficos en la ciudad. En este sentido, se describirá la metodología utilizada para crear el mapa, los resultados obtenidos y las posibles aplicaciones del mismo.</p>
-<p>Metodología El proceso de creación del mapa se llevó a cabo en los siguientes pasos:</p>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En este proyecto, se presentará el proceso de creación de un mapa de comunas de Barrancabermeja utilizando QGIS. El objetivo es proporcionar un recurso valioso para el análisis de datos geográficos en la ciudad. En este sentido, se describirá la metodología utilizada para crear el mapa, los resultados obtenidos y las posibles aplicaciones del mismo.</p>
+</section>
+<section id="metodología" class="level1">
+<h1>Metodología</h1>
+<p>El proceso de creación del mapa se llevó a cabo en los siguientes pasos:</p>
 <ol type="1">
-<li><strong>Obtención de datos</strong>: Se obtuvo el mapa de la ciudad de Barrancabermeja en formato shapefile a través de [fuente de datos].</li>
+<li><strong>Obtención de datos</strong>: Se obtuvo el mapa de la ciudad de Barrancabermeja en formato shapefile a través de <a href="https://barrancaweb.realidad5.com/wp/datos-geograficos-catastro-barrancabermeja/">Catastro Barrancabermeja</a>.</li>
 <li><strong>Creación de un nuevo shapefile</strong>: Se creó un nuevo shapefile para las comunas utilizando QGIS.</li>
 <li><strong>Digitalización de comunas</strong>: Se digitalizaron las comunas utilizando herramientas de edición de QGIS.</li>
 <li><strong>Agregación de atributos</strong>: Se agregaron atributos a cada comuna, como nombre y código.</li>
 </ol>
-<p>Resultados El resultado es un mapa de comunas de Barrancabermeja en formato GeoJSON, que se puede utilizar para análisis de datos geográficos.</p>
-<p>Mapa de Comunas Aquí se muestra el mapa de comunas de Barrancabermeja:</p>
+</section>
+<section id="resultados" class="level1">
+<h1>Resultados</h1>
+<p>El resultado es un mapa de comunas de Barrancabermeja en formato GeoJSON, que se puede utilizar para análisis de datos geográficos.</p>
+</section>
+<section id="mapa-de-comunas" class="level1">
+<h1>Mapa de Comunas</h1>
+<p>Aquí se muestra el mapa de comunas de Barrancabermeja:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/screenshots/mapa_comunas.jpg" class="img-fluid figure-img"></p>
 <figcaption>Mapa de Comunas de Barrancabermeja</figcaption>
 </figure>
 </div>
-<p>Aplicaciones El mapa de comunas de Barrancabermeja puede ser utilizado para:</p>
+</section>
+<section id="aplicaciones" class="level1">
+<h1>Aplicaciones</h1>
+<p>El mapa de comunas de Barrancabermeja puede ser utilizado para:</p>
 <ul>
 <li>Análisis de datos demográficos</li>
 <li>Planificación urbana</li>
@@ -208,6 +232,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Licencia Este trabajo está bajo licencia https://creativecommons.org/licenses/by/4.0/.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
