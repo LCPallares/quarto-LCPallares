@@ -10,26 +10,26 @@ output:
     toc_float: true
 ---
 
-Introducción
+# Introducción
 En este proyecto, se presentará el proceso de creación de un mapa de comunas de Barrancabermeja utilizando QGIS. El objetivo es proporcionar un recurso valioso para el análisis de datos geográficos en la ciudad. En este sentido, se describirá la metodología utilizada para crear el mapa, los resultados obtenidos y las posibles aplicaciones del mismo.
 
-Metodología
+# Metodología
 El proceso de creación del mapa se llevó a cabo en los siguientes pasos:
 
-1. **Obtención de datos**: Se obtuvo el mapa de la ciudad de Barrancabermeja en formato shapefile a través de [fuente de datos].
+1. **Obtención de datos**: Se obtuvo el mapa de la ciudad de Barrancabermeja en formato shapefile a través de [Catastro Barrancabermeja](https://barrancaweb.realidad5.com/wp/datos-geograficos-catastro-barrancabermeja/).
 2. **Creación de un nuevo shapefile**: Se creó un nuevo shapefile para las comunas utilizando QGIS.
 3. **Digitalización de comunas**: Se digitalizaron las comunas utilizando herramientas de edición de QGIS.
 4. **Agregación de atributos**: Se agregaron atributos a cada comuna, como nombre y código.
 
-Resultados
+# Resultados
 El resultado es un mapa de comunas de Barrancabermeja en formato GeoJSON, que se puede utilizar para análisis de datos geográficos.
 
-Mapa de Comunas
+# Mapa de Comunas
 Aquí se muestra el mapa de comunas de Barrancabermeja:
 
 ![Mapa de Comunas de Barrancabermeja](../assets/screenshots/mapa_comunas.jpg)  
 
-Aplicaciones
+# Aplicaciones
 El mapa de comunas de Barrancabermeja puede ser utilizado para:
 
 - Análisis de datos demográficos
