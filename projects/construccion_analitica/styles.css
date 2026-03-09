@@ -1,0 +1,66 @@
+/* ── Fuente Barlow Condensed (equivalente DIN) ── */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap');
+
+/* ── Títulos con Barlow Condensed ── */
+h1, h2, h3, h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  color: #0f1f3d;
+  letter-spacing: -0.2px;
+}
+
+/* ── Cuerpo con Barlow ── */
+body, p, li, td, th {
+  font-family: 'Barlow', sans-serif;
+}
+
+/* ── Callouts más compactos ── */
+.callout {
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+/* ── Tablas más limpias ── */
+table {
+  font-size: 0.88rem;
+}
+thead tr {
+  background-color: #0f1f3d;
+  color: white;
+}
+thead th {
+  color: white !important;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+tbody tr:nth-child(even) {
+  background-color: #f0f4f8;
+}
+
+/* ── Badge de categorías ── */
+.quarto-category {
+  background-color: #0f1f3d !important;
+  color: #c9a84c !important;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+}
+
+/* ── Código inline más visible ── */
+code:not(pre code) {
+  background: #eef2f7;
+  color: #0f1f3d;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+/* ── Separadores ── */
+hr {
+  border: none;
+  border-top: 1px solid #eef2f7;
+  margin: 2rem 0;
+}
