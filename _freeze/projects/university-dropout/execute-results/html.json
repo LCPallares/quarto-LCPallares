@@ -1,0 +1,12 @@
+{
+  "hash": "9edd1da7fd9c9b9e65efc0a04dbdab5d",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"University Dropout Analysis\"\nauthor: \"LC Pallares\"\ndate: \"2025-03-08\"\ncategories: [education, statistics, analysis]\nimage: \"https://blog.pearsonlatam.com/hs-fs/hubfs/causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg?width=800&height=852&name=causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg\"\n---\n\n\n# University Dropout Analysis\n\n## Introduction\n\nThis project examines the factors that contribute to student attrition in Business Administration programs. By analyzing patterns in student data, we can identify at-risk students and develop interventions to improve retention rates.\n\n## Data Collection\n\nThe dataset includes:\n- Academic performance metrics\n- Attendance records\n- Socioeconomic indicators\n- Survey results on student satisfaction\n- Course enrollment history\n\n## Methodology\n\nI used the following analytical techniques:\n- Logistic regression to predict dropout probability\n- Cluster analysis to identify student archetypes\n- Time series analysis to detect critical periods\n- Correlation analysis to identify key factors\n\n## Key Findings\n\n1. First-year performance is highly predictive of dropout risk\n2. Students with part-time jobs over 20 hours/week show 45% higher attrition\n3. Attendance drops significantly 3-4 weeks before formal withdrawal\n4. Peer study groups reduce dropout rates by 30%\n\n## Visualizations\n\n::: {#c9aa8838 .cell execution_count=1}\n\n::: {.cell-output .cell-output-display}\n![Dropout rates by semester and program](university-dropout_files/figure-html/cell-2-output-1.png){width=808 height=523}\n:::\n:::\n\n\n## Recommendations\n\nBased on the analysis, I recommend:\n- Implementing an early warning system based on first-month performance\n- Creating flexible scheduling options for working students\n- Expanding peer mentoring programs\n- Enhancing academic support during critical dropout periods\n\n## Conclusion\n\nThis analysis demonstrates that dropout patterns are predictable and interventions can be targeted to specific risk factors and time periods for maximum effect.\n\n",
+    "supporting": [
+      "university-dropout_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
