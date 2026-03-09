@@ -7,6 +7,9 @@ project:
     - assets/js/render-cards.js
     - styles.css
 
+execute:
+  freeze: true
+
 website:
   title: "LCPallares"
   favicon: assets/images/favicon.ico  # Sin "/" inicial
