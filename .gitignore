@@ -1,4 +1,10 @@
-/.quarto/
-/_site/
 /site_libs/
 /tests/
+
+# Datos — no subir al repo
+data_powerbi/
+*.csv
+
+# Quarto internos
+/.quarto/
+_site/
