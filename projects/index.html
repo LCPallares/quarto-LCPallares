@@ -81,7 +81,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-stars-sort'] },{ data: ['listing-date-sort'] }],
-      
+      page: 10,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-title","listing-author","listing-description"],
     };
 
@@ -193,7 +194,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="QVBJ">API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW5hbCVDMyVBRHRpY2ElMjBkZSUyME5lZ29jaW9z">Analítica de Negocios <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMEZpbmFuY2llcm8=">Análisis Financiero <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1JJU1AtRE0=">CRISP-DM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29uc3RydWNjaSVDMyVCM24=">Construcción <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGFzaA==">Dash <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RURB">EDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RVZN">EVM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXN0cmF0ZWdpYSUyMGRlJTIwRGF0b3M=">Estrategia de Datos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VvSnNvbg==">GeoJson <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S2l2eU1E">KivyMD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFw">Map <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9iaWxlJTIwRGV2ZWxvcG1lbnQ=">Mobile Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGxvdGx5">Plotly <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG93ZXIlMjBCSQ==">Power BI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UUdpcw==">QGis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmV0YWls">Retail <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U0lH">SIG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGNsZWFuaW5n">data cleaning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZGF0YS1jb2xsZWN0aW9u">data-collection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWR1Y2F0aW9u">education <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwbG9yYXRvcnklMjBhbmFseXNpcw==">exploratory analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZnJlZWxhbmNl">freelance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGVhbHRo">health <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21zLWFwaQ==">sms-api <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RyZWFtbGl0">streamlit <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphdGlvbg==">visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViLXNjcmFwaW5n">web-scraping <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="QVBJ">API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW5hbCVDMyVBRHRpY2ElMjBkZSUyME5lZ29jaW9z">Analítica de Negocios <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QW4lQzMlQTFsaXNpcyUyMEZpbmFuY2llcm8=">Análisis Financiero <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q1JJU1AtRE0=">CRISP-DM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29uc3RydWNjaSVDMyVCM24=">Construcción <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGFzaA==">Dash <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RURB">EDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RVZN">EVM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXN0cmF0ZWdpYSUyMGRlJTIwRGF0b3M=">Estrategia de Datos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VvSnNvbg==">GeoJson <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S2l2eU1E">KivyMD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFw">Map <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9iaWxlJTIwRGV2ZWxvcG1lbnQ=">Mobile Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGxvdGx5">Plotly <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG93ZXIlMjBCSQ==">Power BI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UUdpcw==">QGis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmV0YWls">Retail <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U0lH">SIG <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGNsZWFuaW5n">data cleaning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZGF0YS1jb2xsZWN0aW9u">data-collection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWR1Y2F0aW9u">education <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXhwbG9yYXRvcnklMjBhbmFseXNpcw==">exploratory analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZnJlZWxhbmNl">freelance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGVhbHRo">health <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21zLWFwaQ==">sms-api <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RyZWFtbGl0">streamlit <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dmlzdWFsaXphdGlvbg==">visualization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViJTIwc2NyYXBpbmc=">web scraping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViLXNjcmFwaW5n">web-scraping <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -424,7 +425,7 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="UG93ZXIlMjBCSSUyQ1B5dGhvbiUyQ0Rhc2glMkNFVk0lMkNDb25zdHJ1Y2NpJUMzJUIzbiUyQ0NSSVNQLURNJTJDQW5hbCVDMyVBRHRpY2ElMjBkZSUyME5lZ29jaW9z" data-listing-date-sort="1727672400000" data-listing-file-modified-sort="1773027900458" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4035">
+<div class="quarto-post image-right" data-index="4" data-categories="UG93ZXIlMjBCSSUyQ1B5dGhvbiUyQ0Rhc2glMkNFVk0lMkNDb25zdHJ1Y2NpJUMzJUIzbiUyQ0NSSVNQLURNJTJDQW5hbCVDMyVBRHRpY2ElMjBkZSUyME5lZ29jaW9z" data-listing-date-sort="1773032400000" data-listing-file-modified-sort="1773110554676" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4028">
 <div class="thumbnail">
 <p><a href="../projects/construccion_analitica/construccion_analitica.html" class="no-external"></a></p><a href="../projects/construccion_analitica/construccion_analitica.html" class="no-external">
 <p><img loading="lazy" src="../projects/construccion_analitica/img/preview.png" class="thumbnail-image"></p>
@@ -467,7 +468,7 @@ Analítica de Negocios
 <div class="metadata">
 <a href="../projects/construccion_analitica/construccion_analitica.html" class="no-external">
 <div class="listing-date">
-Sep 30, 2024
+Mar 9, 2026
 </div>
 <div class="listing-author">
 LCPallares
@@ -598,7 +599,32 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="ZWR1Y2F0aW9uJTJDc3RhdGlzdGljcyUyQ2FuYWx5c2lz" data-listing-date-sort="1741410000000" data-listing-file-modified-sort="1741663322590" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226">
+<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1727672400000" data-listing-file-modified-sort="1773031188905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="614">
+<div class="thumbnail">
+<p><a href="../projects/test_tema/test_tema.html" class="no-external"></a></p><a href="../projects/test_tema/test_tema.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../projects/test_tema/test_tema.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../projects/test_tema/test_tema.html" class="no-external">Test — Tema Oscuro</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../projects/test_tema/test_tema.html" class="no-external">Preview del styles.css estilo samproell.io</a>
+</div>
+<div class="listing-description">
+<a href="../projects/test_tema/test_tema.html" class="no-external">Este es un párrafo normal con <strong>texto en negrita</strong>, <em>cursiva</em>, y <code>código inline</code> para ver cómo se ve la fuente Barlow en el cuerpo del documento.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../projects/test_tema/test_tema.html" class="no-external">
+<div class="listing-date">
+Sep 30, 2024
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="ZWR1Y2F0aW9uJTJDc3RhdGlzdGljcyUyQ2FuYWx5c2lz" data-listing-date-sort="1741410000000" data-listing-file-modified-sort="1741663322590" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226">
 <div class="thumbnail">
 <p><a href="../projects/university-dropout.html" class="no-external"></a></p><a href="../projects/university-dropout.html" class="no-external">
 <p><img loading="lazy" src="https://blog.pearsonlatam.com/hs-fs/hubfs/causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg?width=800&amp;height=852&amp;name=causas-m%C3%A1s-comunes-de-deserci%C3%B3n-escolar-universitaria.jpeg" class="thumbnail-image"></p>
@@ -637,10 +663,10 @@ LC Pallares
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="d2ViLXNjcmFwaW5nJTJDZGF0YS1jb2xsZWN0aW9uJTJDcHl0aG9uJTJDZnJlZWxhbmNl" data-listing-date-sort="1692507600000" data-listing-file-modified-sort="1747448804394" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1192">
+<div class="quarto-post image-right" data-index="10" data-categories="d2ViLXNjcmFwaW5nJTJDZGF0YS1jb2xsZWN0aW9uJTJDcHl0aG9uJTJDZnJlZWxhbmNl" data-listing-date-sort="1692507600000" data-listing-file-modified-sort="1747448804394" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1192">
 <div class="thumbnail">
 <p><a href="../projects/web_scraping_csc_india.html" class="no-external"></a></p><a href="../projects/web_scraping_csc_india.html" class="no-external">
-<p><img loading="lazy" src="https://i.imgur.com/UA7hyob.png" class="thumbnail-image"></p>
+<p><img loading="lazy" data-src="https://i.imgur.com/UA7hyob.png" class="thumbnail-image"></p>
 </a><p><a href="../projects/web_scraping_csc_india.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -683,6 +709,9 @@ LC Pallares
 <div class="listing-no-matching d-none">
 No matching items
 </div>
+<nav id="listing-projects-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

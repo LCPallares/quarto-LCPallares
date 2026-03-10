@@ -1,12 +1,5 @@
 [
   {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/estadistica-descriptiva.html",
-      "/posts/estadistica-inferencial.html"
-    ]
-  },
-  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/amazon-best-seller.html",
@@ -17,8 +10,16 @@
       "/projects/reporte-financiero/reporte-financiero.html",
       "/projects/rick-and-morty-app.html",
       "/projects/supermarket_sales_myanmar.html",
+      "/projects/test_tema/test_tema.html",
       "/projects/university-dropout.html",
       "/projects/web_scraping_csc_india.html"
+    ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/estadistica-descriptiva.html",
+      "/posts/estadistica-inferencial.html"
     ]
   }
 ]

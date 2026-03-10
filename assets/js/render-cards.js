@@ -1,63 +1,38 @@
-// Función para cargar y renderizar los proyectos o blogs
-async function renderCards(jsonFile, containerId) {
+// render-cards.js
+// Carga proyectos y blogs desde JSON y los renderiza como cards
+
+async function loadCards(jsonPath, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
   try {
-    // 1. Determinar la ruta correcta al archivo JSON
-    // Usar ruta absoluta desde la raíz del sitio en GitHub Pages
-    const baseUrl = 'https://lcpallares.github.io/quarto-LCPallares/';
-    const filePath = `${baseUrl}${jsonFile}`;
+    const res  = await fetch(jsonPath);
+    const data = await res.json();
 
-    // 2. Cargar el archivo JSON
-    const response = await fetch(filePath);
-    if (!response.ok) {
-      throw new Error(`Error al cargar ${jsonFile}: ${response.statusText}`);
-    }
-    const data = await response.json();
-
-    // 3. Obtener el contenedor donde se mostrarán las tarjetas
-    const container = document.getElementById(containerId);
-    if (!container) {
-      throw new Error(`No se encontró el contenedor con ID ${containerId}`);
-    }
-
-    // 4. Generar el HTML para cada tarjeta
-    const cardsHTML = data.map(item => {
-      // Asegurar que el enlace sea correcto
-      const link = item.link.startsWith('/') ? item.link : `/${item.link}`;
-      return `
-        <div class="card">
-          <a href="${link}" class="card-link">
-            <img src="${item.image}" alt="${item.title}" class="card-image">
-            <div class="card-content">
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-            </div>
-          </a>
+    container.innerHTML = data.map(item => `
+      <a class="project-card" href="${item.link}">
+        ${item.image
+          ? `<img class="project-card-img" src="${item.image}" alt="${item.title}" loading="lazy">`
+          : `<div style="height:160px;background:#252840;display:flex;align-items:center;justify-content:center;">
+               <span style="font-size:2rem;opacity:0.3">📊</span>
+             </div>`
+        }
+        <div class="project-card-body">
+          <div class="project-card-title">${item.title}</div>
+          <div class="project-card-desc">${item.description}</div>
+          <div class="project-card-footer">Ver proyecto</div>
         </div>
-      `;
-    }).join('');
+      </a>
+    `).join("");
 
-    // 5. Insertar las tarjetas en el contenedor
-    container.innerHTML = cardsHTML;
-  } catch (error) {
-    console.error(error);
-    const container = document.getElementById(containerId);
-    if (container) {
-      container.innerHTML = `<p>Error loading content: ${error.message}</p>`;
-    }
+  } catch (err) {
+    container.innerHTML = `
+      <p style="color:var(--text-muted);font-size:0.9rem;padding:1rem 0">
+        No se pudieron cargar los proyectos.
+      </p>`;
+    console.error(`Error cargando ${jsonPath}:`, err);
   }
 }
 
-// Llamar a la función al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  // Renderizar proyectos si el contenedor existe
-  const projectsContainer = document.getElementById('projects-container');
-  if (projectsContainer) {
-    renderCards('projects/projects.json', 'projects-container');
-  }
-
-  // Renderizar blogs si el contenedor existe
-  const blogsContainer = document.getElementById('blogs-container');
-  if (blogsContainer) {
-    renderCards('posts/posts.json', 'blogs-container');
-  }
-});
+loadCards("assets/data/projects.json", "projects-container");
+loadCards("assets/data/blogs.json",    "blogs-container");
