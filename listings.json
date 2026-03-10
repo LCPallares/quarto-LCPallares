@@ -9,17 +9,17 @@
   {
     "listing": "/projects/index.html",
     "items": [
-      "/projects/supermarket_sales_myanmar.html",
       "/projects/construccion_analitica/construccion_analitica.html",
-      "/projects/congenital-hypothyroidism2.html",
-      "/projects/test_tema/test_tema.html",
-      "/projects/amazon-best-seller.html",
-      "/projects/congenital-hypothyroidism.html",
+      "/projects/reporte-financiero/reporte-financiero.html",
       "/projects/barrancabermeja-comunas-geojson.html",
-      "/projects/web_scraping_csc_india.html",
-      "/projects/university-dropout.html",
       "/projects/rick-and-morty-app.html",
-      "/projects/reporte-financiero/reporte-financiero.html"
+      "/projects/supermarket_sales_myanmar.html",
+      "/projects/congenital-hypothyroidism2.html",
+      "/projects/congenital-hypothyroidism.html",
+      "/projects/university-dropout.html",
+      "/projects/amazon-best-seller.html",
+      "/projects/test_tema/test_tema.html",
+      "/projects/web_scraping_csc_india.html"
     ]
   }
 ]
