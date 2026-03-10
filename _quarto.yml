@@ -5,6 +5,7 @@ project:
     - projects/projects.json
     - posts/posts.json
     - assets/js/render-cards.js
+    - assets/js/theme-sync.js
     - styles.css
 
 execute:
@@ -56,8 +57,10 @@ website:
 format:
   html:
     theme: 
-      light: cosmo  # Tema claro
-      #dark: darkly  # Tema oscuro (o cualquier otro tema oscuro de Bootswatch)
+      light: cosmo
+      dark: darkly
     css: styles.css
     toc: true
-code-fold: true  # Hace que todo el código sea colapsable por defecto
+    code-fold: true
+    include-in-body: |
+      <script src="assets/js/theme-sync.js"></script>
