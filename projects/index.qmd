@@ -5,7 +5,7 @@ listing:
   id: listing-projects
   sort-ui: [stars, title, author, date]
   sort:
-    - stars desc
+    - date desc
   field-types:
     stars: number
   filter-ui:
