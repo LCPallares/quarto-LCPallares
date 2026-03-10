@@ -6,8 +6,8 @@ description: |
   de $50.8B COP. Análisis EVM, predicción de costos al cierre (CRISP-DM), 
   scorecard de contratistas y visualización en Power BI y Python Dash.
 author: "LCPallares"
-date: "2024-09-30"
-date-format: "MMMM YYYY"
+date: "2026-03-09"
+# date-format: "MMMM YYYY"
 lang: es
 
 categories:
@@ -832,5 +832,3 @@ A partir del análisis del portafolio de **$50.88B COP** con corte a septiembre 
 - PMI — *Practice Standard for Earned Value Management*, 3rd ed.
 - DANE — *Índice de Costos de la Construcción de Vivienda* (ICCV)
 
-**Código fuente:**
-[github.com/tu-usuario/construccion-analitica](https://github.com/tu-usuario/construccion-analitica) <!-- reemplaza con tu URL -->

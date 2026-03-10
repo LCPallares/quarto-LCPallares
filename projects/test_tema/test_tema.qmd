@@ -1,0 +1,159 @@
+---
+title: "Test — Tema Oscuro"
+subtitle: "Preview del styles.css estilo samproell.io"
+date: "2024-09-30"
+lang: es
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contenido"
+    toc-location: left
+    theme: darkly
+    css: styles.css
+    code-fold: true
+    code-summary: "Python"
+    highlight-style: github-dark
+    embed-resources: true
+---
+
+## Tipografía y texto
+
+Este es un párrafo normal con **texto en negrita**, *cursiva*, y `código inline` para ver cómo se ve la fuente Barlow en el cuerpo del documento.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+### Subtítulo nivel 3
+
+Texto bajo un h3 — nótese la barra izquierda cian y el color del título.
+
+---
+
+## Bloques de código
+
+```{python}
+#| label: ejemplo-codigo
+#| code-fold: true
+
+import pandas as pd
+import numpy as np
+
+# Datos de ejemplo
+data = {
+    "proyecto": ["PRY001", "PRY002", "PRY003", "PRY004"],
+    "CPI":      [0.881,    0.963,    0.850,    0.948],
+    "SPI":      [0.890,    0.969,    0.951,    0.956],
+    "BAC":      [4.8e9,    12.5e9,   8.2e9,    6.4e9],
+}
+df = pd.DataFrame(data)
+df["EAC"] = df["BAC"] / df["CPI"]
+df["Desv_%"] = (df["EAC"] - df["BAC"]) / df["BAC"] * 100
+print(df.round(3))
+```
+
+Bloque sin fold:
+
+```python
+def curva_s(mes, plazo):
+    import math
+    def s(t): return 1 / (1 + math.exp(-10 * (t/plazo - 0.5)))
+    s0, s1 = s(0), s(plazo)
+    return (s(mes) - s0) / (s1 - s0)
+
+for mes in [1, 3, 6, 9, 12]:
+    print(f"Mes {mes:2d}: {curva_s(mes, 12)*100:.1f}%")
+```
+
+---
+
+## Tabla
+
+| Proyecto | CPI | SPI | Estado |
+|---|---|---|---|
+| Via Terciaria Km 12-28 | 0.881 | 0.890 | 🟡 ATENCIÓN |
+| Edificio Zona Rosa | 0.963 | 0.969 | 🟡 ATENCIÓN |
+| Puente Río Magdalena | 0.850 | 0.951 | 🔴 CRÍTICO |
+| Hospital Regional | 0.993 | 0.992 | 🟢 NORMAL |
+
+: Estado de proyectos al corte Sep 2024 {.striped}
+
+---
+
+## Callouts
+
+::: {.callout-note}
+**Nota:** esto es un callout de tipo note — borde cian izquierdo.
+:::
+
+::: {.callout-tip}
+**Tip:** esto es un callout de tipo tip — borde verde.
+:::
+
+::: {.callout-warning}
+**Atención:** PRY003 tiene CPI 0.850, en umbral crítico.
+:::
+
+::: {.callout-important}
+**Crítico:** el sobrecosto estimado del portafolio es $4.06B COP.
+:::
+
+---
+
+## Gráfica Plotly
+
+```{python}
+#| label: fig-test
+#| fig-cap: "Scatter CPI vs SPI — test del tema oscuro con Plotly"
+#| code-fold: true
+
+import plotly.graph_objects as go
+
+proyectos = ["PRY001","PRY002","PRY003","PRY004","PRY005","PRY006","PRY007","PRY008"]
+cpi = [0.881, 0.963, 0.850, 0.948, 0.877, 0.993, 0.978, 0.938]
+spi = [0.890, 0.969, 0.951, 0.956, 0.944, 0.992, 0.972, 0.937]
+bac = [4.8, 12.5, 8.2, 6.4, 3.1, 5.6, 0.48, 9.8]
+
+def color(c):
+    if c < 0.85: return "#d63031"
+    if c < 0.95: return "#e17055"
+    return "#00c9b1"
+
+fig = go.Figure()
+
+for v, c, s, b in zip(proyectos, cpi, spi, bac):
+    fig.add_trace(go.Scatter(
+        x=[c], y=[s],
+        mode="markers+text",
+        marker=dict(size=max(12, b*2), color=color(c),
+                    opacity=0.85, line=dict(width=2, color="white")),
+        text=[v], textposition="middle center",
+        textfont=dict(size=9, color="white"),
+        hovertemplate=f"<b>{v}</b><br>CPI: {c}<br>SPI: {s}<extra></extra>",
+        showlegend=False,
+    ))
+
+for val, col, dash in [(1.0,"#00c9b1","dot"),(0.95,"#e17055","dash"),(0.85,"#d63031","dash")]:
+    fig.add_hline(y=val, line_color=col, line_dash=dash, line_width=1, opacity=0.5)
+    fig.add_vline(x=val, line_color=col, line_dash=dash, line_width=1, opacity=0.5)
+
+fig.update_layout(
+    height=380,
+    paper_bgcolor="#1c1f30",
+    plot_bgcolor="#141622",
+    margin=dict(l=50, r=30, t=20, b=50),
+    xaxis=dict(title="CPI", gridcolor="#2a2f45", range=[0.82,1.02],
+               tickfont=dict(color="#7a8499"), titlefont=dict(color="#7a8499")),
+    yaxis=dict(title="SPI", gridcolor="#2a2f45", range=[0.84,1.02],
+               tickfont=dict(color="#7a8499"), titlefont=dict(color="#7a8499")),
+    font=dict(family="Barlow, sans-serif", color="#7a8499"),
+)
+fig.show()
+```
+
+---
+
+## Links y código inline
+
+Referencia a `construccion_analitica.py` que genera los CSV con los datos del portafolio.
+Ver documentación en [Quarto](https://quarto.org) y [Plotly](https://plotly.com/python/).
