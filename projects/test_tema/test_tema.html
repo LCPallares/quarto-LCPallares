@@ -4418,20 +4418,6 @@ src: url(data:font/ttf;base64,AAEAAAAQAQAABAAAR0RFRmToZOQAAAJEAAABckdQT1OZKpVmAA
 }
 
 :root {
---bg: #f9f9f9;
---bg-card: #ffffff;
---bg-code: #f5f5f5;
---bg-hover: #f0f0f0;
---accent: #2780e3;
---accent2: #1e6fd9;
---text: #333333;
---text-muted: #666666;
---text-dim: #999999;
---border: #eaeaea;
---link-hover: #1a5a9e;
-}
-
-[data-bs-theme="dark"] {
 --bg: #141622;
 --bg-card: #1c1f30;
 --bg-code: #1e2235;
@@ -4442,7 +4428,6 @@ src: url(data:font/ttf;base64,AAEAAAAQAQAABAAAR0RFRmToZOQAAAJEAAABckdQT1OZKpVmAA
 --text-muted: #7a8499;
 --text-dim: #4a5168;
 --border: #2a2f45;
---link-hover: #00e6c4;
 }
 
 body {
@@ -4451,7 +4436,6 @@ color: var(--text) !important;
 font-family: 'Barlow', sans-serif;
 font-size: 1rem;
 line-height: 1.7;
-transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -4474,7 +4458,7 @@ color: var(--accent) !important;
 }
 
 a { color: var(--accent) !important; text-decoration: none; }
-a:hover { color: var(--link-hover) !important; text-decoration: underline; }
+a:hover { color: white !important; text-decoration: underline; }
 
 #TOC, .sidebar nav {
 background-color: var(--bg-card) !important;
