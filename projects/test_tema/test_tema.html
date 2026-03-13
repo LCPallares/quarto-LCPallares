@@ -3919,6 +3919,8 @@ require(['plotly'], function(Plotly) {
 --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
 --accent: #3498db;
 --accent-hover: #2980b9;
+--accent2: #00c9b1;
+--accent3: #00a896;
 }
 
 body.quarto-dark {
@@ -4025,7 +4027,8 @@ flex: 1;
 }
 .listing-title {
 margin: 0 0 10px;
-font-size: 1.5em;
+
+font-size: inherit; 
 color: var(--text-heading);
 }
 .listing-subtitle {
@@ -4096,7 +4099,8 @@ padding: 20px;
 }
 .card-content h3 {
 margin: 0 0 10px;
-font-size: 1.4em;
+font-size: 1.1rem;
+line-height: 1.2;
 color: var(--text-heading);
 }
 .card-content h3 a {

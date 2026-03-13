@@ -7,6 +7,23 @@
     ]
   },
   {
+    "listing": "/index.html",
+    "items": [
+      "/projects/construccion_analitica/construccion_analitica.html",
+      "/projects/reporte-financiero/reporte-financiero.html",
+      "/projects/barrancabermeja-comunas-geojson.html",
+      "/projects/rick-and-morty-app.html",
+      "/projects/supermarket_sales_myanmar.html",
+      "/projects/congenital-hypothyroidism.html",
+      "/projects/university-dropout.html",
+      "/projects/amazon-best-seller.html",
+      "/projects/test_tema/test_tema.html",
+      "/projects/web_scraping_csc_india.html",
+      "/posts/estadistica-inferencial.html",
+      "/posts/estadistica-descriptiva.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/construccion_analitica/construccion_analitica.html",

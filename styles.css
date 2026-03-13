@@ -28,6 +28,9 @@
   
   --accent: #3498db;
   --accent-hover: #2980b9;
+
+  --accent2:     #00c9b1;
+  --accent3:    #00a896;
 }
 
 /* Cuando Quarto activa el tema oscuro, Bootstrap agrega 
@@ -164,7 +167,8 @@ a:hover {
 
 .listing-title {
   margin: 0 0 10px;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
+  font-size: inherit; /* Hereda el tamaño que pusimos arriba */
   color: var(--text-heading);
 }
 
@@ -260,7 +264,8 @@ a:hover {
 
 .card-content h3 {
   margin: 0 0 10px;
-  font-size: 1.4em;
+  font-size: 1.1rem;
+  line-height: 1.2;
   color: var(--text-heading);
 }
 
