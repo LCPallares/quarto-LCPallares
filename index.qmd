@@ -34,6 +34,28 @@ about:
     - text: "{{< iconify octicon:heart-fill-16 >}} Sponsor"
       href: "https://github.com/sponsors/mcanouil?o=esb"
       aria-label: "GitHub Sponsor mcanouil"
+
+listing:
+  - id: projects-grid
+    contents: 
+      - "projects/**/*.qmd"
+      - "!projects/index.qmd" # <--- Esto excluye el index de proyectos
+    type: grid
+    sort: "date desc"
+    max-items: 3 # Opcional: para mostrar solo los 3 más recientes
+    grid-columns: 3
+    fields: [image, title] # Quitamos 'description' como pediste
+    #exclude: "index.qmd"
+
+  - id: blogs-grid
+    contents:
+      - posts/**/*.qmd
+      - "!posts/index.qmd"
+    type: grid
+    sort: "date desc"
+    max-items: 3
+    grid-columns: 3
+    fields: [image, title]
 ---
 ::: {#edu-exp}
 :::
@@ -53,7 +75,9 @@ Bienvenido a mi sitio web, donde comparto mis proyectos y escribo sobre temas re
 
 Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
 
-<div id="projects-container" class="card-container"></div>
+::: {#projects-grid}
+:::
+
 
 ---
 
@@ -61,6 +85,5 @@ Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra 
 
 Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.
 
-<div id="blogs-container" class="card-container"></div>
-
-<script src="assets/js/render-cards.js"></script>
+::: {#blogs-grid}
+:::
