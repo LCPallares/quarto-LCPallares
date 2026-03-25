@@ -1,7 +1,7 @@
 ---
 title: "Modelo EOQ: Cantidad Económica de Pedido"
 subtitle: "Teoría, fórmulas e implementación en Python"
-author: "Gestión de Operaciones"
+author: "LCPallares"
 date: today
 format:
   html:
