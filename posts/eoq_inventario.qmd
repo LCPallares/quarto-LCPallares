@@ -1,0 +1,589 @@
+---
+title: "Modelo EOQ: Cantidad Económica de Pedido"
+subtitle: "Teoría, fórmulas e implementación en Python"
+author: "Gestión de Operaciones"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contenido"
+    code-fold: true
+    code-tools: true
+    theme: flatly
+    highlight-style: github
+    fig-align: center
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## ¿Qué es el EOQ?
+
+El **EOQ** (*Economic Order Quantity* — Cantidad Económica de Pedido) es un modelo clásico de administración de inventarios que responde a una pregunta fundamental:
+
+> *¿Cuántas unidades debo pedir cada vez para minimizar los costos totales de inventario?*
+
+El modelo fue desarrollado por Ford W. Harris en 1913 y sigue siendo uno de los más utilizados en operaciones y logística.
+
+---
+
+## El problema de los dos costos
+
+Gestionar inventario implica dos costos que van en **direcciones opuestas**:
+
+```{=html}
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Fondo tarjeta izquierda -->
+  <rect x="30" y="30" width="290" height="260" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+  <rect x="30" y="30" width="290" height="52" rx="12" fill="#3B82F6"/>
+  <rect x="30" y="60" width="290" height="22" fill="#3B82F6"/>
+  <text x="175" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white">Costo de Ordenar (Co)</text>
+
+  <text x="60" y="115" font-size="13" fill="#1E3A5F">Costo FIJO de hacer un pedido:</text>
+  <text x="60" y="138" font-size="12" fill="#374151">• Trámites administrativos</text>
+  <text x="60" y="158" font-size="12" fill="#374151">• Transporte y envío</text>
+  <text x="60" y="178" font-size="12" fill="#374151">• Tiempo del equipo de compras</text>
+  <text x="60" y="210" font-size="13" fill="#1E3A5F" font-weight="500">Si pides POCO y SEGUIDO →</text>
+  <text x="60" y="230" font-size="13" fill="#DC2626">este costo sube ↑</text>
+  <text x="60" y="262" font-size="12" fill="#6B7280" font-style="italic">Ejemplo: $45 por cada pedido</text>
+
+  <!-- Fondo tarjeta derecha -->
+  <rect x="380" y="30" width="290" height="260" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+  <rect x="380" y="30" width="290" height="52" rx="12" fill="#22C55E"/>
+  <rect x="380" y="60" width="290" height="22" fill="#22C55E"/>
+  <text x="525" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white">Costo de Mantener (Cm)</text>
+
+  <text x="410" y="115" font-size="13" fill="#14532D">Costo de tener stock almacenado:</text>
+  <text x="410" y="138" font-size="12" fill="#374151">• Bodega y almacenamiento</text>
+  <text x="410" y="158" font-size="12" fill="#374151">• Seguros y mermas</text>
+  <text x="410" y="178" font-size="12" fill="#374151">• Capital inmovilizado</text>
+  <text x="410" y="210" font-size="13" fill="#14532D" font-weight="500">Si pides MUCHO y RARA VEZ →</text>
+  <text x="410" y="230" font-size="13" fill="#DC2626">este costo sube ↑</text>
+  <text x="410" y="262" font-size="12" fill="#6B7280" font-style="italic">Ejemplo: $2 por unidad por año</text>
+
+  <!-- Flecha central -->
+  <text x="350" y="168" text-anchor="middle" font-size="22" fill="#6B7280">⇄</text>
+  <text x="350" y="188" text-anchor="middle" font-size="11" fill="#9CA3AF">punto</text>
+  <text x="350" y="202" text-anchor="middle" font-size="11" fill="#9CA3AF">óptimo</text>
+</svg>
+```
+
+El EOQ encuentra el **punto de equilibrio** donde la suma de ambos costos es mínima.
+
+---
+
+## La fórmula EOQ
+
+$$EOQ = \sqrt{\frac{2 \times D \times C_o}{C_m}}$$
+
+| Símbolo | Nombre | Descripción |
+|---------|--------|-------------|
+| $D$ | Demanda anual | Unidades consumidas o vendidas por año |
+| $C_o$ | Costo por orden | Costo fijo de realizar un pedido ($) |
+| $C_m$ | Costo de mantener | Costo de almacenar 1 unidad durante 1 año ($) |
+
+::: {.callout-note}
+### ¿De dónde sale la raíz cuadrada?
+
+El costo total anual es $CT = \frac{D}{Q} \cdot C_o + \frac{Q}{2} \cdot C_m$. Para encontrar el mínimo se deriva respecto a $Q$, se iguala a cero y se despeja. El resultado es la fórmula EOQ. En ese punto óptimo, el costo de ordenar siempre es igual al costo de mantener.
+:::
+
+---
+
+## Gráfica de costos
+
+La siguiente gráfica muestra por qué el EOQ es óptimo: es el punto donde se cruzan el costo de ordenar y el costo de mantener, minimizando el costo total.
+
+```{=html}
+<svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Ejes -->
+  <line x1="80" y1="320" x2="620" y2="320" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="80" y1="320" x2="80" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Etiquetas ejes -->
+  <text x="350" y="358" text-anchor="middle" font-size="13" fill="#374151">Cantidad pedida (Q)</text>
+  <text x="22" y="180" text-anchor="middle" font-size="13" fill="#374151" transform="rotate(-90,22,180)">Costo anual ($)</text>
+
+  <!--
+    Datos para D=1200, Co=50, Cm=2, EOQ≈245
+    Escala X: Q de 50 a 580 → pixel = 80 + (Q-50)/(580-50)*540
+    Escala Y: CT de 0 a 1400 → pixel = 320 - CT/1400*290
+
+    Costo ordenar  = (1200/Q)*50
+    Costo mantener = (Q/2)*2
+    Costo total    = suma
+
+    Puntos precalculados:
+  -->
+
+  <!-- Costo de mantener: línea recta ascendente -->
+  <!-- (Q/2)*2 = Q → en Q=50: 50; Q=580: 580 -->
+  <!-- Y en Q=50:  pix_y=320-50/1400*290=309.6  pix_x=80+(50-50)/530*540=80   -->
+  <!-- Y en Q=580: pix_y=320-580/1400*290=200.1  pix_x=80+(580-50)/530*540=620 -->
+  <line x1="80" y1="309" x2="620" y2="200" stroke="#22C55E" stroke-width="2.2" stroke-dasharray="6,3"/>
+
+  <!-- Costo de ordenar: hipérbola (D*Co/Q) = 60000/Q -->
+  <!-- puntos: Q=50→1200, Q=80→750, Q=120→500, Q=180→333, Q=245→245, Q=350→171, Q=500→120, Q=580→103 -->
+  <polyline
+    points="
+      80,45
+      106,107
+      131,172
+      162,249
+      212,269
+      291,265
+      371,252
+      451,237
+      531,222
+      620,208
+    "
+    fill="none" stroke="#3B82F6" stroke-width="2.2" stroke-dasharray="6,3"/>
+
+  <!-- Costo total -->
+  <!-- CT = 60000/Q + Q  (en términos simplificados de escala) -->
+  <!-- Puntos CT reales: Q=50:1250, Q=80:800, Q=120:540, Q=180:387, Q=245:490 aprox min, Q=350:471, Q=500:620, Q=580:683 -->
+  <!-- Recalculo correcto: CT=(1200/Q)*50+(Q/2)*2  -->
+  <!-- Q=50:  (24)*50+(25)*2=1200+50=1250  px_y=320-1250/1400*290=61  px_x=80 -->
+  <!-- Q=100: (12)*50+(50)*2=600+100=700   px_y=320-700/1400*290=175  px_x=182 -->
+  <!-- Q=150: (8)*50+(75)*2=400+150=550    px_y=320-550/1400*290=206  px_x=283 -->
+  <!-- Q=200: (6)*50+(100)*2=300+200=500   px_y=320-500/1400*290=216  px_x=335 -->
+  <!-- Q=245: 244.9+244.9=490              px_y=320-490/1400*290=218  px_x=376 -->
+  <!-- Q=300: (4)*50+(150)*2=200+300=500   px_y=216                   px_x=437 -->
+  <!-- Q=400: (3)*50+(200)*2=150+400=550   px_y=206                   px_x=539 -->
+  <!-- Q=500: (2.4)*50+(250)*2=120+500=620 px_y=192                   px_x=590 -->
+  <polyline
+    points="80,61 182,175 283,206 335,216 376,218 437,216 539,206 590,192"
+    fill="none" stroke="#EF4444" stroke-width="2.8"/>
+
+  <!-- Línea vertical EOQ -->
+  <line x1="376" y1="60" x2="376" y2="320" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+  <!-- Punto mínimo -->
+  <circle cx="376" cy="218" r="6" fill="#EF4444" stroke="white" stroke-width="2"/>
+
+  <!-- EOQ label -->
+  <text x="376" y="340" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">EOQ ≈ 245</text>
+
+  <!-- Leyenda -->
+  <rect x="430" y="45" width="185" height="90" rx="8" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+  <line x1="445" y1="68" x2="470" y2="68" stroke="#EF4444" stroke-width="2.5"/>
+  <text x="478" y="72" font-size="12" fill="#374151">Costo total</text>
+  <line x1="445" y1="90" x2="470" y2="90" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="478" y="94" font-size="12" fill="#374151">Costo de ordenar</text>
+  <line x1="445" y1="112" x2="470" y2="112" stroke="#22C55E" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="478" y="116" font-size="12" fill="#374151">Costo de mantener</text>
+
+  <!-- Anotación punto mínimo -->
+  <text x="390" y="205" font-size="11" fill="#DC2626" font-weight="500">mínimo</text>
+</svg>
+```
+
+---
+
+## Implementación en Python
+
+### EOQ básico
+
+```{python}
+import math
+
+# ── Fórmulas ────────────────────────────────────────────────────────────
+def eoq(demanda_anual, costo_orden, costo_mant):
+    """
+    EOQ = √(2 × D × Co / Cm)
+    """
+    return round(math.sqrt((2 * demanda_anual * costo_orden) / costo_mant), 2)
+
+def costo_total_anual(demanda_anual, cantidad_pedido, costo_orden, costo_mant):
+    """
+    CT = (D/Q) × Co  +  (Q/2) × Cm
+    """
+    return round(
+        (demanda_anual / cantidad_pedido) * costo_orden +
+        (cantidad_pedido / 2) * costo_mant,
+        2
+    )
+
+# ── Ejemplo ─────────────────────────────────────────────────────────────
+D  = 1200   # unidades/año
+Co = 50     # $ por orden
+Cm = 2      # $ por unidad por año
+
+Q_optima = eoq(D, Co, Cm)
+pedidos_año = round(D / Q_optima, 1)
+dias_entre_pedidos = round(365 / pedidos_año)
+ct = costo_total_anual(D, Q_optima, Co, Cm)
+
+print(f"EOQ (cantidad óptima por pedido) : {Q_optima} unidades")
+print(f"Pedidos por año                  : {pedidos_año}")
+print(f"Días entre pedidos               : {dias_entre_pedidos} días")
+print(f"Costo total anual                : ${ct:,.2f}")
+print()
+print("Verificación del punto de equilibrio:")
+print(f"  Costo de ordenar  = ${round((D/Q_optima)*Co, 2):,.2f}")
+print(f"  Costo de mantener = ${round((Q_optima/2)*Cm, 2):,.2f}")
+print("  (deben ser iguales en el EOQ ✓)")
+```
+
+---
+
+## Stock de Seguridad y Punto de Reorden
+
+En la realidad, la demanda y el lead time varían. Para cubrirse existe el **Stock de Seguridad (SS)** y el **Punto de Reorden (ROP)**.
+
+### Fórmulas
+
+$$SS = Z \times \sigma \times \sqrt{L}$$
+
+$$ROP = \bar{d} \times L + SS$$
+
+| Símbolo | Descripción |
+|---------|-------------|
+| $Z$ | Factor de nivel de servicio (ver tabla) |
+| $\sigma$ | Desviación estándar de la demanda diaria |
+| $L$ | Lead time en días |
+| $\bar{d}$ | Demanda diaria promedio ($D / 365$) |
+
+| Nivel de servicio | $Z$ |
+|---|---|
+| 90% | 1.28 |
+| 95% | 1.65 |
+| 99% | 2.33 |
+
+### Flujo del inventario
+
+```{=html}
+<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr2" markerWidth="7" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 7 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Ejes -->
+  <line x1="60" y1="230" x2="640" y2="230" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <line x1="60" y1="230" x2="60" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="350" y="258" text-anchor="middle" font-size="12" fill="#555">Tiempo</text>
+  <text x="20" y="130" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90,20,130)">Stock</text>
+
+  <!-- Nivel EOQ = 245, línea en y=55 -->
+  <!-- Nivel ROP = 30,  línea en y=195 -->
+  <!-- Nivel SS  = 7,   línea en y=218 -->
+  <!-- Escala: 0→230, 245→55  →  px = 230 - stock*(230-55)/245 -->
+
+  <!-- Etiquetas eje Y -->
+  <text x="52" y="59" text-anchor="end" font-size="11" fill="#555">245</text>
+  <text x="52" y="199" text-anchor="end" font-size="11" fill="#EF4444">ROP</text>
+  <text x="52" y="221" text-anchor="end" font-size="11" fill="#F59E0B">SS</text>
+
+  <!-- Líneas de referencia -->
+  <line x1="60" y1="196" x2="640" y2="196" stroke="#EF4444" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="60" y1="220" x2="640" y2="220" stroke="#F59E0B" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Ciclo 1: baja de 245 a ROP, luego a SS, luego salta -->
+  <!-- Descenso lineal de (80,55) a (280,196) = ROP alcanzado -->
+  <!-- Continúa bajando hasta (370,220) = llegó el pedido -->
+  <!-- Salta a (370,55) = recibió pedido -->
+
+  <polyline
+    points="80,55 280,196 370,220 370,55 540,196 610,213"
+    fill="none" stroke="#3B82F6" stroke-width="2.5"/>
+
+  <!-- Flecha de reposición -->
+  <line x1="370" y1="220" x2="370" y2="60" stroke="#22C55E" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+  <!-- Anotaciones ciclo 1 -->
+  <!-- Punto ROP -->
+  <circle cx="280" cy="196" r="4" fill="#EF4444"/>
+  <text x="265" y="185" font-size="10" fill="#EF4444" font-weight="600">pedir aquí</text>
+
+  <!-- Lead time bracket -->
+  <line x1="280" y1="240" x2="370" y2="240" stroke="#6B7280" stroke-width="1.2"/>
+  <line x1="280" y1="236" x2="280" y2="244" stroke="#6B7280" stroke-width="1.2"/>
+  <line x1="370" y1="236" x2="370" y2="244" stroke="#6B7280" stroke-width="1.2"/>
+  <text x="325" y="255" text-anchor="middle" font-size="10" fill="#6B7280">lead time</text>
+
+  <!-- Anotación SS -->
+  <rect x="390" y="210" width="100" height="18" rx="4" fill="#FEF3C7"/>
+  <text x="440" y="222" text-anchor="middle" font-size="10" fill="#92400E">stock seguridad</text>
+
+  <!-- EOQ bracket -->
+  <line x1="370" y1="55" x2="370" y2="220" stroke="#3B82F6" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="378" y="138" font-size="10" fill="#3B82F6">EOQ</text>
+</svg>
+```
+
+### Implementación en Python
+
+```{python}
+Z_TABLE = {0.90: 1.28, 0.95: 1.65, 0.99: 2.33}
+
+def stock_seguridad(desviacion_diaria, lead_time, nivel_servicio=0.95):
+    """
+    SS = Z × σ × √L
+    """
+    z = Z_TABLE[nivel_servicio]
+    return round(z * desviacion_diaria * math.sqrt(lead_time), 2)
+
+def rop(demanda_anual, lead_time, desviacion_diaria, nivel_servicio=0.95):
+    """
+    ROP = (d × L) + SS
+    donde d = D / 365
+    """
+    d  = demanda_anual / 365
+    ss = stock_seguridad(desviacion_diaria, lead_time, nivel_servicio)
+    return round(d * lead_time + ss, 2)
+
+# ── Ejemplo ─────────────────────────────────────────────────────────────
+sigma    = 1.5   # desviación estándar de la demanda diaria
+L        = 7     # días de lead time
+nivel    = 0.95  # nivel de servicio
+
+ss  = stock_seguridad(sigma, L, nivel)
+r   = rop(D, L, sigma, nivel)
+
+print(f"Stock de seguridad : {ss} unidades")
+print(f"Punto de reorden   : {r} unidades")
+print()
+print(f"→ Cuando el inventario llegue a {r} unidades, pedir {Q_optima} unidades (EOQ)")
+```
+
+---
+
+## EOQ con Descuentos por Cantidad
+
+Los proveedores suelen ofrecer precios menores si se compra mayor volumen. Esto agrega una tercera dimensión al análisis: el **ahorro en precio de compra**.
+
+### Fórmula del costo total con precio
+
+$$CT = D \times P + \frac{D}{Q} \times C_o + \frac{Q}{2} \times (CMi \times P)$$
+
+| Símbolo | Descripción |
+|---------|-------------|
+| $P$ | Precio unitario del tramo |
+| $CMi$ | Tasa de mantenimiento (fracción del precio, ej: 0.25) |
+| $D \times P$ | Costo anual de compra |
+
+::: {.callout-important}
+### Diferencia clave con el EOQ básico
+
+En el EOQ básico, $C_m$ es un valor fijo. Con descuentos, el costo de mantener es $CMi \times P$, y como $P$ cambia por tramo, hay que recalcular todo para cada precio.
+:::
+
+### Algoritmo paso a paso
+
+```{=html}
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr3" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Paso 1 -->
+  <rect x="40" y="30" width="180" height="64" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="130" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#1D4ED8">Paso 1</text>
+  <text x="130" y="73" text-anchor="middle" font-size="11" fill="#374151">Calcular EOQ natural</text>
+  <text x="130" y="88" text-anchor="middle" font-size="11" fill="#374151">para cada tramo de precio</text>
+
+  <!-- Flecha 1→2 -->
+  <line x1="220" y1="62" x2="258" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/>
+
+  <!-- Paso 2 -->
+  <rect x="260" y="30" width="180" height="64" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="350" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#15803D">Paso 2</text>
+  <text x="350" y="73" text-anchor="middle" font-size="11" fill="#374151">¿EOQ cae en el</text>
+  <text x="350" y="88" text-anchor="middle" font-size="11" fill="#374151">rango válido?</text>
+
+  <!-- Sí / No -->
+  <line x1="440" y1="62" x2="478" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/>
+  <text x="459" y="55" text-anchor="middle" font-size="10" fill="#15803D">SÍ</text>
+
+  <rect x="265" y="125" width="170" height="44" rx="8" fill="#FEF9C3" stroke="#FDE047" stroke-width="1.2"/>
+  <text x="350" y="145" text-anchor="middle" font-size="11" fill="#713F12">Usar mínimo del rango</text>
+  <text x="350" y="160" text-anchor="middle" font-size="11" fill="#713F12">como Q válida</text>
+
+  <!-- Flecha vertical NO -->
+  <line x1="350" y1="94" x2="350" y2="123" stroke="#EF4444" stroke-width="1.3" marker-end="url(#arr3)"/>
+  <text x="358" y="114" font-size="10" fill="#EF4444">NO</text>
+
+  <!-- Paso 3 a la derecha -->
+  <rect x="480" y="30" width="180" height="64" rx="10" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+  <text x="570" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#C2410C">Paso 3</text>
+  <text x="570" y="73" text-anchor="middle" font-size="11" fill="#374151">Calcular CT completo</text>
+  <text x="570" y="88" text-anchor="middle" font-size="11" fill="#374151">con Q y P del tramo</text>
+
+  <!-- Flecha desde "usar mínimo" a paso 3 -->
+  <line x1="435" y1="147" x2="478" y2="80" stroke="#555" stroke-width="1.2" marker-end="url(#arr3)" stroke-dasharray="4,3"/>
+
+  <!-- Paso 4 abajo centrado -->
+  <rect x="240" y="220" width="200" height="64" rx="10" fill="#FDF4FF" stroke="#E879F9" stroke-width="1.5"/>
+  <text x="340" y="245" text-anchor="middle" font-size="13" font-weight="600" fill="#86198F">Paso 4</text>
+  <text x="340" y="263" text-anchor="middle" font-size="11" fill="#374151">Elegir el tramo con</text>
+  <text x="340" y="278" text-anchor="middle" font-size="11" fill="#374151">menor CT → decisión</text>
+
+  <!-- Flecha paso 3 → paso 4 -->
+  <line x1="570" y1="94" x2="400" y2="218" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/>
+
+  <!-- Repetir para todos los tramos -->
+  <text x="340" y="320" text-anchor="middle" font-size="11" fill="#9CA3AF" font-style="italic">↺ repetir para cada tramo de precio</text>
+</svg>
+```
+
+### Implementación en Python
+
+```{python}
+def eoq_con_descuentos(demanda_anual, costo_orden, tasa_mantenimiento, tramos):
+    """
+    EOQ con descuentos por cantidad.
+
+    CT = D×P + (D/Q)×Co + (Q/2)×(CMi×P)
+
+    tramos: lista de dicts {'precio', 'min_q', 'max_q'}
+    ordenados de menor a mayor precio (mayor a menor cantidad).
+    """
+    detalle = []
+
+    for tramo in tramos:
+        P     = tramo['precio']
+        min_q = tramo['min_q']
+        max_q = tramo['max_q']
+
+        # Paso 1: EOQ natural con Cm = CMi × P
+        costo_mant = tasa_mantenimiento * P
+        q_natural  = math.sqrt((2 * demanda_anual * costo_orden) / costo_mant)
+
+        # Paso 2: ¿cae en el rango válido?
+        limite_sup = max_q if max_q is not None else float('inf')
+        en_rango   = min_q <= q_natural <= limite_sup
+        q_valida   = round(q_natural, 2) if en_rango else float(min_q)
+
+        # Paso 3: costo total completo
+        ct = round(
+            demanda_anual * P +
+            (demanda_anual / q_valida) * costo_orden +
+            (q_valida / 2) * costo_mant,
+            2
+        )
+
+        detalle.append({
+            'precio':      P,
+            'rango':       f"{min_q}–{max_q or '∞'}",
+            'eoq_natural': round(q_natural, 2),
+            'q_valida':    q_valida,
+            'en_rango':    en_rango,
+            'costo_total': ct,
+        })
+
+    # Paso 4: elegir el de menor CT
+    mejor = min(detalle, key=lambda x: x['costo_total'])
+    return mejor, detalle
+```
+
+### Ejemplo del análisis
+
+```{python}
+import pandas as pd
+
+tramos = [
+    {'precio': 60.00, 'min_q': 0,   'max_q': 299},
+    {'precio': 58.80, 'min_q': 300, 'max_q': 499},
+    {'precio': 57.00, 'min_q': 500, 'max_q': None},
+]
+
+mejor, detalle = eoq_con_descuentos(
+    demanda_anual      = 936,
+    costo_orden        = 45,
+    tasa_mantenimiento = 0.25,
+    tramos             = tramos
+)
+
+df = pd.DataFrame(detalle)
+df['válido'] = df['en_rango'].map({True: '✓ EOQ natural', False: '→ mínimo del rango'})
+df_show = df[['precio','rango','eoq_natural','q_valida','costo_total','válido']]
+df_show.columns = ['Precio','Rango','EOQ natural','Q usada','Costo total','Nota']
+
+print(df_show.to_string(index=False))
+print()
+print(f"DECISIÓN ÓPTIMA: pedir {mejor['q_valida']:.0f} unidades a ${mejor['precio']}")
+print(f"Costo total anual: ${mejor['costo_total']:,.2f}")
+```
+
+### Comparación visual de los tramos
+
+```{=html}
+<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+
+  <!-- Título -->
+  <text x="340" y="25" text-anchor="middle" font-size="14" font-weight="600" fill="#374151">Comparación de costos totales por tramo</text>
+
+  <!-- Barras (escala: max CT = 57400, base en y=240, altura max=180) -->
+  <!-- CT1=57284 → alto=57284/57400*180=179.6 → y_top=240-180=60 -->
+  <!-- CT2=57382 → alto=57382/57400*180=179.9 → y_top=60.1 -->
+  <!-- CT3=56999 → alto=56999/57400*180=178.7 → y_top=61.3 -->
+
+  <!-- Barra 1 — $60 -->
+  <rect x="100" y="61" width="120" height="179" rx="6" fill="#93C5FD"/>
+  <rect x="100" y="61" width="120" height="179" rx="6" fill="url(#b1)"/>
+  <text x="160" y="55" text-anchor="middle" font-size="12" font-weight="600" fill="#1D4ED8">$57,284</text>
+  <text x="160" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $60</text>
+  <text x="160" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 75 u.</text>
+
+  <!-- Barra 2 — $58.80 -->
+  <rect x="280" y="60" width="120" height="180" rx="6" fill="#86EFAC"/>
+  <text x="340" y="54" text-anchor="middle" font-size="12" font-weight="600" fill="#15803D">$57,382</text>
+  <text x="340" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $58.80</text>
+  <text x="340" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 300 u.</text>
+
+  <!-- Barra 3 — $57 (ganadora, más corta = menor costo) -->
+  <rect x="460" y="62" width="120" height="177" rx="6" fill="#6EE7B7"/>
+  <!-- Corona ganadora -->
+  <text x="520" y="48" text-anchor="middle" font-size="15">★</text>
+  <text x="520" y="56" text-anchor="middle" font-size="12" font-weight="600" fill="#065F46">$56,999</text>
+  <text x="520" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $57</text>
+  <text x="520" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 500 u.</text>
+
+  <!-- Línea base -->
+  <line x1="70" y1="240" x2="620" y2="240" stroke="#D1D5DB" stroke-width="1"/>
+
+  <!-- Etiqueta ganador -->
+  <rect x="455" y="8" width="130" height="20" rx="4" fill="#D1FAE5"/>
+  <text x="520" y="21" text-anchor="middle" font-size="11" fill="#065F46" font-weight="600">costo mínimo ✓</text>
+</svg>
+```
+
+::: {.callout-tip}
+### Intuición del resultado
+
+Aunque pedir 500 unidades implica mayor costo de almacenamiento, el **ahorro en precio de compra** ($57 vs $60 por unidad × 936 unidades/año = $2,808 de ahorro) compensa con creces ese costo adicional. El análisis EOQ con descuentos captura exactamente esa compensación.
+:::
+
+---
+
+## Resumen de fórmulas
+
+| Modelo | Fórmula | Responde a |
+|--------|---------|-----------|
+| EOQ básico | $\sqrt{2DC_o/C_m}$ | ¿Cuánto pedir? |
+| Stock de seguridad | $Z \cdot \sigma \cdot \sqrt{L}$ | ¿Qué colchón guardar? |
+| Punto de reorden | $\bar{d} \cdot L + SS$ | ¿Cuándo pedir? |
+| Costo total anual | $\frac{D}{Q}C_o + \frac{Q}{2}C_m$ | ¿Cuánto cuesta? |
+| EOQ con descuentos | $D \cdot P + \frac{D}{Q}C_o + \frac{Q}{2}(CMi \cdot P)$ | ¿Conviene el descuento? |
+
+---
+
+*Documento generado con [Quarto](https://quarto.org). Código fuente disponible en el repositorio del proyecto.*
