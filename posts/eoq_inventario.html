@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gestión de Operaciones">
+<meta name="dcterms.date" content="2026-03-25">
+
+<title>Modelo EOQ: Cantidad Económica de Pedido – LCPallares</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2349f95f243fd869e0bcbb66dece4c08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../assets/images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LCPallares</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/"> 
+<span class="menu-text">Proyectos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts/"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Acerca de</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lcpallares"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/lcpallares"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul>
+  <li><a href="#qué-es-el-eoq" id="toc-qué-es-el-eoq" class="nav-link active" data-scroll-target="#qué-es-el-eoq">¿Qué es el EOQ?</a></li>
+  <li><a href="#el-problema-de-los-dos-costos" id="toc-el-problema-de-los-dos-costos" class="nav-link" data-scroll-target="#el-problema-de-los-dos-costos">El problema de los dos costos</a></li>
+  <li><a href="#la-fórmula-eoq" id="toc-la-fórmula-eoq" class="nav-link" data-scroll-target="#la-fórmula-eoq">La fórmula EOQ</a></li>
+  <li><a href="#gráfica-de-costos" id="toc-gráfica-de-costos" class="nav-link" data-scroll-target="#gráfica-de-costos">Gráfica de costos</a></li>
+  <li><a href="#implementación-en-python" id="toc-implementación-en-python" class="nav-link" data-scroll-target="#implementación-en-python">Implementación en Python</a>
+  <ul class="collapse">
+  <li><a href="#eoq-básico" id="toc-eoq-básico" class="nav-link" data-scroll-target="#eoq-básico">EOQ básico</a></li>
+  </ul></li>
+  <li><a href="#stock-de-seguridad-y-punto-de-reorden" id="toc-stock-de-seguridad-y-punto-de-reorden" class="nav-link" data-scroll-target="#stock-de-seguridad-y-punto-de-reorden">Stock de Seguridad y Punto de Reorden</a>
+  <ul class="collapse">
+  <li><a href="#fórmulas" id="toc-fórmulas" class="nav-link" data-scroll-target="#fórmulas">Fórmulas</a></li>
+  <li><a href="#flujo-del-inventario" id="toc-flujo-del-inventario" class="nav-link" data-scroll-target="#flujo-del-inventario">Flujo del inventario</a></li>
+  <li><a href="#implementación-en-python-1" id="toc-implementación-en-python-1" class="nav-link" data-scroll-target="#implementación-en-python-1">Implementación en Python</a></li>
+  </ul></li>
+  <li><a href="#eoq-con-descuentos-por-cantidad" id="toc-eoq-con-descuentos-por-cantidad" class="nav-link" data-scroll-target="#eoq-con-descuentos-por-cantidad">EOQ con Descuentos por Cantidad</a>
+  <ul class="collapse">
+  <li><a href="#fórmula-del-costo-total-con-precio" id="toc-fórmula-del-costo-total-con-precio" class="nav-link" data-scroll-target="#fórmula-del-costo-total-con-precio">Fórmula del costo total con precio</a></li>
+  <li><a href="#algoritmo-paso-a-paso" id="toc-algoritmo-paso-a-paso" class="nav-link" data-scroll-target="#algoritmo-paso-a-paso">Algoritmo paso a paso</a></li>
+  <li><a href="#implementación-en-python-2" id="toc-implementación-en-python-2" class="nav-link" data-scroll-target="#implementación-en-python-2">Implementación en Python</a></li>
+  <li><a href="#ejemplo-del-análisis" id="toc-ejemplo-del-análisis" class="nav-link" data-scroll-target="#ejemplo-del-análisis">Ejemplo del análisis</a></li>
+  <li><a href="#comparación-visual-de-los-tramos" id="toc-comparación-visual-de-los-tramos" class="nav-link" data-scroll-target="#comparación-visual-de-los-tramos">Comparación visual de los tramos</a></li>
+  </ul></li>
+  <li><a href="#resumen-de-fórmulas" id="toc-resumen-de-fórmulas" class="nav-link" data-scroll-target="#resumen-de-fórmulas">Resumen de fórmulas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Modelo EOQ: Cantidad Económica de Pedido</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Teoría, fórmulas e implementación en Python</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gestión de Operaciones </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 25, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="qué-es-el-eoq" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-el-eoq">¿Qué es el EOQ?</h2>
+<p>El <strong>EOQ</strong> (<em>Economic Order Quantity</em> — Cantidad Económica de Pedido) es un modelo clásico de administración de inventarios que responde a una pregunta fundamental:</p>
+<blockquote class="blockquote">
+<p><em>¿Cuántas unidades debo pedir cada vez para minimizar los costos totales de inventario?</em></p>
+</blockquote>
+<p>El modelo fue desarrollado por Ford W. Harris en 1913 y sigue siendo uno de los más utilizados en operaciones y logística.</p>
+<hr>
+</section>
+<section id="el-problema-de-los-dos-costos" class="level2">
+<h2 class="anchored" data-anchor-id="el-problema-de-los-dos-costos">El problema de los dos costos</h2>
+<p>Gestionar inventario implica dos costos que van en <strong>direcciones opuestas</strong>:</p>
+<svg viewbox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr" markerwidth="8" markerheight="8" refx="6" refy="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"></path>
+    </marker>
+  </defs>
+
+  <!-- Fondo tarjeta izquierda -->
+  <rect x="30" y="30" width="290" height="260" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"></rect>
+  <rect x="30" y="30" width="290" height="52" rx="12" fill="#3B82F6"></rect>
+  <rect x="30" y="60" width="290" height="22" fill="#3B82F6"></rect>
+  <text x="175" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white">Costo de Ordenar (Co)</text>
+
+  <text x="60" y="115" font-size="13" fill="#1E3A5F">Costo FIJO de hacer un pedido:</text>
+  <text x="60" y="138" font-size="12" fill="#374151">• Trámites administrativos</text>
+  <text x="60" y="158" font-size="12" fill="#374151">• Transporte y envío</text>
+  <text x="60" y="178" font-size="12" fill="#374151">• Tiempo del equipo de compras</text>
+  <text x="60" y="210" font-size="13" fill="#1E3A5F" font-weight="500">Si pides POCO y SEGUIDO →</text>
+  <text x="60" y="230" font-size="13" fill="#DC2626">este costo sube ↑</text>
+  <text x="60" y="262" font-size="12" fill="#6B7280" font-style="italic">Ejemplo: $45 por cada pedido</text>
+
+  <!-- Fondo tarjeta derecha -->
+  <rect x="380" y="30" width="290" height="260" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"></rect>
+  <rect x="380" y="30" width="290" height="52" rx="12" fill="#22C55E"></rect>
+  <rect x="380" y="60" width="290" height="22" fill="#22C55E"></rect>
+  <text x="525" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white">Costo de Mantener (Cm)</text>
+
+  <text x="410" y="115" font-size="13" fill="#14532D">Costo de tener stock almacenado:</text>
+  <text x="410" y="138" font-size="12" fill="#374151">• Bodega y almacenamiento</text>
+  <text x="410" y="158" font-size="12" fill="#374151">• Seguros y mermas</text>
+  <text x="410" y="178" font-size="12" fill="#374151">• Capital inmovilizado</text>
+  <text x="410" y="210" font-size="13" fill="#14532D" font-weight="500">Si pides MUCHO y RARA VEZ →</text>
+  <text x="410" y="230" font-size="13" fill="#DC2626">este costo sube ↑</text>
+  <text x="410" y="262" font-size="12" fill="#6B7280" font-style="italic">Ejemplo: $2 por unidad por año</text>
+
+  <!-- Flecha central -->
+  <text x="350" y="168" text-anchor="middle" font-size="22" fill="#6B7280">⇄</text>
+  <text x="350" y="188" text-anchor="middle" font-size="11" fill="#9CA3AF">punto</text>
+  <text x="350" y="202" text-anchor="middle" font-size="11" fill="#9CA3AF">óptimo</text>
+</svg>
+<p>El EOQ encuentra el <strong>punto de equilibrio</strong> donde la suma de ambos costos es mínima.</p>
+<hr>
+</section>
+<section id="la-fórmula-eoq" class="level2">
+<h2 class="anchored" data-anchor-id="la-fórmula-eoq">La fórmula EOQ</h2>
+<p><span class="math display">\[EOQ = \sqrt{\frac{2 \times D \times C_o}{C_m}}\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 26%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Nombre</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(D\)</span></td>
+<td>Demanda anual</td>
+<td>Unidades consumidas o vendidas por año</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_o\)</span></td>
+<td>Costo por orden</td>
+<td>Costo fijo de realizar un pedido ($)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_m\)</span></td>
+<td>Costo de mantener</td>
+<td>Costo de almacenar 1 unidad durante 1 año ($)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>¿De dónde sale la raíz cuadrada?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El costo total anual es <span class="math inline">\(CT = \frac{D}{Q} \cdot C_o + \frac{Q}{2} \cdot C_m\)</span>. Para encontrar el mínimo se deriva respecto a <span class="math inline">\(Q\)</span>, se iguala a cero y se despeja. El resultado es la fórmula EOQ. En ese punto óptimo, el costo de ordenar siempre es igual al costo de mantener.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="gráfica-de-costos" class="level2">
+<h2 class="anchored" data-anchor-id="gráfica-de-costos">Gráfica de costos</h2>
+<p>La siguiente gráfica muestra por qué el EOQ es óptimo: es el punto donde se cruzan el costo de ordenar y el costo de mantener, minimizando el costo total.</p>
+<svg viewbox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arrowhead" markerwidth="8" markerheight="6" refx="6" refy="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"></polygon>
+    </marker>
+  </defs>
+
+  <!-- Ejes -->
+  <line x1="80" y1="320" x2="620" y2="320" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"></line>
+  <line x1="80" y1="320" x2="80" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"></line>
+
+  <!-- Etiquetas ejes -->
+  <text x="350" y="358" text-anchor="middle" font-size="13" fill="#374151">Cantidad pedida (Q)</text>
+  <text x="22" y="180" text-anchor="middle" font-size="13" fill="#374151" transform="rotate(-90,22,180)">Costo anual ($)</text>
+
+  <!--
+    Datos para D=1200, Co=50, Cm=2, EOQ≈245
+    Escala X: Q de 50 a 580 → pixel = 80 + (Q-50)/(580-50)*540
+    Escala Y: CT de 0 a 1400 → pixel = 320 - CT/1400*290
+
+    Costo ordenar  = (1200/Q)*50
+    Costo mantener = (Q/2)*2
+    Costo total    = suma
+
+    Puntos precalculados:
+  -->
+
+  <!-- Costo de mantener: línea recta ascendente -->
+  <!-- (Q/2)*2 = Q → en Q=50: 50; Q=580: 580 -->
+  <!-- Y en Q=50:  pix_y=320-50/1400*290=309.6  pix_x=80+(50-50)/530*540=80   -->
+  <!-- Y en Q=580: pix_y=320-580/1400*290=200.1  pix_x=80+(580-50)/530*540=620 -->
+  <line x1="80" y1="309" x2="620" y2="200" stroke="#22C55E" stroke-width="2.2" stroke-dasharray="6,3"></line>
+
+  <!-- Costo de ordenar: hipérbola (D*Co/Q) = 60000/Q -->
+  <!-- puntos: Q=50→1200, Q=80→750, Q=120→500, Q=180→333, Q=245→245, Q=350→171, Q=500→120, Q=580→103 -->
+  <polyline points="
+      80,45
+      106,107
+      131,172
+      162,249
+      212,269
+      291,265
+      371,252
+      451,237
+      531,222
+      620,208
+    " fill="none" stroke="#3B82F6" stroke-width="2.2" stroke-dasharray="6,3"></polyline>
+
+  <!-- Costo total -->
+  <!-- CT = 60000/Q + Q  (en términos simplificados de escala) -->
+  <!-- Puntos CT reales: Q=50:1250, Q=80:800, Q=120:540, Q=180:387, Q=245:490 aprox min, Q=350:471, Q=500:620, Q=580:683 -->
+  <!-- Recalculo correcto: CT=(1200/Q)*50+(Q/2)*2  -->
+  <!-- Q=50:  (24)*50+(25)*2=1200+50=1250  px_y=320-1250/1400*290=61  px_x=80 -->
+  <!-- Q=100: (12)*50+(50)*2=600+100=700   px_y=320-700/1400*290=175  px_x=182 -->
+  <!-- Q=150: (8)*50+(75)*2=400+150=550    px_y=320-550/1400*290=206  px_x=283 -->
+  <!-- Q=200: (6)*50+(100)*2=300+200=500   px_y=320-500/1400*290=216  px_x=335 -->
+  <!-- Q=245: 244.9+244.9=490              px_y=320-490/1400*290=218  px_x=376 -->
+  <!-- Q=300: (4)*50+(150)*2=200+300=500   px_y=216                   px_x=437 -->
+  <!-- Q=400: (3)*50+(200)*2=150+400=550   px_y=206                   px_x=539 -->
+  <!-- Q=500: (2.4)*50+(250)*2=120+500=620 px_y=192                   px_x=590 -->
+  <polyline points="80,61 182,175 283,206 335,216 376,218 437,216 539,206 590,192" fill="none" stroke="#EF4444" stroke-width="2.8"></polyline>
+
+  <!-- Línea vertical EOQ -->
+  <line x1="376" y1="60" x2="376" y2="320" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="4,4"></line>
+
+  <!-- Punto mínimo -->
+  <circle cx="376" cy="218" r="6" fill="#EF4444" stroke="white" stroke-width="2"></circle>
+
+  <!-- EOQ label -->
+  <text x="376" y="340" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">EOQ ≈ 245</text>
+
+  <!-- Leyenda -->
+  <rect x="430" y="45" width="185" height="90" rx="8" fill="white" stroke="#E5E7EB" stroke-width="1"></rect>
+  <line x1="445" y1="68" x2="470" y2="68" stroke="#EF4444" stroke-width="2.5"></line>
+  <text x="478" y="72" font-size="12" fill="#374151">Costo total</text>
+  <line x1="445" y1="90" x2="470" y2="90" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5,3"></line>
+  <text x="478" y="94" font-size="12" fill="#374151">Costo de ordenar</text>
+  <line x1="445" y1="112" x2="470" y2="112" stroke="#22C55E" stroke-width="2" stroke-dasharray="5,3"></line>
+  <text x="478" y="116" font-size="12" fill="#374151">Costo de mantener</text>
+
+  <!-- Anotación punto mínimo -->
+  <text x="390" y="205" font-size="11" fill="#DC2626" font-weight="500">mínimo</text>
+</svg>
+<hr>
+</section>
+<section id="implementación-en-python" class="level2">
+<h2 class="anchored" data-anchor-id="implementación-en-python">Implementación en Python</h2>
+<section id="eoq-básico" class="level3">
+<h3 class="anchored" data-anchor-id="eoq-básico">EOQ básico</h3>
+<div id="283aa5d5" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Fórmulas ────────────────────────────────────────────────────────────</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eoq(demanda_anual, costo_orden, costo_mant):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    EOQ = √(2 × D × Co / Cm)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(math.sqrt((<span class="dv">2</span> <span class="op">*</span> demanda_anual <span class="op">*</span> costo_orden) <span class="op">/</span> costo_mant), <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> costo_total_anual(demanda_anual, cantidad_pedido, costo_orden, costo_mant):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    CT = (D/Q) × Co  +  (Q/2) × Cm</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        (demanda_anual <span class="op">/</span> cantidad_pedido) <span class="op">*</span> costo_orden <span class="op">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        (cantidad_pedido <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> costo_mant,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Ejemplo ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>D  <span class="op">=</span> <span class="dv">1200</span>   <span class="co"># unidades/año</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Co <span class="op">=</span> <span class="dv">50</span>     <span class="co"># $ por orden</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Cm <span class="op">=</span> <span class="dv">2</span>      <span class="co"># $ por unidad por año</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Q_optima <span class="op">=</span> eoq(D, Co, Cm)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>pedidos_año <span class="op">=</span> <span class="bu">round</span>(D <span class="op">/</span> Q_optima, <span class="dv">1</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>dias_entre_pedidos <span class="op">=</span> <span class="bu">round</span>(<span class="dv">365</span> <span class="op">/</span> pedidos_año)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> costo_total_anual(D, Q_optima, Co, Cm)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"EOQ (cantidad óptima por pedido) : </span><span class="sc">{</span>Q_optima<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pedidos por año                  : </span><span class="sc">{</span>pedidos_a<span class="sc">ñ</span>o<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Días entre pedidos               : </span><span class="sc">{</span>dias_entre_pedidos<span class="sc">}</span><span class="ss"> días"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Costo total anual                : $</span><span class="sc">{</span>ct<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Verificación del punto de equilibrio:"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Costo de ordenar  = $</span><span class="sc">{</span><span class="bu">round</span>((D<span class="op">/</span>Q_optima)<span class="op">*</span>Co, <span class="dv">2</span>)<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Costo de mantener = $</span><span class="sc">{</span><span class="bu">round</span>((Q_optima<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>Cm, <span class="dv">2</span>)<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  (deben ser iguales en el EOQ ✓)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>EOQ (cantidad óptima por pedido) : 244.95 unidades
+Pedidos por año                  : 4.9
+Días entre pedidos               : 74 días
+Costo total anual                : $489.90
+
+Verificación del punto de equilibrio:
+  Costo de ordenar  = $244.95
+  Costo de mantener = $244.95
+  (deben ser iguales en el EOQ ✓)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="stock-de-seguridad-y-punto-de-reorden" class="level2">
+<h2 class="anchored" data-anchor-id="stock-de-seguridad-y-punto-de-reorden">Stock de Seguridad y Punto de Reorden</h2>
+<p>En la realidad, la demanda y el lead time varían. Para cubrirse existe el <strong>Stock de Seguridad (SS)</strong> y el <strong>Punto de Reorden (ROP)</strong>.</p>
+<section id="fórmulas" class="level3">
+<h3 class="anchored" data-anchor-id="fórmulas">Fórmulas</h3>
+<p><span class="math display">\[SS = Z \times \sigma \times \sqrt{L}\]</span></p>
+<p><span class="math display">\[ROP = \bar{d} \times L + SS\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Z\)</span></td>
+<td>Factor de nivel de servicio (ver tabla)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sigma\)</span></td>
+<td>Desviación estándar de la demanda diaria</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(L\)</span></td>
+<td>Lead time en días</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{d}\)</span></td>
+<td>Demanda diaria promedio (<span class="math inline">\(D / 365\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Nivel de servicio</th>
+<th><span class="math inline">\(Z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td>1.28</td>
+</tr>
+<tr class="even">
+<td>95%</td>
+<td>1.65</td>
+</tr>
+<tr class="odd">
+<td>99%</td>
+<td>2.33</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="flujo-del-inventario" class="level3">
+<h3 class="anchored" data-anchor-id="flujo-del-inventario">Flujo del inventario</h3>
+<svg viewbox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr2" markerwidth="7" markerheight="6" refx="5" refy="3" orient="auto">
+      <polygon points="0 0, 7 3, 0 6" fill="#555"></polygon>
+    </marker>
+  </defs>
+
+  <!-- Ejes -->
+  <line x1="60" y1="230" x2="640" y2="230" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"></line>
+  <line x1="60" y1="230" x2="60" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"></line>
+  <text x="350" y="258" text-anchor="middle" font-size="12" fill="#555">Tiempo</text>
+  <text x="20" y="130" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90,20,130)">Stock</text>
+
+  <!-- Nivel EOQ = 245, línea en y=55 -->
+  <!-- Nivel ROP = 30,  línea en y=195 -->
+  <!-- Nivel SS  = 7,   línea en y=218 -->
+  <!-- Escala: 0→230, 245→55  →  px = 230 - stock*(230-55)/245 -->
+
+  <!-- Etiquetas eje Y -->
+  <text x="52" y="59" text-anchor="end" font-size="11" fill="#555">245</text>
+  <text x="52" y="199" text-anchor="end" font-size="11" fill="#EF4444">ROP</text>
+  <text x="52" y="221" text-anchor="end" font-size="11" fill="#F59E0B">SS</text>
+
+  <!-- Líneas de referencia -->
+  <line x1="60" y1="196" x2="640" y2="196" stroke="#EF4444" stroke-width="1" stroke-dasharray="5,4"></line>
+  <line x1="60" y1="220" x2="640" y2="220" stroke="#F59E0B" stroke-width="1" stroke-dasharray="5,4"></line>
+
+  <!-- Ciclo 1: baja de 245 a ROP, luego a SS, luego salta -->
+  <!-- Descenso lineal de (80,55) a (280,196) = ROP alcanzado -->
+  <!-- Continúa bajando hasta (370,220) = llegó el pedido -->
+  <!-- Salta a (370,55) = recibió pedido -->
+
+  <polyline points="80,55 280,196 370,220 370,55 540,196 610,213" fill="none" stroke="#3B82F6" stroke-width="2.5"></polyline>
+
+  <!-- Flecha de reposición -->
+  <line x1="370" y1="220" x2="370" y2="60" stroke="#22C55E" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arr2)"></line>
+
+  <!-- Anotaciones ciclo 1 -->
+  <!-- Punto ROP -->
+  <circle cx="280" cy="196" r="4" fill="#EF4444"></circle>
+  <text x="265" y="185" font-size="10" fill="#EF4444" font-weight="600">pedir aquí</text>
+
+  <!-- Lead time bracket -->
+  <line x1="280" y1="240" x2="370" y2="240" stroke="#6B7280" stroke-width="1.2"></line>
+  <line x1="280" y1="236" x2="280" y2="244" stroke="#6B7280" stroke-width="1.2"></line>
+  <line x1="370" y1="236" x2="370" y2="244" stroke="#6B7280" stroke-width="1.2"></line>
+  <text x="325" y="255" text-anchor="middle" font-size="10" fill="#6B7280">lead time</text>
+
+  <!-- Anotación SS -->
+  <rect x="390" y="210" width="100" height="18" rx="4" fill="#FEF3C7"></rect>
+  <text x="440" y="222" text-anchor="middle" font-size="10" fill="#92400E">stock seguridad</text>
+
+  <!-- EOQ bracket -->
+  <line x1="370" y1="55" x2="370" y2="220" stroke="#3B82F6" stroke-width="0.8" stroke-dasharray="2,2"></line>
+  <text x="378" y="138" font-size="10" fill="#3B82F6">EOQ</text>
+</svg>
+</section>
+<section id="implementación-en-python-1" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-en-python-1">Implementación en Python</h3>
+<div id="1bae2e3e" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Z_TABLE <span class="op">=</span> {<span class="fl">0.90</span>: <span class="fl">1.28</span>, <span class="fl">0.95</span>: <span class="fl">1.65</span>, <span class="fl">0.99</span>: <span class="fl">2.33</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stock_seguridad(desviacion_diaria, lead_time, nivel_servicio<span class="op">=</span><span class="fl">0.95</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    SS = Z × σ × √L</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> Z_TABLE[nivel_servicio]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(z <span class="op">*</span> desviacion_diaria <span class="op">*</span> math.sqrt(lead_time), <span class="dv">2</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rop(demanda_anual, lead_time, desviacion_diaria, nivel_servicio<span class="op">=</span><span class="fl">0.95</span>):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    ROP = (d × L) + SS</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    donde d = D / 365</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    d  <span class="op">=</span> demanda_anual <span class="op">/</span> <span class="dv">365</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ss <span class="op">=</span> stock_seguridad(desviacion_diaria, lead_time, nivel_servicio)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(d <span class="op">*</span> lead_time <span class="op">+</span> ss, <span class="dv">2</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Ejemplo ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>sigma    <span class="op">=</span> <span class="fl">1.5</span>   <span class="co"># desviación estándar de la demanda diaria</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>L        <span class="op">=</span> <span class="dv">7</span>     <span class="co"># días de lead time</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>nivel    <span class="op">=</span> <span class="fl">0.95</span>  <span class="co"># nivel de servicio</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ss  <span class="op">=</span> stock_seguridad(sigma, L, nivel)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>r   <span class="op">=</span> rop(D, L, sigma, nivel)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Stock de seguridad : </span><span class="sc">{</span>ss<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Punto de reorden   : </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"→ Cuando el inventario llegue a </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> unidades, pedir </span><span class="sc">{</span>Q_optima<span class="sc">}</span><span class="ss"> unidades (EOQ)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stock de seguridad : 6.55 unidades
+Punto de reorden   : 29.56 unidades
+
+→ Cuando el inventario llegue a 29.56 unidades, pedir 244.95 unidades (EOQ)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="eoq-con-descuentos-por-cantidad" class="level2">
+<h2 class="anchored" data-anchor-id="eoq-con-descuentos-por-cantidad">EOQ con Descuentos por Cantidad</h2>
+<p>Los proveedores suelen ofrecer precios menores si se compra mayor volumen. Esto agrega una tercera dimensión al análisis: el <strong>ahorro en precio de compra</strong>.</p>
+<section id="fórmula-del-costo-total-con-precio" class="level3">
+<h3 class="anchored" data-anchor-id="fórmula-del-costo-total-con-precio">Fórmula del costo total con precio</h3>
+<p><span class="math display">\[CT = D \times P + \frac{D}{Q} \times C_o + \frac{Q}{2} \times (CMi \times P)\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(P\)</span></td>
+<td>Precio unitario del tramo</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(CMi\)</span></td>
+<td>Tasa de mantenimiento (fracción del precio, ej: 0.25)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(D \times P\)</span></td>
+<td>Costo anual de compra</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Diferencia clave con el EOQ básico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el EOQ básico, <span class="math inline">\(C_m\)</span> es un valor fijo. Con descuentos, el costo de mantener es <span class="math inline">\(CMi \times P\)</span>, y como <span class="math inline">\(P\)</span> cambia por tramo, hay que recalcular todo para cada precio.</p>
+</div>
+</div>
+</section>
+<section id="algoritmo-paso-a-paso" class="level3">
+<h3 class="anchored" data-anchor-id="algoritmo-paso-a-paso">Algoritmo paso a paso</h3>
+<svg viewbox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arr3" markerwidth="8" markerheight="6" refx="6" refy="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"></polygon>
+    </marker>
+  </defs>
+
+  <!-- Paso 1 -->
+  <rect x="40" y="30" width="180" height="64" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"></rect>
+  <text x="130" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#1D4ED8">Paso 1</text>
+  <text x="130" y="73" text-anchor="middle" font-size="11" fill="#374151">Calcular EOQ natural</text>
+  <text x="130" y="88" text-anchor="middle" font-size="11" fill="#374151">para cada tramo de precio</text>
+
+  <!-- Flecha 1→2 -->
+  <line x1="220" y1="62" x2="258" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"></line>
+
+  <!-- Paso 2 -->
+  <rect x="260" y="30" width="180" height="64" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"></rect>
+  <text x="350" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#15803D">Paso 2</text>
+  <text x="350" y="73" text-anchor="middle" font-size="11" fill="#374151">¿EOQ cae en el</text>
+  <text x="350" y="88" text-anchor="middle" font-size="11" fill="#374151">rango válido?</text>
+
+  <!-- Sí / No -->
+  <line x1="440" y1="62" x2="478" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"></line>
+  <text x="459" y="55" text-anchor="middle" font-size="10" fill="#15803D">SÍ</text>
+
+  <rect x="265" y="125" width="170" height="44" rx="8" fill="#FEF9C3" stroke="#FDE047" stroke-width="1.2"></rect>
+  <text x="350" y="145" text-anchor="middle" font-size="11" fill="#713F12">Usar mínimo del rango</text>
+  <text x="350" y="160" text-anchor="middle" font-size="11" fill="#713F12">como Q válida</text>
+
+  <!-- Flecha vertical NO -->
+  <line x1="350" y1="94" x2="350" y2="123" stroke="#EF4444" stroke-width="1.3" marker-end="url(#arr3)"></line>
+  <text x="358" y="114" font-size="10" fill="#EF4444">NO</text>
+
+  <!-- Paso 3 a la derecha -->
+  <rect x="480" y="30" width="180" height="64" rx="10" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"></rect>
+  <text x="570" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#C2410C">Paso 3</text>
+  <text x="570" y="73" text-anchor="middle" font-size="11" fill="#374151">Calcular CT completo</text>
+  <text x="570" y="88" text-anchor="middle" font-size="11" fill="#374151">con Q y P del tramo</text>
+
+  <!-- Flecha desde "usar mínimo" a paso 3 -->
+  <line x1="435" y1="147" x2="478" y2="80" stroke="#555" stroke-width="1.2" marker-end="url(#arr3)" stroke-dasharray="4,3"></line>
+
+  <!-- Paso 4 abajo centrado -->
+  <rect x="240" y="220" width="200" height="64" rx="10" fill="#FDF4FF" stroke="#E879F9" stroke-width="1.5"></rect>
+  <text x="340" y="245" text-anchor="middle" font-size="13" font-weight="600" fill="#86198F">Paso 4</text>
+  <text x="340" y="263" text-anchor="middle" font-size="11" fill="#374151">Elegir el tramo con</text>
+  <text x="340" y="278" text-anchor="middle" font-size="11" fill="#374151">menor CT → decisión</text>
+
+  <!-- Flecha paso 3 → paso 4 -->
+  <line x1="570" y1="94" x2="400" y2="218" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"></line>
+
+  <!-- Repetir para todos los tramos -->
+  <text x="340" y="320" text-anchor="middle" font-size="11" fill="#9CA3AF" font-style="italic">↺ repetir para cada tramo de precio</text>
+</svg>
+</section>
+<section id="implementación-en-python-2" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-en-python-2">Implementación en Python</h3>
+<div id="a97183ab" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eoq_con_descuentos(demanda_anual, costo_orden, tasa_mantenimiento, tramos):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    EOQ con descuentos por cantidad.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    CT = D×P + (D/Q)×Co + (Q/2)×(CMi×P)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    tramos: lista de dicts {'precio', 'min_q', 'max_q'}</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ordenados de menor a mayor precio (mayor a menor cantidad).</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    detalle <span class="op">=</span> []</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tramo <span class="kw">in</span> tramos:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        P     <span class="op">=</span> tramo[<span class="st">'precio'</span>]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        min_q <span class="op">=</span> tramo[<span class="st">'min_q'</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        max_q <span class="op">=</span> tramo[<span class="st">'max_q'</span>]</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 1: EOQ natural con Cm = CMi × P</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        costo_mant <span class="op">=</span> tasa_mantenimiento <span class="op">*</span> P</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        q_natural  <span class="op">=</span> math.sqrt((<span class="dv">2</span> <span class="op">*</span> demanda_anual <span class="op">*</span> costo_orden) <span class="op">/</span> costo_mant)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 2: ¿cae en el rango válido?</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        limite_sup <span class="op">=</span> max_q <span class="cf">if</span> max_q <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="bu">float</span>(<span class="st">'inf'</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        en_rango   <span class="op">=</span> min_q <span class="op">&lt;=</span> q_natural <span class="op">&lt;=</span> limite_sup</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        q_valida   <span class="op">=</span> <span class="bu">round</span>(q_natural, <span class="dv">2</span>) <span class="cf">if</span> en_rango <span class="cf">else</span> <span class="bu">float</span>(min_q)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 3: costo total completo</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        ct <span class="op">=</span> <span class="bu">round</span>(</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>            demanda_anual <span class="op">*</span> P <span class="op">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            (demanda_anual <span class="op">/</span> q_valida) <span class="op">*</span> costo_orden <span class="op">+</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            (q_valida <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> costo_mant,</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            <span class="dv">2</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        detalle.append({</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">'precio'</span>:      P,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">'rango'</span>:       <span class="ss">f"</span><span class="sc">{</span>min_q<span class="sc">}</span><span class="ss">–</span><span class="sc">{</span>max_q <span class="kw">or</span> <span class="st">'∞'</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">'eoq_natural'</span>: <span class="bu">round</span>(q_natural, <span class="dv">2</span>),</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">'q_valida'</span>:    q_valida,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">'en_rango'</span>:    en_rango,</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">'costo_total'</span>: ct,</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Paso 4: elegir el de menor CT</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    mejor <span class="op">=</span> <span class="bu">min</span>(detalle, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">'costo_total'</span>])</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mejor, detalle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="ejemplo-del-análisis" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-del-análisis">Ejemplo del análisis</h3>
+<div id="54594232" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tramos <span class="op">=</span> [</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">60.00</span>, <span class="st">'min_q'</span>: <span class="dv">0</span>,   <span class="st">'max_q'</span>: <span class="dv">299</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">58.80</span>, <span class="st">'min_q'</span>: <span class="dv">300</span>, <span class="st">'max_q'</span>: <span class="dv">499</span>},</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">57.00</span>, <span class="st">'min_q'</span>: <span class="dv">500</span>, <span class="st">'max_q'</span>: <span class="va">None</span>},</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>mejor, detalle <span class="op">=</span> eoq_con_descuentos(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    demanda_anual      <span class="op">=</span> <span class="dv">936</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    costo_orden        <span class="op">=</span> <span class="dv">45</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    tasa_mantenimiento <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    tramos             <span class="op">=</span> tramos</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(detalle)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'válido'</span>] <span class="op">=</span> df[<span class="st">'en_rango'</span>].<span class="bu">map</span>({<span class="va">True</span>: <span class="st">'✓ EOQ natural'</span>, <span class="va">False</span>: <span class="st">'→ mínimo del rango'</span>})</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>df_show <span class="op">=</span> df[[<span class="st">'precio'</span>,<span class="st">'rango'</span>,<span class="st">'eoq_natural'</span>,<span class="st">'q_valida'</span>,<span class="st">'costo_total'</span>,<span class="st">'válido'</span>]]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>df_show.columns <span class="op">=</span> [<span class="st">'Precio'</span>,<span class="st">'Rango'</span>,<span class="st">'EOQ natural'</span>,<span class="st">'Q usada'</span>,<span class="st">'Costo total'</span>,<span class="st">'Nota'</span>]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_show.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"DECISIÓN ÓPTIMA: pedir </span><span class="sc">{</span>mejor[<span class="st">'q_valida'</span>]<span class="sc">:.0f}</span><span class="ss"> unidades a $</span><span class="sc">{</span>mejor[<span class="st">'precio'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Costo total anual: $</span><span class="sc">{</span>mejor[<span class="st">'costo_total'</span>]<span class="sc">:,.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> Precio   Rango  EOQ natural  Q usada  Costo total               Nota
+   60.0   0–299        74.94    74.94     57284.10      ✓ EOQ natural
+   58.8 300–499        75.70   300.00     57382.20 → mínimo del rango
+   57.0   500–∞        76.89   500.00     56998.74 → mínimo del rango
+
+DECISIÓN ÓPTIMA: pedir 500 unidades a $57.0
+Costo total anual: $56,998.74</code></pre>
+</div>
+</div>
+</section>
+<section id="comparación-visual-de-los-tramos" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-visual-de-los-tramos">Comparación visual de los tramos</h3>
+<svg viewbox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;">
+
+  <!-- Título -->
+  <text x="340" y="25" text-anchor="middle" font-size="14" font-weight="600" fill="#374151">Comparación de costos totales por tramo</text>
+
+  <!-- Barras (escala: max CT = 57400, base en y=240, altura max=180) -->
+  <!-- CT1=57284 → alto=57284/57400*180=179.6 → y_top=240-180=60 -->
+  <!-- CT2=57382 → alto=57382/57400*180=179.9 → y_top=60.1 -->
+  <!-- CT3=56999 → alto=56999/57400*180=178.7 → y_top=61.3 -->
+
+  <!-- Barra 1 — $60 -->
+  <rect x="100" y="61" width="120" height="179" rx="6" fill="#93C5FD"></rect>
+  <rect x="100" y="61" width="120" height="179" rx="6" fill="url(#b1)"></rect>
+  <text x="160" y="55" text-anchor="middle" font-size="12" font-weight="600" fill="#1D4ED8">$57,284</text>
+  <text x="160" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $60</text>
+  <text x="160" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 75 u.</text>
+
+  <!-- Barra 2 — $58.80 -->
+  <rect x="280" y="60" width="120" height="180" rx="6" fill="#86EFAC"></rect>
+  <text x="340" y="54" text-anchor="middle" font-size="12" font-weight="600" fill="#15803D">$57,382</text>
+  <text x="340" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $58.80</text>
+  <text x="340" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 300 u.</text>
+
+  <!-- Barra 3 — $57 (ganadora, más corta = menor costo) -->
+  <rect x="460" y="62" width="120" height="177" rx="6" fill="#6EE7B7"></rect>
+  <!-- Corona ganadora -->
+  <text x="520" y="48" text-anchor="middle" font-size="15">★</text>
+  <text x="520" y="56" text-anchor="middle" font-size="12" font-weight="600" fill="#065F46">$56,999</text>
+  <text x="520" y="255" text-anchor="middle" font-size="12" fill="#374151">Precio $57</text>
+  <text x="520" y="270" text-anchor="middle" font-size="11" fill="#6B7280">Q = 500 u.</text>
+
+  <!-- Línea base -->
+  <line x1="70" y1="240" x2="620" y2="240" stroke="#D1D5DB" stroke-width="1"></line>
+
+  <!-- Etiqueta ganador -->
+  <rect x="455" y="8" width="130" height="20" rx="4" fill="#D1FAE5"></rect>
+  <text x="520" y="21" text-anchor="middle" font-size="11" fill="#065F46" font-weight="600">costo mínimo ✓</text>
+</svg>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Intuición del resultado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aunque pedir 500 unidades implica mayor costo de almacenamiento, el <strong>ahorro en precio de compra</strong> ($57 vs $60 por unidad × 936 unidades/año = $2,808 de ahorro) compensa con creces ese costo adicional. El análisis EOQ con descuentos captura exactamente esa compensación.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="resumen-de-fórmulas" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-de-fórmulas">Resumen de fórmulas</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 32%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>Fórmula</th>
+<th>Responde a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EOQ básico</td>
+<td><span class="math inline">\(\sqrt{2DC_o/C_m}\)</span></td>
+<td>¿Cuánto pedir?</td>
+</tr>
+<tr class="even">
+<td>Stock de seguridad</td>
+<td><span class="math inline">\(Z \cdot \sigma \cdot \sqrt{L}\)</span></td>
+<td>¿Qué colchón guardar?</td>
+</tr>
+<tr class="odd">
+<td>Punto de reorden</td>
+<td><span class="math inline">\(\bar{d} \cdot L + SS\)</span></td>
+<td>¿Cuándo pedir?</td>
+</tr>
+<tr class="even">
+<td>Costo total anual</td>
+<td><span class="math inline">\(\frac{D}{Q}C_o + \frac{Q}{2}C_m\)</span></td>
+<td>¿Cuánto cuesta?</td>
+</tr>
+<tr class="odd">
+<td>EOQ con descuentos</td>
+<td><span class="math inline">\(D \cdot P + \frac{D}{Q}C_o + \frac{Q}{2}(CMi \cdot P)\)</span></td>
+<td>¿Conviene el descuento?</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>Documento generado con <a href="https://quarto.org">Quarto</a>. Código fuente disponible en el repositorio del proyecto.</em></p>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Modelo EOQ: Cantidad Económica de Pedido"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Teoría, fórmulas e implementación en Python"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Gestión de Operaciones"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: "Contenido"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-align: center</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## ¿Qué es el EOQ?</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>El **EOQ** (*Economic Order Quantity* — Cantidad Económica de Pedido) es un modelo clásico de administración de inventarios que responde a una pregunta fundamental:</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *¿Cuántas unidades debo pedir cada vez para minimizar los costos totales de inventario?*</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>El modelo fue desarrollado por Ford W. Harris en 1913 y sigue siendo uno de los más utilizados en operaciones y logística.</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## El problema de los dos costos</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>Gestionar inventario implica dos costos que van en **direcciones opuestas**:</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:2rem auto;"&gt;</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"&gt;</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;path d="M0,0 L0,6 L8,3 z" fill="#555"/&gt;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Fondo tarjeta izquierda --&gt;</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="30" y="30" width="290" height="260" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="30" y="30" width="290" height="52" rx="12" fill="#3B82F6"/&gt;</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="30" y="60" width="290" height="22" fill="#3B82F6"/&gt;</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="175" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white"&gt;Costo de Ordenar (Co)&lt;/text&gt;</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="115" font-size="13" fill="#1E3A5F"&gt;Costo FIJO de hacer un pedido:&lt;/text&gt;</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="138" font-size="12" fill="#374151"&gt;• Trámites administrativos&lt;/text&gt;</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="158" font-size="12" fill="#374151"&gt;• Transporte y envío&lt;/text&gt;</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="178" font-size="12" fill="#374151"&gt;• Tiempo del equipo de compras&lt;/text&gt;</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="210" font-size="13" fill="#1E3A5F" font-weight="500"&gt;Si pides POCO y SEGUIDO →&lt;/text&gt;</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="230" font-size="13" fill="#DC2626"&gt;este costo sube ↑&lt;/text&gt;</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="60" y="262" font-size="12" fill="#6B7280" font-style="italic"&gt;Ejemplo: $45 por cada pedido&lt;/text&gt;</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Fondo tarjeta derecha --&gt;</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="380" y="30" width="290" height="260" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="380" y="30" width="290" height="52" rx="12" fill="#22C55E"/&gt;</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="380" y="60" width="290" height="22" fill="#22C55E"/&gt;</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="525" y="62" text-anchor="middle" font-size="15" font-weight="600" fill="white"&gt;Costo de Mantener (Cm)&lt;/text&gt;</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="115" font-size="13" fill="#14532D"&gt;Costo de tener stock almacenado:&lt;/text&gt;</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="138" font-size="12" fill="#374151"&gt;• Bodega y almacenamiento&lt;/text&gt;</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="158" font-size="12" fill="#374151"&gt;• Seguros y mermas&lt;/text&gt;</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="178" font-size="12" fill="#374151"&gt;• Capital inmovilizado&lt;/text&gt;</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="210" font-size="13" fill="#14532D" font-weight="500"&gt;Si pides MUCHO y RARA VEZ →&lt;/text&gt;</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="230" font-size="13" fill="#DC2626"&gt;este costo sube ↑&lt;/text&gt;</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="410" y="262" font-size="12" fill="#6B7280" font-style="italic"&gt;Ejemplo: $2 por unidad por año&lt;/text&gt;</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha central --&gt;</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="168" text-anchor="middle" font-size="22" fill="#6B7280"&gt;⇄&lt;/text&gt;</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="188" text-anchor="middle" font-size="11" fill="#9CA3AF"&gt;punto&lt;/text&gt;</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="202" text-anchor="middle" font-size="11" fill="#9CA3AF"&gt;óptimo&lt;/text&gt;</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>El EOQ encuentra el **punto de equilibrio** donde la suma de ambos costos es mínima.</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## La fórmula EOQ</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>$$EOQ = \sqrt{\frac{2 \times D \times C_o}{C_m}}$$</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Símbolo <span class="pp">|</span> Nombre <span class="pp">|</span> Descripción <span class="pp">|</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|--------|-------------|</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D$ <span class="pp">|</span> Demanda anual <span class="pp">|</span> Unidades consumidas o vendidas por año <span class="pp">|</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $C_o$ <span class="pp">|</span> Costo por orden <span class="pp">|</span> Costo fijo de realizar un pedido ($) <span class="pp">|</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $C_m$ <span class="pp">|</span> Costo de mantener <span class="pp">|</span> Costo de almacenar 1 unidad durante 1 año ($) <span class="pp">|</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### ¿De dónde sale la raíz cuadrada?</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>El costo total anual es $CT = \frac{D}{Q} \cdot C_o + \frac{Q}{2} \cdot C_m$. Para encontrar el mínimo se deriva respecto a $Q$, se iguala a cero y se despeja. El resultado es la fórmula EOQ. En ese punto óptimo, el costo de ordenar siempre es igual al costo de mantener.</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfica de costos</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>La siguiente gráfica muestra por qué el EOQ es óptimo: es el punto donde se cruzan el costo de ordenar y el costo de mantener, minimizando el costo total.</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;"&gt;</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="arrowhead" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"&gt;</span></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 8 3, 0 6" fill="#555"/&gt;</span></span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Ejes --&gt;</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="80" y1="320" x2="620" y2="320" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"/&gt;</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="80" y1="320" x2="80" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arrowhead)"/&gt;</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Etiquetas ejes --&gt;</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="358" text-anchor="middle" font-size="13" fill="#374151"&gt;Cantidad pedida (Q)&lt;/text&gt;</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="22" y="180" text-anchor="middle" font-size="13" fill="#374151" transform="rotate(-90,22,180)"&gt;Costo anual ($)&lt;/text&gt;</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!--</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a><span class="in">    Datos para D=1200, Co=50, Cm=2, EOQ≈245</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a><span class="in">    Escala X: Q de 50 a 580 → pixel = 80 + (Q-50)/(580-50)*540</span></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a><span class="in">    Escala Y: CT de 0 a 1400 → pixel = 320 - CT/1400*290</span></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="in">    Costo ordenar  = (1200/Q)*50</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a><span class="in">    Costo mantener = (Q/2)*2</span></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="in">    Costo total    = suma</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a><span class="in">    Puntos precalculados:</span></span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a><span class="in">  --&gt;</span></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Costo de mantener: línea recta ascendente --&gt;</span></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- (Q/2)*2 = Q → en Q=50: 50; Q=580: 580 --&gt;</span></span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y en Q=50:  pix_y=320-50/1400*290=309.6  pix_x=80+(50-50)/530*540=80   --&gt;</span></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Y en Q=580: pix_y=320-580/1400*290=200.1  pix_x=80+(580-50)/530*540=620 --&gt;</span></span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="80" y1="309" x2="620" y2="200" stroke="#22C55E" stroke-width="2.2" stroke-dasharray="6,3"/&gt;</span></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Costo de ordenar: hipérbola (D*Co/Q) = 60000/Q --&gt;</span></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- puntos: Q=50→1200, Q=80→750, Q=120→500, Q=180→333, Q=245→245, Q=350→171, Q=500→120, Q=580→103 --&gt;</span></span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline</span></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a><span class="in">    points="</span></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a><span class="in">      80,45</span></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="in">      106,107</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a><span class="in">      131,172</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a><span class="in">      162,249</span></span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a><span class="in">      212,269</span></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="in">      291,265</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a><span class="in">      371,252</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a><span class="in">      451,237</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a><span class="in">      531,222</span></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a><span class="in">      620,208</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a><span class="in">    "</span></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a><span class="in">    fill="none" stroke="#3B82F6" stroke-width="2.2" stroke-dasharray="6,3"/&gt;</span></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Costo total --&gt;</span></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- CT = 60000/Q + Q  (en términos simplificados de escala) --&gt;</span></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Puntos CT reales: Q=50:1250, Q=80:800, Q=120:540, Q=180:387, Q=245:490 aprox min, Q=350:471, Q=500:620, Q=580:683 --&gt;</span></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Recalculo correcto: CT=(1200/Q)*50+(Q/2)*2  --&gt;</span></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=50:  (24)*50+(25)*2=1200+50=1250  px_y=320-1250/1400*290=61  px_x=80 --&gt;</span></span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=100: (12)*50+(50)*2=600+100=700   px_y=320-700/1400*290=175  px_x=182 --&gt;</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=150: (8)*50+(75)*2=400+150=550    px_y=320-550/1400*290=206  px_x=283 --&gt;</span></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=200: (6)*50+(100)*2=300+200=500   px_y=320-500/1400*290=216  px_x=335 --&gt;</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=245: 244.9+244.9=490              px_y=320-490/1400*290=218  px_x=376 --&gt;</span></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=300: (4)*50+(150)*2=200+300=500   px_y=216                   px_x=437 --&gt;</span></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=400: (3)*50+(200)*2=150+400=550   px_y=206                   px_x=539 --&gt;</span></span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Q=500: (2.4)*50+(250)*2=120+500=620 px_y=192                   px_x=590 --&gt;</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a><span class="in">    points="80,61 182,175 283,206 335,216 376,218 437,216 539,206 590,192"</span></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a><span class="in">    fill="none" stroke="#EF4444" stroke-width="2.8"/&gt;</span></span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Línea vertical EOQ --&gt;</span></span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="376" y1="60" x2="376" y2="320" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="4,4"/&gt;</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Punto mínimo --&gt;</span></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;circle cx="376" cy="218" r="6" fill="#EF4444" stroke="white" stroke-width="2"/&gt;</span></span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- EOQ label --&gt;</span></span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="376" y="340" text-anchor="middle" font-size="12" fill="#374151" font-weight="600"&gt;EOQ ≈ 245&lt;/text&gt;</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Leyenda --&gt;</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="430" y="45" width="185" height="90" rx="8" fill="white" stroke="#E5E7EB" stroke-width="1"/&gt;</span></span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="445" y1="68" x2="470" y2="68" stroke="#EF4444" stroke-width="2.5"/&gt;</span></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="478" y="72" font-size="12" fill="#374151"&gt;Costo total&lt;/text&gt;</span></span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="445" y1="90" x2="470" y2="90" stroke="#3B82F6" stroke-width="2" stroke-dasharray="5,3"/&gt;</span></span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="478" y="94" font-size="12" fill="#374151"&gt;Costo de ordenar&lt;/text&gt;</span></span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="445" y1="112" x2="470" y2="112" stroke="#22C55E" stroke-width="2" stroke-dasharray="5,3"/&gt;</span></span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="478" y="116" font-size="12" fill="#374151"&gt;Costo de mantener&lt;/text&gt;</span></span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Anotación punto mínimo --&gt;</span></span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="390" y="205" font-size="11" fill="#DC2626" font-weight="500"&gt;mínimo&lt;/text&gt;</span></span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## Implementación en Python</span></span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### EOQ básico</span></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Fórmulas ────────────────────────────────────────────────────────────</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eoq(demanda_anual, costo_orden, costo_mant):</span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a><span class="co">    EOQ = √(2 × D × Co / Cm)</span></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(math.sqrt((<span class="dv">2</span> <span class="op">*</span> demanda_anual <span class="op">*</span> costo_orden) <span class="op">/</span> costo_mant), <span class="dv">2</span>)</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> costo_total_anual(demanda_anual, cantidad_pedido, costo_orden, costo_mant):</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a><span class="co">    CT = (D/Q) × Co  +  (Q/2) × Cm</span></span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(</span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a>        (demanda_anual <span class="op">/</span> cantidad_pedido) <span class="op">*</span> costo_orden <span class="op">+</span></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>        (cantidad_pedido <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> costo_mant,</span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span></span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Ejemplo ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a>D  <span class="op">=</span> <span class="dv">1200</span>   <span class="co"># unidades/año</span></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a>Co <span class="op">=</span> <span class="dv">50</span>     <span class="co"># $ por orden</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a>Cm <span class="op">=</span> <span class="dv">2</span>      <span class="co"># $ por unidad por año</span></span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a>Q_optima <span class="op">=</span> eoq(D, Co, Cm)</span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>pedidos_año <span class="op">=</span> <span class="bu">round</span>(D <span class="op">/</span> Q_optima, <span class="dv">1</span>)</span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a>dias_entre_pedidos <span class="op">=</span> <span class="bu">round</span>(<span class="dv">365</span> <span class="op">/</span> pedidos_año)</span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> costo_total_anual(D, Q_optima, Co, Cm)</span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"EOQ (cantidad óptima por pedido) : </span><span class="sc">{</span>Q_optima<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pedidos por año                  : </span><span class="sc">{</span>pedidos_a<span class="sc">ñ</span>o<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Días entre pedidos               : </span><span class="sc">{</span>dias_entre_pedidos<span class="sc">}</span><span class="ss"> días"</span>)</span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Costo total anual                : $</span><span class="sc">{</span>ct<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Verificación del punto de equilibrio:"</span>)</span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Costo de ordenar  = $</span><span class="sc">{</span><span class="bu">round</span>((D<span class="op">/</span>Q_optima)<span class="op">*</span>Co, <span class="dv">2</span>)<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Costo de mantener = $</span><span class="sc">{</span><span class="bu">round</span>((Q_optima<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>Cm, <span class="dv">2</span>)<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  (deben ser iguales en el EOQ ✓)"</span>)</span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stock de Seguridad y Punto de Reorden</span></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a>En la realidad, la demanda y el lead time varían. Para cubrirse existe el **Stock de Seguridad (SS)** y el **Punto de Reorden (ROP)**.</span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fórmulas</span></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>$$SS = Z \times \sigma \times \sqrt{L}$$</span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a>$$ROP = \bar{d} \times L + SS$$</span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Símbolo <span class="pp">|</span> Descripción <span class="pp">|</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-------------|</span></span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Z$ <span class="pp">|</span> Factor de nivel de servicio (ver tabla) <span class="pp">|</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sigma$ <span class="pp">|</span> Desviación estándar de la demanda diaria <span class="pp">|</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $L$ <span class="pp">|</span> Lead time en días <span class="pp">|</span></span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\bar{d}$ <span class="pp">|</span> Demanda diaria promedio ($D / 365$) <span class="pp">|</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Nivel de servicio <span class="pp">|</span> $Z$ <span class="pp">|</span></span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 90% <span class="pp">|</span> 1.28 <span class="pp">|</span></span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 95% <span class="pp">|</span> 1.65 <span class="pp">|</span></span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 99% <span class="pp">|</span> 2.33 <span class="pp">|</span></span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a><span class="fu">### Flujo del inventario</span></span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;"&gt;</span></span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="arr2" markerWidth="7" markerHeight="6" refX="5" refY="3" orient="auto"&gt;</span></span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 7 3, 0 6" fill="#555"/&gt;</span></span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Ejes --&gt;</span></span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="230" x2="640" y2="230" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/&gt;</span></span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="230" x2="60" y2="30" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/&gt;</span></span>
+<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="258" text-anchor="middle" font-size="12" fill="#555"&gt;Tiempo&lt;/text&gt;</span></span>
+<span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="20" y="130" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90,20,130)"&gt;Stock&lt;/text&gt;</span></span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Nivel EOQ = 245, línea en y=55 --&gt;</span></span>
+<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Nivel ROP = 30,  línea en y=195 --&gt;</span></span>
+<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Nivel SS  = 7,   línea en y=218 --&gt;</span></span>
+<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Escala: 0→230, 245→55  →  px = 230 - stock*(230-55)/245 --&gt;</span></span>
+<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Etiquetas eje Y --&gt;</span></span>
+<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="52" y="59" text-anchor="end" font-size="11" fill="#555"&gt;245&lt;/text&gt;</span></span>
+<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="52" y="199" text-anchor="end" font-size="11" fill="#EF4444"&gt;ROP&lt;/text&gt;</span></span>
+<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="52" y="221" text-anchor="end" font-size="11" fill="#F59E0B"&gt;SS&lt;/text&gt;</span></span>
+<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Líneas de referencia --&gt;</span></span>
+<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="196" x2="640" y2="196" stroke="#EF4444" stroke-width="1" stroke-dasharray="5,4"/&gt;</span></span>
+<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="60" y1="220" x2="640" y2="220" stroke="#F59E0B" stroke-width="1" stroke-dasharray="5,4"/&gt;</span></span>
+<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Ciclo 1: baja de 245 a ROP, luego a SS, luego salta --&gt;</span></span>
+<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Descenso lineal de (80,55) a (280,196) = ROP alcanzado --&gt;</span></span>
+<span id="cb8-301"><a href="#cb8-301" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Continúa bajando hasta (370,220) = llegó el pedido --&gt;</span></span>
+<span id="cb8-302"><a href="#cb8-302" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Salta a (370,55) = recibió pedido --&gt;</span></span>
+<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;polyline</span></span>
+<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a><span class="in">    points="80,55 280,196 370,220 370,55 540,196 610,213"</span></span>
+<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a><span class="in">    fill="none" stroke="#3B82F6" stroke-width="2.5"/&gt;</span></span>
+<span id="cb8-307"><a href="#cb8-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-308"><a href="#cb8-308" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha de reposición --&gt;</span></span>
+<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="370" y1="220" x2="370" y2="60" stroke="#22C55E" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arr2)"/&gt;</span></span>
+<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Anotaciones ciclo 1 --&gt;</span></span>
+<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Punto ROP --&gt;</span></span>
+<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;circle cx="280" cy="196" r="4" fill="#EF4444"/&gt;</span></span>
+<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="265" y="185" font-size="10" fill="#EF4444" font-weight="600"&gt;pedir aquí&lt;/text&gt;</span></span>
+<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Lead time bracket --&gt;</span></span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="280" y1="240" x2="370" y2="240" stroke="#6B7280" stroke-width="1.2"/&gt;</span></span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="280" y1="236" x2="280" y2="244" stroke="#6B7280" stroke-width="1.2"/&gt;</span></span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="370" y1="236" x2="370" y2="244" stroke="#6B7280" stroke-width="1.2"/&gt;</span></span>
+<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="325" y="255" text-anchor="middle" font-size="10" fill="#6B7280"&gt;lead time&lt;/text&gt;</span></span>
+<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Anotación SS --&gt;</span></span>
+<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="390" y="210" width="100" height="18" rx="4" fill="#FEF3C7"/&gt;</span></span>
+<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="440" y="222" text-anchor="middle" font-size="10" fill="#92400E"&gt;stock seguridad&lt;/text&gt;</span></span>
+<span id="cb8-325"><a href="#cb8-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-326"><a href="#cb8-326" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- EOQ bracket --&gt;</span></span>
+<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="370" y1="55" x2="370" y2="220" stroke="#3B82F6" stroke-width="0.8" stroke-dasharray="2,2"/&gt;</span></span>
+<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="378" y="138" font-size="10" fill="#3B82F6"&gt;EOQ&lt;/text&gt;</span></span>
+<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb8-330"><a href="#cb8-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-331"><a href="#cb8-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-332"><a href="#cb8-332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Implementación en Python</span></span>
+<span id="cb8-333"><a href="#cb8-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-336"><a href="#cb8-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-337"><a href="#cb8-337" aria-hidden="true" tabindex="-1"></a>Z_TABLE <span class="op">=</span> {<span class="fl">0.90</span>: <span class="fl">1.28</span>, <span class="fl">0.95</span>: <span class="fl">1.65</span>, <span class="fl">0.99</span>: <span class="fl">2.33</span>}</span>
+<span id="cb8-338"><a href="#cb8-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-339"><a href="#cb8-339" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stock_seguridad(desviacion_diaria, lead_time, nivel_servicio<span class="op">=</span><span class="fl">0.95</span>):</span>
+<span id="cb8-340"><a href="#cb8-340" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a><span class="co">    SS = Z × σ × √L</span></span>
+<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> Z_TABLE[nivel_servicio]</span>
+<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(z <span class="op">*</span> desviacion_diaria <span class="op">*</span> math.sqrt(lead_time), <span class="dv">2</span>)</span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rop(demanda_anual, lead_time, desviacion_diaria, nivel_servicio<span class="op">=</span><span class="fl">0.95</span>):</span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="co">    ROP = (d × L) + SS</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="co">    donde d = D / 365</span></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a>    d  <span class="op">=</span> demanda_anual <span class="op">/</span> <span class="dv">365</span></span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a>    ss <span class="op">=</span> stock_seguridad(desviacion_diaria, lead_time, nivel_servicio)</span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(d <span class="op">*</span> lead_time <span class="op">+</span> ss, <span class="dv">2</span>)</span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Ejemplo ─────────────────────────────────────────────────────────────</span></span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a>sigma    <span class="op">=</span> <span class="fl">1.5</span>   <span class="co"># desviación estándar de la demanda diaria</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a>L        <span class="op">=</span> <span class="dv">7</span>     <span class="co"># días de lead time</span></span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a>nivel    <span class="op">=</span> <span class="fl">0.95</span>  <span class="co"># nivel de servicio</span></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a>ss  <span class="op">=</span> stock_seguridad(sigma, L, nivel)</span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a>r   <span class="op">=</span> rop(D, L, sigma, nivel)</span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Stock de seguridad : </span><span class="sc">{</span>ss<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Punto de reorden   : </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> unidades"</span>)</span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"→ Cuando el inventario llegue a </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> unidades, pedir </span><span class="sc">{</span>Q_optima<span class="sc">}</span><span class="ss"> unidades (EOQ)"</span>)</span>
+<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a><span class="fu">## EOQ con Descuentos por Cantidad</span></span>
+<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a>Los proveedores suelen ofrecer precios menores si se compra mayor volumen. Esto agrega una tercera dimensión al análisis: el **ahorro en precio de compra**.</span>
+<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fórmula del costo total con precio</span></span>
+<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a>$$CT = D \times P + \frac{D}{Q} \times C_o + \frac{Q}{2} \times (CMi \times P)$$</span>
+<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Símbolo <span class="pp">|</span> Descripción <span class="pp">|</span></span>
+<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|-------------|</span></span>
+<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $P$ <span class="pp">|</span> Precio unitario del tramo <span class="pp">|</span></span>
+<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $CMi$ <span class="pp">|</span> Tasa de mantenimiento (fracción del precio, ej: 0.25) <span class="pp">|</span></span>
+<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $D \times P$ <span class="pp">|</span> Costo anual de compra <span class="pp">|</span></span>
+<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diferencia clave con el EOQ básico</span></span>
+<span id="cb8-387"><a href="#cb8-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-388"><a href="#cb8-388" aria-hidden="true" tabindex="-1"></a>En el EOQ básico, $C_m$ es un valor fijo. Con descuentos, el costo de mantener es $CMi \times P$, y como $P$ cambia por tramo, hay que recalcular todo para cada precio.</span>
+<span id="cb8-389"><a href="#cb8-389" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-390"><a href="#cb8-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-391"><a href="#cb8-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### Algoritmo paso a paso</span></span>
+<span id="cb8-392"><a href="#cb8-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-393"><a href="#cb8-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb8-394"><a href="#cb8-394" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;"&gt;</span></span>
+<span id="cb8-395"><a href="#cb8-395" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;defs&gt;</span></span>
+<span id="cb8-396"><a href="#cb8-396" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;marker id="arr3" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"&gt;</span></span>
+<span id="cb8-397"><a href="#cb8-397" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;polygon points="0 0, 8 3, 0 6" fill="#555"/&gt;</span></span>
+<span id="cb8-398"><a href="#cb8-398" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;/marker&gt;</span></span>
+<span id="cb8-399"><a href="#cb8-399" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/defs&gt;</span></span>
+<span id="cb8-400"><a href="#cb8-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-401"><a href="#cb8-401" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Paso 1 --&gt;</span></span>
+<span id="cb8-402"><a href="#cb8-402" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="40" y="30" width="180" height="64" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-403"><a href="#cb8-403" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="130" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#1D4ED8"&gt;Paso 1&lt;/text&gt;</span></span>
+<span id="cb8-404"><a href="#cb8-404" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="130" y="73" text-anchor="middle" font-size="11" fill="#374151"&gt;Calcular EOQ natural&lt;/text&gt;</span></span>
+<span id="cb8-405"><a href="#cb8-405" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="130" y="88" text-anchor="middle" font-size="11" fill="#374151"&gt;para cada tramo de precio&lt;/text&gt;</span></span>
+<span id="cb8-406"><a href="#cb8-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-407"><a href="#cb8-407" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha 1→2 --&gt;</span></span>
+<span id="cb8-408"><a href="#cb8-408" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="220" y1="62" x2="258" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/&gt;</span></span>
+<span id="cb8-409"><a href="#cb8-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-410"><a href="#cb8-410" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Paso 2 --&gt;</span></span>
+<span id="cb8-411"><a href="#cb8-411" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="260" y="30" width="180" height="64" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-412"><a href="#cb8-412" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#15803D"&gt;Paso 2&lt;/text&gt;</span></span>
+<span id="cb8-413"><a href="#cb8-413" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="73" text-anchor="middle" font-size="11" fill="#374151"&gt;¿EOQ cae en el&lt;/text&gt;</span></span>
+<span id="cb8-414"><a href="#cb8-414" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="88" text-anchor="middle" font-size="11" fill="#374151"&gt;rango válido?&lt;/text&gt;</span></span>
+<span id="cb8-415"><a href="#cb8-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-416"><a href="#cb8-416" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Sí / No --&gt;</span></span>
+<span id="cb8-417"><a href="#cb8-417" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="440" y1="62" x2="478" y2="62" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/&gt;</span></span>
+<span id="cb8-418"><a href="#cb8-418" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="459" y="55" text-anchor="middle" font-size="10" fill="#15803D"&gt;SÍ&lt;/text&gt;</span></span>
+<span id="cb8-419"><a href="#cb8-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-420"><a href="#cb8-420" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="265" y="125" width="170" height="44" rx="8" fill="#FEF9C3" stroke="#FDE047" stroke-width="1.2"/&gt;</span></span>
+<span id="cb8-421"><a href="#cb8-421" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="145" text-anchor="middle" font-size="11" fill="#713F12"&gt;Usar mínimo del rango&lt;/text&gt;</span></span>
+<span id="cb8-422"><a href="#cb8-422" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="350" y="160" text-anchor="middle" font-size="11" fill="#713F12"&gt;como Q válida&lt;/text&gt;</span></span>
+<span id="cb8-423"><a href="#cb8-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-424"><a href="#cb8-424" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha vertical NO --&gt;</span></span>
+<span id="cb8-425"><a href="#cb8-425" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="350" y1="94" x2="350" y2="123" stroke="#EF4444" stroke-width="1.3" marker-end="url(#arr3)"/&gt;</span></span>
+<span id="cb8-426"><a href="#cb8-426" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="358" y="114" font-size="10" fill="#EF4444"&gt;NO&lt;/text&gt;</span></span>
+<span id="cb8-427"><a href="#cb8-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-428"><a href="#cb8-428" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Paso 3 a la derecha --&gt;</span></span>
+<span id="cb8-429"><a href="#cb8-429" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="480" y="30" width="180" height="64" rx="10" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-430"><a href="#cb8-430" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="570" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#C2410C"&gt;Paso 3&lt;/text&gt;</span></span>
+<span id="cb8-431"><a href="#cb8-431" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="570" y="73" text-anchor="middle" font-size="11" fill="#374151"&gt;Calcular CT completo&lt;/text&gt;</span></span>
+<span id="cb8-432"><a href="#cb8-432" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="570" y="88" text-anchor="middle" font-size="11" fill="#374151"&gt;con Q y P del tramo&lt;/text&gt;</span></span>
+<span id="cb8-433"><a href="#cb8-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-434"><a href="#cb8-434" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha desde "usar mínimo" a paso 3 --&gt;</span></span>
+<span id="cb8-435"><a href="#cb8-435" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="435" y1="147" x2="478" y2="80" stroke="#555" stroke-width="1.2" marker-end="url(#arr3)" stroke-dasharray="4,3"/&gt;</span></span>
+<span id="cb8-436"><a href="#cb8-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-437"><a href="#cb8-437" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Paso 4 abajo centrado --&gt;</span></span>
+<span id="cb8-438"><a href="#cb8-438" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="240" y="220" width="200" height="64" rx="10" fill="#FDF4FF" stroke="#E879F9" stroke-width="1.5"/&gt;</span></span>
+<span id="cb8-439"><a href="#cb8-439" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="245" text-anchor="middle" font-size="13" font-weight="600" fill="#86198F"&gt;Paso 4&lt;/text&gt;</span></span>
+<span id="cb8-440"><a href="#cb8-440" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="263" text-anchor="middle" font-size="11" fill="#374151"&gt;Elegir el tramo con&lt;/text&gt;</span></span>
+<span id="cb8-441"><a href="#cb8-441" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="278" text-anchor="middle" font-size="11" fill="#374151"&gt;menor CT → decisión&lt;/text&gt;</span></span>
+<span id="cb8-442"><a href="#cb8-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-443"><a href="#cb8-443" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Flecha paso 3 → paso 4 --&gt;</span></span>
+<span id="cb8-444"><a href="#cb8-444" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="570" y1="94" x2="400" y2="218" stroke="#555" stroke-width="1.3" marker-end="url(#arr3)"/&gt;</span></span>
+<span id="cb8-445"><a href="#cb8-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-446"><a href="#cb8-446" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Repetir para todos los tramos --&gt;</span></span>
+<span id="cb8-447"><a href="#cb8-447" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="320" text-anchor="middle" font-size="11" fill="#9CA3AF" font-style="italic"&gt;↺ repetir para cada tramo de precio&lt;/text&gt;</span></span>
+<span id="cb8-448"><a href="#cb8-448" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb8-449"><a href="#cb8-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-450"><a href="#cb8-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-451"><a href="#cb8-451" aria-hidden="true" tabindex="-1"></a><span class="fu">### Implementación en Python</span></span>
+<span id="cb8-452"><a href="#cb8-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-455"><a href="#cb8-455" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-456"><a href="#cb8-456" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eoq_con_descuentos(demanda_anual, costo_orden, tasa_mantenimiento, tramos):</span>
+<span id="cb8-457"><a href="#cb8-457" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-458"><a href="#cb8-458" aria-hidden="true" tabindex="-1"></a><span class="co">    EOQ con descuentos por cantidad.</span></span>
+<span id="cb8-459"><a href="#cb8-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-460"><a href="#cb8-460" aria-hidden="true" tabindex="-1"></a><span class="co">    CT = D×P + (D/Q)×Co + (Q/2)×(CMi×P)</span></span>
+<span id="cb8-461"><a href="#cb8-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-462"><a href="#cb8-462" aria-hidden="true" tabindex="-1"></a><span class="co">    tramos: lista de dicts {'precio', 'min_q', 'max_q'}</span></span>
+<span id="cb8-463"><a href="#cb8-463" aria-hidden="true" tabindex="-1"></a><span class="co">    ordenados de menor a mayor precio (mayor a menor cantidad).</span></span>
+<span id="cb8-464"><a href="#cb8-464" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-465"><a href="#cb8-465" aria-hidden="true" tabindex="-1"></a>    detalle <span class="op">=</span> []</span>
+<span id="cb8-466"><a href="#cb8-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-467"><a href="#cb8-467" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tramo <span class="kw">in</span> tramos:</span>
+<span id="cb8-468"><a href="#cb8-468" aria-hidden="true" tabindex="-1"></a>        P     <span class="op">=</span> tramo[<span class="st">'precio'</span>]</span>
+<span id="cb8-469"><a href="#cb8-469" aria-hidden="true" tabindex="-1"></a>        min_q <span class="op">=</span> tramo[<span class="st">'min_q'</span>]</span>
+<span id="cb8-470"><a href="#cb8-470" aria-hidden="true" tabindex="-1"></a>        max_q <span class="op">=</span> tramo[<span class="st">'max_q'</span>]</span>
+<span id="cb8-471"><a href="#cb8-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-472"><a href="#cb8-472" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 1: EOQ natural con Cm = CMi × P</span></span>
+<span id="cb8-473"><a href="#cb8-473" aria-hidden="true" tabindex="-1"></a>        costo_mant <span class="op">=</span> tasa_mantenimiento <span class="op">*</span> P</span>
+<span id="cb8-474"><a href="#cb8-474" aria-hidden="true" tabindex="-1"></a>        q_natural  <span class="op">=</span> math.sqrt((<span class="dv">2</span> <span class="op">*</span> demanda_anual <span class="op">*</span> costo_orden) <span class="op">/</span> costo_mant)</span>
+<span id="cb8-475"><a href="#cb8-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-476"><a href="#cb8-476" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 2: ¿cae en el rango válido?</span></span>
+<span id="cb8-477"><a href="#cb8-477" aria-hidden="true" tabindex="-1"></a>        limite_sup <span class="op">=</span> max_q <span class="cf">if</span> max_q <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="bu">float</span>(<span class="st">'inf'</span>)</span>
+<span id="cb8-478"><a href="#cb8-478" aria-hidden="true" tabindex="-1"></a>        en_rango   <span class="op">=</span> min_q <span class="op">&lt;=</span> q_natural <span class="op">&lt;=</span> limite_sup</span>
+<span id="cb8-479"><a href="#cb8-479" aria-hidden="true" tabindex="-1"></a>        q_valida   <span class="op">=</span> <span class="bu">round</span>(q_natural, <span class="dv">2</span>) <span class="cf">if</span> en_rango <span class="cf">else</span> <span class="bu">float</span>(min_q)</span>
+<span id="cb8-480"><a href="#cb8-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-481"><a href="#cb8-481" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Paso 3: costo total completo</span></span>
+<span id="cb8-482"><a href="#cb8-482" aria-hidden="true" tabindex="-1"></a>        ct <span class="op">=</span> <span class="bu">round</span>(</span>
+<span id="cb8-483"><a href="#cb8-483" aria-hidden="true" tabindex="-1"></a>            demanda_anual <span class="op">*</span> P <span class="op">+</span></span>
+<span id="cb8-484"><a href="#cb8-484" aria-hidden="true" tabindex="-1"></a>            (demanda_anual <span class="op">/</span> q_valida) <span class="op">*</span> costo_orden <span class="op">+</span></span>
+<span id="cb8-485"><a href="#cb8-485" aria-hidden="true" tabindex="-1"></a>            (q_valida <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> costo_mant,</span>
+<span id="cb8-486"><a href="#cb8-486" aria-hidden="true" tabindex="-1"></a>            <span class="dv">2</span></span>
+<span id="cb8-487"><a href="#cb8-487" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-488"><a href="#cb8-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-489"><a href="#cb8-489" aria-hidden="true" tabindex="-1"></a>        detalle.append({</span>
+<span id="cb8-490"><a href="#cb8-490" aria-hidden="true" tabindex="-1"></a>            <span class="st">'precio'</span>:      P,</span>
+<span id="cb8-491"><a href="#cb8-491" aria-hidden="true" tabindex="-1"></a>            <span class="st">'rango'</span>:       <span class="ss">f"</span><span class="sc">{</span>min_q<span class="sc">}</span><span class="ss">–</span><span class="sc">{</span>max_q <span class="kw">or</span> <span class="st">'∞'</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb8-492"><a href="#cb8-492" aria-hidden="true" tabindex="-1"></a>            <span class="st">'eoq_natural'</span>: <span class="bu">round</span>(q_natural, <span class="dv">2</span>),</span>
+<span id="cb8-493"><a href="#cb8-493" aria-hidden="true" tabindex="-1"></a>            <span class="st">'q_valida'</span>:    q_valida,</span>
+<span id="cb8-494"><a href="#cb8-494" aria-hidden="true" tabindex="-1"></a>            <span class="st">'en_rango'</span>:    en_rango,</span>
+<span id="cb8-495"><a href="#cb8-495" aria-hidden="true" tabindex="-1"></a>            <span class="st">'costo_total'</span>: ct,</span>
+<span id="cb8-496"><a href="#cb8-496" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb8-497"><a href="#cb8-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-498"><a href="#cb8-498" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Paso 4: elegir el de menor CT</span></span>
+<span id="cb8-499"><a href="#cb8-499" aria-hidden="true" tabindex="-1"></a>    mejor <span class="op">=</span> <span class="bu">min</span>(detalle, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">'costo_total'</span>])</span>
+<span id="cb8-500"><a href="#cb8-500" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mejor, detalle</span>
+<span id="cb8-501"><a href="#cb8-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-502"><a href="#cb8-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-503"><a href="#cb8-503" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo del análisis</span></span>
+<span id="cb8-504"><a href="#cb8-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a>tramos <span class="op">=</span> [</span>
+<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">60.00</span>, <span class="st">'min_q'</span>: <span class="dv">0</span>,   <span class="st">'max_q'</span>: <span class="dv">299</span>},</span>
+<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">58.80</span>, <span class="st">'min_q'</span>: <span class="dv">300</span>, <span class="st">'max_q'</span>: <span class="dv">499</span>},</span>
+<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'precio'</span>: <span class="fl">57.00</span>, <span class="st">'min_q'</span>: <span class="dv">500</span>, <span class="st">'max_q'</span>: <span class="va">None</span>},</span>
+<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-516"><a href="#cb8-516" aria-hidden="true" tabindex="-1"></a>mejor, detalle <span class="op">=</span> eoq_con_descuentos(</span>
+<span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>    demanda_anual      <span class="op">=</span> <span class="dv">936</span>,</span>
+<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a>    costo_orden        <span class="op">=</span> <span class="dv">45</span>,</span>
+<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>    tasa_mantenimiento <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>    tramos             <span class="op">=</span> tramos</span>
+<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(detalle)</span>
+<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'válido'</span>] <span class="op">=</span> df[<span class="st">'en_rango'</span>].<span class="bu">map</span>({<span class="va">True</span>: <span class="st">'✓ EOQ natural'</span>, <span class="va">False</span>: <span class="st">'→ mínimo del rango'</span>})</span>
+<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a>df_show <span class="op">=</span> df[[<span class="st">'precio'</span>,<span class="st">'rango'</span>,<span class="st">'eoq_natural'</span>,<span class="st">'q_valida'</span>,<span class="st">'costo_total'</span>,<span class="st">'válido'</span>]]</span>
+<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>df_show.columns <span class="op">=</span> [<span class="st">'Precio'</span>,<span class="st">'Rango'</span>,<span class="st">'EOQ natural'</span>,<span class="st">'Q usada'</span>,<span class="st">'Costo total'</span>,<span class="st">'Nota'</span>]</span>
+<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_show.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"DECISIÓN ÓPTIMA: pedir </span><span class="sc">{</span>mejor[<span class="st">'q_valida'</span>]<span class="sc">:.0f}</span><span class="ss"> unidades a $</span><span class="sc">{</span>mejor[<span class="st">'precio'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Costo total anual: $</span><span class="sc">{</span>mejor[<span class="st">'costo_total'</span>]<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparación visual de los tramos</span></span>
+<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:2rem auto;"&gt;</span></span>
+<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Título --&gt;</span></span>
+<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="25" text-anchor="middle" font-size="14" font-weight="600" fill="#374151"&gt;Comparación de costos totales por tramo&lt;/text&gt;</span></span>
+<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Barras (escala: max CT = 57400, base en y=240, altura max=180) --&gt;</span></span>
+<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- CT1=57284 → alto=57284/57400*180=179.6 → y_top=240-180=60 --&gt;</span></span>
+<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- CT2=57382 → alto=57382/57400*180=179.9 → y_top=60.1 --&gt;</span></span>
+<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- CT3=56999 → alto=56999/57400*180=178.7 → y_top=61.3 --&gt;</span></span>
+<span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Barra 1 — $60 --&gt;</span></span>
+<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="100" y="61" width="120" height="179" rx="6" fill="#93C5FD"/&gt;</span></span>
+<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="100" y="61" width="120" height="179" rx="6" fill="url(#b1)"/&gt;</span></span>
+<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="160" y="55" text-anchor="middle" font-size="12" font-weight="600" fill="#1D4ED8"&gt;$57,284&lt;/text&gt;</span></span>
+<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="160" y="255" text-anchor="middle" font-size="12" fill="#374151"&gt;Precio $60&lt;/text&gt;</span></span>
+<span id="cb8-552"><a href="#cb8-552" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="160" y="270" text-anchor="middle" font-size="11" fill="#6B7280"&gt;Q = 75 u.&lt;/text&gt;</span></span>
+<span id="cb8-553"><a href="#cb8-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-554"><a href="#cb8-554" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Barra 2 — $58.80 --&gt;</span></span>
+<span id="cb8-555"><a href="#cb8-555" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="280" y="60" width="120" height="180" rx="6" fill="#86EFAC"/&gt;</span></span>
+<span id="cb8-556"><a href="#cb8-556" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="54" text-anchor="middle" font-size="12" font-weight="600" fill="#15803D"&gt;$57,382&lt;/text&gt;</span></span>
+<span id="cb8-557"><a href="#cb8-557" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="255" text-anchor="middle" font-size="12" fill="#374151"&gt;Precio $58.80&lt;/text&gt;</span></span>
+<span id="cb8-558"><a href="#cb8-558" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="340" y="270" text-anchor="middle" font-size="11" fill="#6B7280"&gt;Q = 300 u.&lt;/text&gt;</span></span>
+<span id="cb8-559"><a href="#cb8-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-560"><a href="#cb8-560" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Barra 3 — $57 (ganadora, más corta = menor costo) --&gt;</span></span>
+<span id="cb8-561"><a href="#cb8-561" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="460" y="62" width="120" height="177" rx="6" fill="#6EE7B7"/&gt;</span></span>
+<span id="cb8-562"><a href="#cb8-562" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Corona ganadora --&gt;</span></span>
+<span id="cb8-563"><a href="#cb8-563" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="520" y="48" text-anchor="middle" font-size="15"&gt;★&lt;/text&gt;</span></span>
+<span id="cb8-564"><a href="#cb8-564" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="520" y="56" text-anchor="middle" font-size="12" font-weight="600" fill="#065F46"&gt;$56,999&lt;/text&gt;</span></span>
+<span id="cb8-565"><a href="#cb8-565" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="520" y="255" text-anchor="middle" font-size="12" fill="#374151"&gt;Precio $57&lt;/text&gt;</span></span>
+<span id="cb8-566"><a href="#cb8-566" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="520" y="270" text-anchor="middle" font-size="11" fill="#6B7280"&gt;Q = 500 u.&lt;/text&gt;</span></span>
+<span id="cb8-567"><a href="#cb8-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-568"><a href="#cb8-568" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Línea base --&gt;</span></span>
+<span id="cb8-569"><a href="#cb8-569" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;line x1="70" y1="240" x2="620" y2="240" stroke="#D1D5DB" stroke-width="1"/&gt;</span></span>
+<span id="cb8-570"><a href="#cb8-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-571"><a href="#cb8-571" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;!-- Etiqueta ganador --&gt;</span></span>
+<span id="cb8-572"><a href="#cb8-572" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;rect x="455" y="8" width="130" height="20" rx="4" fill="#D1FAE5"/&gt;</span></span>
+<span id="cb8-573"><a href="#cb8-573" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;text x="520" y="21" text-anchor="middle" font-size="11" fill="#065F46" font-weight="600"&gt;costo mínimo ✓&lt;/text&gt;</span></span>
+<span id="cb8-574"><a href="#cb8-574" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/svg&gt;</span></span>
+<span id="cb8-575"><a href="#cb8-575" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-576"><a href="#cb8-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-577"><a href="#cb8-577" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb8-578"><a href="#cb8-578" aria-hidden="true" tabindex="-1"></a><span class="fu">### Intuición del resultado</span></span>
+<span id="cb8-579"><a href="#cb8-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-580"><a href="#cb8-580" aria-hidden="true" tabindex="-1"></a>Aunque pedir 500 unidades implica mayor costo de almacenamiento, el **ahorro en precio de compra** ($57 vs $60 por unidad × 936 unidades/año = $2,808 de ahorro) compensa con creces ese costo adicional. El análisis EOQ con descuentos captura exactamente esa compensación.</span>
+<span id="cb8-581"><a href="#cb8-581" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-582"><a href="#cb8-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-583"><a href="#cb8-583" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-584"><a href="#cb8-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-585"><a href="#cb8-585" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumen de fórmulas</span></span>
+<span id="cb8-586"><a href="#cb8-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-587"><a href="#cb8-587" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Modelo <span class="pp">|</span> Fórmula <span class="pp">|</span> Responde a <span class="pp">|</span></span>
+<span id="cb8-588"><a href="#cb8-588" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------|-----------|</span></span>
+<span id="cb8-589"><a href="#cb8-589" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EOQ básico <span class="pp">|</span> $\sqrt{2DC_o/C_m}$ <span class="pp">|</span> ¿Cuánto pedir? <span class="pp">|</span></span>
+<span id="cb8-590"><a href="#cb8-590" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Stock de seguridad <span class="pp">|</span> $Z \cdot \sigma \cdot \sqrt{L}$ <span class="pp">|</span> ¿Qué colchón guardar? <span class="pp">|</span></span>
+<span id="cb8-591"><a href="#cb8-591" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Punto de reorden <span class="pp">|</span> $\bar{d} \cdot L + SS$ <span class="pp">|</span> ¿Cuándo pedir? <span class="pp">|</span></span>
+<span id="cb8-592"><a href="#cb8-592" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Costo total anual <span class="pp">|</span> $\frac{D}{Q}C_o + \frac{Q}{2}C_m$ <span class="pp">|</span> ¿Cuánto cuesta? <span class="pp">|</span></span>
+<span id="cb8-593"><a href="#cb8-593" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EOQ con descuentos <span class="pp">|</span> $D \cdot P + \frac{D}{Q}C_o + \frac{Q}{2}(CMi \cdot P)$ <span class="pp">|</span> ¿Conviene el descuento? <span class="pp">|</span></span>
+<span id="cb8-594"><a href="#cb8-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-595"><a href="#cb8-595" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-596"><a href="#cb8-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-597"><a href="#cb8-597" aria-hidden="true" tabindex="-1"></a>*Documento generado con [Quarto](https://quarto.org). Código fuente disponible en el repositorio del proyecto.*</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org"><iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Icon quarto from simple-icons Iconify.design set." title="Icon quarto from simple-icons Iconify.design set."></iconify-icon> Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2025 LCPallares.</p>
+</div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,12 +1,5 @@
 [
   {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/estadistica-descriptiva.html",
-      "/posts/estadistica-inferencial.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/projects/construccion_analitica/construccion_analitica.html",
@@ -19,6 +12,7 @@
       "/projects/amazon-best-seller.html",
       "/projects/test_tema/test_tema.html",
       "/projects/web_scraping_csc_india.html",
+      "/posts/eoq_inventario.html",
       "/posts/estadistica-inferencial.html",
       "/posts/estadistica-descriptiva.html"
     ]
@@ -37,6 +31,14 @@
       "/projects/amazon-best-seller.html",
       "/projects/test_tema/test_tema.html",
       "/projects/web_scraping_csc_india.html"
+    ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/estadistica-descriptiva.html",
+      "/posts/estadistica-inferencial.html",
+      "/posts/eoq_inventario.html"
     ]
   }
 ]
